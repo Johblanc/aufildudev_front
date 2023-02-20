@@ -1,13 +1,12 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Comments } from './comments/components/Comments';
 
 function App() {
-  return (
-    <div className="App">
-      
-    </div>
-  );
+    return (
+        <div className="App">
+            <Comments />
+        </div>
+    );
 }
 
 export default App;
