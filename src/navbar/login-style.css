@@ -1,0 +1,86 @@
+
+.loginicon {
+    position: absolute;
+    width: 80px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bolder;
+    color: black;
+    height: 40px;
+    left: 85%;
+    top: 10px;
+    background: #2bc6ff;
+    border-radius: 24px;
+    cursor: pointer;
+}
+
+.loginicon:hover {
+    color: white;
+}
+
+.login-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 75vh;
+}
+
+.form-box {
+    opacity: 80%;
+    background: #1C2942;
+    border-radius: 10px;
+    box-shadow: 10px 10px 10px 1px rgba(0, 0, 0, 0.2);
+}
+
+.login-text {
+    width: 100%;
+    color: lightgrey;
+    border-bottom: 2px solid lightgrey;
+    line-height: 30px;
+    width: 100%;
+    font-weight: bolder;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+label {
+    color: lightgrey;
+    width: 100%;
+    text-align: center;
+}
+
+.login-box {
+    border: 1px solid lightgrey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    padding: 2px;
+    padding-left: 10px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin: 5px;
+    font-size: 11pt;
+    background: transparent;
+    transition: 1s;
+    outline: none;
+    
+}
+
+
+.show {
+    display: block;
+    transition: 800ms;
+    opacity: 1;
+}
+
+.show.active {
+    transform: translateY(100px) scale(0) rotateY(180deg);
+    opacity: 0;
+}
+
