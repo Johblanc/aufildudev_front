@@ -19,9 +19,9 @@ export function LoginForm() {
                         <input type="password" className="form-control" id="inputPassword" placeholder="password"></input>
                     </div>
 
-                    {/*     <div className="modal-footer">
-                        
-                    </div> */}
+                    <div className="modal-footer">
+                        <button type="button" data-bs-toggle="modal" className="btn btn-green"> Connexion</button>
+                    </div>
                 </div>
             </div>
         </div>

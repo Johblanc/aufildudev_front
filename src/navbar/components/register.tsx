@@ -23,9 +23,9 @@ export function RegisterForm() {
                         <input type="verifyPassword" className="form-control" id="inputPasswordVerify" placeholder="Verify your password"></input>
                     </div>
 
-                    {/*     <div className="modal-footer">
-                        
-                    </div> */}
+                    <div className="modal-footer">
+                        <button type="button" data-bs-toggle="modal" className="btn btn-green"> Valider</button>
+                    </div>
                 </div>
             </div>
         </div>
