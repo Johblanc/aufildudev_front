@@ -1,4 +1,5 @@
 import './App.css';
+import './comments/commentStyle.css';
 import { Comments } from './comments/components/Comments';
 
 function App() {
