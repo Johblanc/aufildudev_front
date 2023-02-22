@@ -1,5 +1,5 @@
 
-export function Navbar(props: { handleLoginClick: () => void }) {
+export function Navbar() {
 
 
 
@@ -23,9 +23,11 @@ export function Navbar(props: { handleLoginClick: () => void }) {
                     <ul className="navbar-nav">
 
                         <li className="nav-item">
-                            <button type="button" onClick={props.handleLoginClick} className="btn btn-green"> Connexion</button>
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#loginModal" className="btn btn-green"> Connexion</button>
                         </li>
-
+                        <li className="nav-item">
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#registerModal" className="btn btn-green"> Register</button>
+                        </li>
                     </ul>
 
                 </div>
