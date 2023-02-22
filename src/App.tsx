@@ -1,6 +1,7 @@
 import './App.css';
-import './navbar/navbar-style.css'
-import './navbar/login-style.css'
+import './comments/commentStyle.css';
+import './navbar/navbar-style.css';
+import './navbar/login-style.css';
 import './style.css'
 import { Comments } from './comments/components/Comments';
 import { Navbar } from './navbar/components/navbar';
@@ -8,10 +9,7 @@ import { LoginForm } from './navbar/components/log';
 import { RegisterForm } from './navbar/components/register';
 import SearchBar from './searchBar/components/searchBar';
 
-
-
 function App() {
-
     return (
 
         <div className="App">
@@ -22,7 +20,7 @@ function App() {
 
             <main className='container'>
                 <LoginForm />
-                <RegisterForm />
+                <RegisterForm  />
                 <Comments />
                 <SearchBar/>
             </main>

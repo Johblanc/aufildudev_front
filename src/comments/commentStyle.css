@@ -1,0 +1,89 @@
+
+.btn-primary {
+    background-color: var(--color-button) !important;
+    border: 1px solid var(--color-font-light);
+}
+
+.btn-danger{
+    background-color: #b81604 !important;
+}
+
+.btn-close{
+    background-color: var(--color-button);
+}
+
+.scroll::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  .scroll::-webkit-scrollbar-track {
+    background: var(--color-background-t);
+    border-radius: var(--radius-border); 
+  }
+   
+  /* Handle */
+  .scroll::-webkit-scrollbar-thumb {
+    background: var(--color-button);
+    border-radius: var(--radius-border); 
+  }
+  
+  /* Handle on hover */
+  .scroll::-webkit-scrollbar-thumb:hover {
+    background: var(--color-font-light); 
+  }
+
+.scroll{
+    overflow-y: auto;
+    scrollbar-color: var(--color-button) var(--color-background-t) ;
+    scrollbar-width: thin;
+    
+    
+}
+
+.modal-dialog, 
+.modal-content {
+    height: 85%;
+}
+
+.size{
+    height: 50%;
+}
+
+.modal-content{
+    background: var(--color-background-t);
+}
+
+.modal-body{
+    background-color: var(--color-item);
+}
+.modal-title{
+    color: white;
+}
+.commentList{
+    box-shadow: 0px 0px 20px rgb(59, 85, 109);
+    background: var(--color-background-t);
+    border-radius: var(--radius-border);
+    
+    
+}
+
+.oneComment{
+    border: 3px solid black;
+    border-radius: var(--radius-border);
+    background-color: var(--color-item);
+    margin-bottom: 15px;
+    padding: 5px;
+}
+
+.deleteChange{
+    border: 2px solid #3B556D;
+    border-radius: 3.2px;
+    background-color: var(--color-button);
+    color: var(--color-font-dark)
+
+}
+
+.bold{
+    font-weight: bold
+}
