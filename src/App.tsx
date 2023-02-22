@@ -6,6 +6,7 @@ import { Comments } from './comments/components/Comments';
 import { Navbar } from './navbar/components/navbar';
 import { LoginForm } from './navbar/components/log';
 import { RegisterForm } from './navbar/components/register';
+import SearchBar from './searchBar/components/searchBar';
 
 
 
@@ -23,6 +24,7 @@ function App() {
                 <LoginForm />
                 <RegisterForm />
                 <Comments />
+                <SearchBar/>
             </main>
         </div>
 
