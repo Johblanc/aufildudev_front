@@ -30,8 +30,7 @@ function App() {
                 </div>
                 <LoginForm />
                 <RegisterForm />
-
-                {/*   <Comments /> */}
+                <Comments />
             </main>
         </div>
     );
