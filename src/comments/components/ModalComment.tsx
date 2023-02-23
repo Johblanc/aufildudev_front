@@ -17,9 +17,9 @@ export function ModalComment() {
     }, []);
 
     const commentsElem = comms.map((elm, i) => (
-        <>
+        <div key={i}>
             <div className="modal-body">
-                <Comment key={i} data={elm} />
+                <Comment data={elm} />
             </div>
             <div className="modal-footer">
                 <button
@@ -34,7 +34,7 @@ export function ModalComment() {
                     Supprimer
                 </button>
             </div>
-        </>
+        </div>
     ));
 
     return (
