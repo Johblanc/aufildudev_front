@@ -1,9 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { UserContext } from '../../context/UserContext';
 import { TComment } from '../types/TComment';
 import { Comment } from './Comment';
 
 export function ModalComment() {
     const [comms, setComms] = useState<TComment[]>([]);
+
+    const user = useContext(UserContext);
+
+    console.log(user);
 
     useEffect(() => {
         fetch('http://localhost:3000/api/comments').then((response) =>

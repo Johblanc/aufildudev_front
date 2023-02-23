@@ -7,7 +7,10 @@ export function Comment(props: { data: TComment }) {
 
     return (
         <div className="">
-            <p className="bold ">{comm.content}</p>
+            <p>
+                <span className="bold">by</span> {comm.user.pseudo}
+            </p>
+            <p className="bold">{comm.content}</p>
             <p>Crée le {date}</p>
             {comm.updated_at ? <p>Modifié le {date}</p> : ''}
         </div>
