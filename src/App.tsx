@@ -21,8 +21,9 @@ function App() {
             <main className='container'>
                 <LoginForm />
                 <RegisterForm  />
-                <Comments />
                 <SearchBar/>
+                <Comments />
+                
             </main>
         </div>
 
