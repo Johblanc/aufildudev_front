@@ -1,0 +1,8 @@
+
+.color-bg {
+    background-color: var(--color-background-secondary);
+}
+
+.height {
+    height: 80px;
+}

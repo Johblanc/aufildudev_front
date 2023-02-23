@@ -3,6 +3,7 @@ import './comments/commentStyle.css';
 import './navbar/navbar-style.css';
 import './navbar/login-style.css';
 import './style.css'
+import './searchBar/searchBar-style.css'
 import { Comments } from './comments/components/Comments';
 import { Navbar } from './navbar/components/navbar';
 import { LoginForm } from './navbar/components/log';
@@ -15,15 +16,17 @@ function App() {
         <div className="App">
             <header className='shadow'>
                 <Navbar />
-
             </header>
 
-            <main className='container'>
+            <main className='container-fluid'>
+                <div className='shadow'>
+                    <SearchBar />
+                </div>
                 <LoginForm />
-                <RegisterForm  />
-                <SearchBar/>
-                <Comments />
-                
+                <RegisterForm />
+
+              {/*   <Comments /> */}
+
             </main>
         </div>
 
