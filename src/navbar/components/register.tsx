@@ -1,6 +1,9 @@
+
 export function RegisterForm() {
 
+
     return (
+
 
         <div className="modal" id="registerModal" tabIndex={-1} >
             <div className="modal-dialog modal-dialog-centered ">
@@ -14,10 +17,10 @@ export function RegisterForm() {
                         <input type="identifiant" className="form-control" id="inputpseudo" placeholder="Pseudo"></input>
                         <br></br>
                         <label htmlFor="exampleFormControlInput1" className="form-label">Email</label>
-                        <input type="email" className="form-control" id="inputEmail" placeholder="@Email"></input>
+                        <input type="email" className="form-control" id="inputEmailRegister" placeholder="@Email"></input>
                         <br></br>
                         <label htmlFor="inputPassword" className="form-label">Password</label>
-                        <input type="password" className="form-control" id="inputPassword" placeholder="Password"></input>
+                        <input type="password" className="form-control" id="inputPasswordRegister" placeholder="Password"></input>
                         <br></br>
                         <label htmlFor="inputPassword" className="form-label">Password</label>
                         <input type="verifyPassword" className="form-control" id="inputPasswordVerify" placeholder="Verify your password"></input>

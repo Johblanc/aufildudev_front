@@ -3,7 +3,7 @@ import { DropdownTables } from "../types/dropdown-enum";
 import { TMini } from "../types/TMini";
 import DropdownItem from "./dropdownItem";
 
-export default function DropDown(props: { table: "Categories" | "Languages" | "Frameworks" }) {
+export default function DropDown(props: { table: "categories" | "languages" | "frameworks" }) {
 
     const [checkData, setCheckData] = useState<TMini[]>([]);
 
@@ -14,7 +14,7 @@ export default function DropDown(props: { table: "Categories" | "Languages" | "F
                 ))
     }, [])
 
-    const checkList = checkData.map((elm, i) => (
+    const checkList = (checkData || []).map((elm, i) => (
         <li key={i}>
             <DropdownItem data={elm} />
         </li>
