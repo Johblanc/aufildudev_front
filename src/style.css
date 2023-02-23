@@ -1,13 +1,6 @@
-.login-color{
-    background-color: #1C2942;
-    color:aliceblue;
-    box-shadow: inset;
-    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-    
-}
 
-.green-close{
-    background-color:#5FC2BA;
+body{
+    background-color: #3B556D;
 }
 
 .form-control:focus {
@@ -21,3 +14,4 @@
 .form-control {
     border: 2px solid #5FC2BA !important;
 }
+

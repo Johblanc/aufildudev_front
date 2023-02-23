@@ -9,7 +9,7 @@ export function RegisterForm() {
                         <h5 className="modal-title">REGISTER</h5>
                         <button type="button" className="btn-close green-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div className="modal-body">
+                    <div className="modal-body login-color">
                         <label htmlFor="exampleFormControlInput1" className="form-label">pseudo</label>
                         <input type="identifiant" className="form-control" id="inputpseudo" placeholder="Pseudo"></input>
                         <br></br>
@@ -23,9 +23,9 @@ export function RegisterForm() {
                         <input type="verifyPassword" className="form-control" id="inputPasswordVerify" placeholder="Verify your password"></input>
                     </div>
 
-                    {/*     <div className="modal-footer">
-                        
-                    </div> */}
+                    <div className="modal-footer">
+                        <button type="button" data-bs-toggle="modal" className="btn btn-green"> Valider</button>
+                    </div>
                 </div>
             </div>
         </div>
