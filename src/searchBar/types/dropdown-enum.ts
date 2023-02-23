@@ -1,5 +1,5 @@
 export enum DropdownTables {
-    Categories='Catégories',
-    Languages='Langages',
-    Frameworks='Frameworks'
+    categories='Catégories',
+    languages='Langages',
+    frameworks='Frameworks'
 }
