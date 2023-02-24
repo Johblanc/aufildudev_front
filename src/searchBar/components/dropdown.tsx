@@ -8,11 +8,11 @@ export default function DropDown(props: { table: "categories" | "languages" | "f
     const [checkData, setCheckData] = useState<TMini[]>([]);
 
     useEffect(() => {
-        fetch(`http://localhost:3000/api/${props.table}`)
+        fetch(`http://localhost:8000/api/${props.table}`)
             .then((response) =>
                 response.json().then((data) => setCheckData(data.data)
                 ))
-    }, [])
+    }, [props.table])
 
     const checkList = (checkData || []).map((elm, i) => (
         <li key={i}>

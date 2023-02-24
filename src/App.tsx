@@ -4,7 +4,7 @@ import './navbar/navbar-style.css';
 import './navbar/login-style.css';
 import './style.css'
 import './searchBar/searchBar-style.css'
-import { Comments } from './comments/components/Comments';
+/* import { Comments } from './comments/components/Comments'; */
 import { Navbar } from './navbar/components/navbar';
 import { LoginForm } from './navbar/components/log';
 import { RegisterForm } from './navbar/components/register';
