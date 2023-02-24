@@ -1,9 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { UserContext } from '../../context/UserContext';
 import { TComment } from '../types/TComment';
 import { Comment } from './Comment';
 
 export function ModalComment() {
     const [comms, setComms] = useState<TComment[]>([]);
+
+    const user = useContext(UserContext);
+
+    console.log(user);
 
     useEffect(() => {
         fetch('http://localhost:3000/api/comments').then((response) =>
@@ -12,9 +17,9 @@ export function ModalComment() {
     }, []);
 
     const commentsElem = comms.map((elm, i) => (
-        <>
+        <div key={i}>
             <div className="modal-body">
-                <Comment key={i} data={elm} />
+                <Comment data={elm} />
             </div>
             <div className="modal-footer">
                 <button
@@ -29,7 +34,7 @@ export function ModalComment() {
                     Supprimer
                 </button>
             </div>
-        </>
+        </div>
     ));
 
     return (
