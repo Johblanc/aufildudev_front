@@ -9,12 +9,12 @@ import { Navbar } from './navbar/components/navbar';
 import { LoginForm } from './navbar/components/log';
 import { RegisterForm } from './navbar/components/register';
 import SearchBar from './searchBar/components/searchBar';
-import { UserContext } from './context/UserContext';
 import { visitor } from './constant/visitor';
 import { useState } from 'react';
+import { TUser } from './TUser';
 
 function App() {
-    const [user, setUser] = useState(visitor);
+    const [user, setUser] = useState<TUser>(visitor);
 
     console.log(user);
 
@@ -28,7 +28,7 @@ function App() {
                 <div className="shadow">
                     <SearchBar />
                 </div>
-                <LoginForm />
+                <LoginForm setUser={setUser} />
                 <RegisterForm />
                 <Comments />
             </main>

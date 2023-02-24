@@ -36,9 +36,12 @@
 .scroll{
     overflow-y: auto;
     scrollbar-color: var(--color-button) var(--color-background-t) ;
-    scrollbar-width: thin;
-    
-    
+    scrollbar-width: thin;   
+}
+
+.small-size{
+    font-size: small;
+    margin-bottom: -10px;
 }
 
 .modal-dialog, 
