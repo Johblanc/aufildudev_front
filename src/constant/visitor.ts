@@ -1,1 +1,1 @@
-export const visitor = { id: null, pseudo: null, access_lvl: null };
+export const visitor = { id: null, pseudo: 'Viras', access_lvl: 1 };

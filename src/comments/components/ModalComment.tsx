@@ -1,38 +1,65 @@
-import { useState, useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
 import { TComment } from '../types/TComment';
 import { Comment } from './Comment';
 
-export function ModalComment() {
-    const [comms, setComms] = useState<TComment[]>([]);
-
+export function ModalComment(props: {
+    comms: TComment[];
+    setComms: React.Dispatch<React.SetStateAction<TComment[]>>;
+    setCommData: React.Dispatch<React.SetStateAction<TComment | undefined>>;
+}) {
     const user = useContext(UserContext);
+
+    const options = {
+        method: 'DELETE',
+        headers: {
+            Authorization:
+                'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwc2V1ZG8iOiJTaGlubyIsInN1YiI6MiwiaWF0IjoxNjc3MDc3MjYxfQ.whcvLRbqE6O9B-qUhVqabvBMvJkK8ghUiJ2X6VEdNI0',
+        },
+    };
+
+    const deleteComm = (index: number) => {
+        fetch(`http://localhost:3000/api/comments/${index}`, options)
+            .then((response) => response.json())
+            .then((response) => console.log(response))
+            .then(() =>
+                props.setComms(props.comms.filter((item) => item.id !== index))
+            )
+            .catch((err) => console.error(err));
+    };
 
     console.log(user);
 
-    useEffect(() => {
-        fetch('http://localhost:3000/api/comments').then((response) =>
-            response.json().then((data) => setComms(data.data))
-        );
-    }, []);
-
-    const commentsElem = comms.map((elm, i) => (
+    const commentsElem = props.comms.map((elm, i) => (
         <div key={i}>
             <div className="modal-body">
                 <Comment data={elm} />
             </div>
             <div className="modal-footer">
-                <button
-                    type="button"
-                    className="btn btn-primary"
-                    data-bs-target="#updateComment"
-                    data-bs-toggle="modal"
-                >
-                    Modifier
-                </button>
-                <button type="button" className="btn btn-danger">
-                    Supprimer
-                </button>
+                {user.pseudo === elm.user.pseudo ? (
+                    <button
+                        type="button"
+                        className="btn btn-primary"
+                        data-bs-target="#updateComment"
+                        data-bs-toggle="modal"
+                        onClick={() => props.setCommData(elm)}
+                    >
+                        Modifier
+                    </button>
+                ) : (
+                    ''
+                )}
+                {user.access_lvl > 2 || user.pseudo === elm.user.pseudo ? (
+                    <button
+                        type="button"
+                        className="btn btn-danger"
+                        onClick={() => deleteComm(elm.id)}
+                    >
+                        Supprimer
+                    </button>
+                ) : (
+                    ''
+                )}
             </div>
         </div>
     ));
