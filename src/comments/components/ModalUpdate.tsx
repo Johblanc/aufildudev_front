@@ -1,8 +1,8 @@
 import { useContext, useState } from 'react';
-import { UserContext } from '../../context/UserContext';
+//import { UserContext } from '../../context/UserContext';
 import { TComment } from '../types/TComment';
 
-export function ModalUpdate(props: {
+export function ModalUpdate(/* props: {
     comms: TComment[];
     setComms: React.Dispatch<React.SetStateAction<TComment[]>>;
     commData: TComment | undefined;
@@ -30,24 +30,24 @@ export function ModalUpdate(props: {
         )
             .then((response) => response.json())
             .then((response) => response.data)
-            .then((response) => {
+            .then((response) => { */
                 /** Copy de la base local pour marquer la difference entre l'avant et l'apres */
-                const newComms = [...props.comms];
+                /* const newComms = [...props.comms]; */
                 /** L'index du commentaire modifié dans la table local */
-                const index = props.comms
-                    .map((item, i) => {
+               /*  const index = props.comms
+                    .map((item, i) => { */
                         // Récupération de l'id et l'index pour chaque commentaire
-                        return { selfId: item.id, index: i };
+                       /*  return { selfId: item.id, index: i };
                     })
                     .filter(
                         (item) => item.selfId === props.commData?.id
-                    )[0].index;
+                    )[0].index; */
 
                 // mise à jour de la copy avec la nouvelle modif
-                newComms[index] = response;
-
+               /*  newComms[index] = response;
+ */
                 // Sauvegarde de la copy à la place de l'orginal
-                props.setComms(newComms);
+                /* props.setComms(newComms);
             })
             .catch((err) => console.error(err));
     };
@@ -117,5 +117,5 @@ export function ModalUpdate(props: {
                 </div>
             </div>
         </div>
-    );
-}
+    ); */
+){}

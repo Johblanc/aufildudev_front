@@ -1,9 +1,9 @@
 import { useContext } from 'react';
-import { UserContext } from '../../context/UserContext';
+//import { UserContext } from '../../context/UserContext';
 import { TComment } from '../types/TComment';
 import { Comment } from './Comment';
 
-export function ModalComment(props: {
+export function ModalComment(/* props: {
     comms: TComment[];
     setComms: React.Dispatch<React.SetStateAction<TComment[]>>;
     setCommData: React.Dispatch<React.SetStateAction<TComment | undefined>>;
@@ -89,5 +89,5 @@ export function ModalComment(props: {
                 </div>
             </div>
         </div>
-    );
-}
+     */)
+{}

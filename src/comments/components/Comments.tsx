@@ -23,7 +23,7 @@ export function Comments() {
             >
                 Commentaires
             </button>
-            <ModalComment
+            {/* <ModalComment
                 comms={comms}
                 setComms={setComms}
                 setCommData={setCommData}
@@ -32,7 +32,7 @@ export function Comments() {
                 comms={comms}
                 setComms={setComms}
                 commData={commData}
-            />
+            /> */}
         </div>
     );
 }

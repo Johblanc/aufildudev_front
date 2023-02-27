@@ -13,11 +13,10 @@ export function RegisterForm() {
     const passwordRef = useRef<HTMLInputElement>(null);
     const passVerifRef = useRef<HTMLInputElement>(null);
 
-    const submitHandler = (event: any) => {
+    const submitHandler = () => {
 
 
-        event.preventDefault()
-        console.log(pseudoRef?.current?.value, emailRef?.current?.value, passwordRef?.current?.value, passVerifRef?.current?.value);
+        //console.log(pseudoRef?.current?.value, emailRef?.current?.value, passwordRef?.current?.value, passVerifRef?.current?.value);
 
         if (
             pseudoRef.current?.value &&
