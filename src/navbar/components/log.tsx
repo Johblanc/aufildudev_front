@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { BASE_URL } from '../../constant/url';
 import { TUser } from '../../TUser';
 
 export function LoginForm(/* props: {
@@ -13,105 +14,103 @@ export function LoginForm(/* props: {
             pseudoRef.current?.value &&
             passwordRef.current?.value
         ) {
-            /* const body = ({
+            const body = {
                 pseudo: pseudoRef.current.value,
                 password: passwordRef.current.value
-            }); */
+            };
 
 
 
             const options = {
                 method: "POST",
-                header: { 'Content-Type': 'application/json' },
-                body: `{ "pseudo": ${pseudoRef.current.value},
-                    "password": ${passwordRef.current.value}
-            }`
-        };
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(body)
+            };
 
-        console.log(options);
+            console.log(options);
 
 
-        fetch('http://localhost:8000/api/auth/login', options)
+            fetch(`${BASE_URL}/auth/login`, options)
 
-            .then(response => response.json())
+                .then(response => response.json())
 
 
-            .then(data => {
-                if (data.data) {
+                .then(data => {
+                    if (data.data) {
 
-                    setMessage([data.message])
-                    pseudoRef.current!.value = "";
-                    passwordRef.current!.value = "";
-                }
-                else {
-                    if (typeof data.message === "string") {
                         setMessage([data.message])
+                        pseudoRef.current!.value = "";
+                        passwordRef.current!.value = "";
                     }
                     else {
-                        setMessage(data.message)
+                        if (typeof data.message === "string") {
+                            setMessage([data.message])
+                        }
+                        else {
+                            setMessage(data.message)
+                        }
                     }
-                }
-            })
-    }
+                })
+        }
         else {
-        alert('informations manquantes')
+            alert('informations manquantes')
+        }
     }
-}
 
-const displayMessages = message.map((item, i) => <p key={i}>{item}</p>)
-return (
-    <div className="modal" id="loginModal" tabIndex={-1}>
-        <div className="modal-dialog modal-dialog-centered ">
-            <div className="modal-content login-color ">
-                <div className="modal-header">
-                    <h5 className="modal-title">LOGIN</h5>
-                    <button
-                        type="button"
-                        className="btn-close green-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"
-                    ></button>
-                </div>
-                <div className="modal-body login-color">
-                    <label
-                        htmlFor="exampleFormControlInput1"
-                        className="form-label"
-                    >
-                        Identifiant
-                    </label>
-                    <input
-                        ref={pseudoRef}
-                        type="pseudo"
-                        className="form-control"
-                        id="inputEmail"
-                        placeholder="Pseudo"
-                    ></input>
-                    <br></br>
-                    <label htmlFor="inputPassword" className="form-label">
-                        Password
-                    </label>
-                    <input
-                        ref={passwordRef}
-                        type="password"
-                        className="form-control"
-                        id="inputPassword"
-                        placeholder="password"
-                    ></input>
-                </div>
+    const displayMessages = message.map((item, i) => <p key={i}>{item}</p>)
+    return (
+        <div className="modal" id="loginModal" tabIndex={-1}>
+            <div className="modal-dialog modal-dialog-centered ">
+                <div className="modal-content login-color ">
+                    <div className="modal-header">
+                        <h5 className="modal-title">LOGIN</h5>
+                        <button
+                            type="button"
+                            className="btn-close green-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                        ></button>
+                    </div>
+                    <div className="modal-body login-color">
+                        <label
+                            htmlFor="exampleFormControlInput1"
+                            className="form-label"
+                        >
+                            Identifiant
+                        </label>
+                        <input
+                            ref={pseudoRef}
+                            type="pseudo"
+                            className="form-control"
+                            id="inputEmail"
+                            placeholder="Pseudo"
+                        ></input>
+                        <br></br>
+                        <label htmlFor="inputPassword" className="form-label">
+                            Password
+                        </label>
+                        <input
+                            ref={passwordRef}
+                            type="password"
+                            className="form-control"
+                            id="inputPassword"
+                            placeholder="password"
+                        ></input>
+                    </div>
 
-                <div className="modal-footer">
-                    <div>{displayMessages}</div>
-                    <button
-                        onClick={submitHandler}
-                        type="button"
-                        className="btn btn-green"
-                    >
-                        {' '}
-                        Connexion
-                    </button>
+                    <div className="modal-footer">
+                        <div>{displayMessages}</div>
+                        <button
+                            onClick={submitHandler}
+                            type="button"
+                            className="btn btn-green"
+                        >
+                            {' '}
+                            Connexion
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-);
+    );
 }
