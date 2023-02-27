@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { BASE_URL } from "../../constant/url";
 import { DropdownTables } from "../types/dropdown-enum";
 import { TMini } from "../types/TMini";
 import DropdownItem from "./dropdownItem";
@@ -8,10 +9,15 @@ export default function DropDown(props: { table: "categories" | "languages" | "f
     const [checkData, setCheckData] = useState<TMini[]>([]);
 
     useEffect(() => {
-        fetch(`http://localhost:8000/api/${props.table}`)
+        fetch(`${BASE_URL}/${props.table}`)
             .then((response) =>
-                response.json().then((data) => setCheckData(data.data)
-                ))
+                response.json())
+            .then((data) => {
+                console.log(data);
+                
+                setCheckData(data.data)
+            }
+            )
     }, [props.table])
 
     const checkList = (checkData || []).map((elm, i) => (

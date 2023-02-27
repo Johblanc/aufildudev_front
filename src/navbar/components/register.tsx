@@ -1,4 +1,6 @@
 import { useRef, useState } from "react"
+import { BASE_URL } from "../../constant/url";
+
 
 
 export function RegisterForm() {
@@ -41,7 +43,7 @@ export function RegisterForm() {
             };
             console.log(options);
 
-            fetch('http://localhost:8000/api/users/register', options)
+            fetch(`${BASE_URL}/users/register`, options)
                 .then(response => response.json())
                 .then(data => {
                     if (data.data) {
