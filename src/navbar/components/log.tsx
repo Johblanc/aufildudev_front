@@ -1,6 +1,7 @@
-import { useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { BASE_URL } from '../../constant/url';
-import { TUser } from '../../TUser';
+import { UserContext } from '../../context/UserContext';
+import { TUser } from '../types/TUser';
 
 export function LoginForm(/* props: {
     setUser: React.Dispatch<React.SetStateAction<TUser>>;
@@ -8,6 +9,7 @@ export function LoginForm(/* props: {
     const [message, setMessage] = useState<string[]>([""])
     const pseudoRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
+    const {user, setUser} = useContext(UserContext)
 
     const submitHandler = () => {
         if (
@@ -41,6 +43,8 @@ export function LoginForm(/* props: {
                         setMessage([data.message])
                         pseudoRef.current!.value = "";
                         passwordRef.current!.value = "";
+                        setUser(data.data);
+                        
                     }
                     else {
                         if (typeof data.message === "string") {

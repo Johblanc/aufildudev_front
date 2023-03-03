@@ -9,17 +9,19 @@ import { Navbar } from './navbar/components/navbar';
 import { LoginForm } from './navbar/components/log';
 import { RegisterForm } from './navbar/components/register';
 import SearchBar from './searchBar/components/searchBar';
-//import { visitor } from './constant/visitor';
 import { useState } from 'react';
-import { TUser } from './TUser';
+import { TUser } from './navbar/types/TUser';
+import { UserContext } from './context/UserContext';
 
 function App() {
-    const [user, setUser] = useState<TUser>();
+    
+    const [user, setUser] = useState<TUser | undefined>();
 
     console.log(user);
 
     return (
         <div className="App">
+            <UserContext.Provider value={{user,setUser}}>
             <header className="shadow">
                 <Navbar />
             </header>
@@ -28,10 +30,11 @@ function App() {
                 <div className="shadow">
                     <SearchBar />
                 </div>
-                <LoginForm /* setUser={setUser} */ />
+                <LoginForm/>
                 <RegisterForm />
                 <Comments />
             </main>
+            </UserContext.Provider>
         </div>
     );
 }

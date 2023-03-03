@@ -1,4 +1,8 @@
-import React from 'react';
-import { visitor } from '../constant/visitor';
+import React from "react";
+import { DEFAULT_USER } from "../constant/visitor";
+import { TUser } from "../navbar/types/TUser";
 
-/* export const UserContext = React.createContext(visitor); */
+export const UserContext = React.createContext({
+  user: DEFAULT_USER,
+  setUser: (value: TUser) => {},
+});
