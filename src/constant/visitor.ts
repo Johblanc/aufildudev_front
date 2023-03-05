@@ -1,9 +1,9 @@
 import { TUser } from "../navbar/types/TUser";
 
-export const DEFAULT_USER: TUser | undefined = {
-  id: undefined,
-  pseudo: undefined,
-  email: undefined,
+export const DEFAULT_USER: TUser = {
+  id: -1,
+  pseudo: "",
+  email: "",
   access_lvl: 0,
-  access_token: undefined,
+  access_token: "",
 };

@@ -12,10 +12,11 @@ import SearchBar from './searchBar/components/searchBar';
 import { useState } from 'react';
 import { TUser } from './navbar/types/TUser';
 import { UserContext } from './context/UserContext';
+import { DEFAULT_USER } from './constant/visitor';
 
 function App() {
     
-    const [user, setUser] = useState<TUser | undefined>();
+    const [user, setUser] = useState<TUser>(DEFAULT_USER);
 
     console.log(user);
 

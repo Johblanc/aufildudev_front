@@ -1,14 +1,14 @@
 import { useContext } from 'react';
-//import { UserContext } from '../../context/UserContext';
+import { UserContext } from '../../context/UserContext';
 import { TComment } from '../types/TComment';
 import { Comment } from './Comment';
 
-export function ModalComment(/* props: {
+export function ModalComment( props: {
     comms: TComment[];
     setComms: React.Dispatch<React.SetStateAction<TComment[]>>;
     setCommData: React.Dispatch<React.SetStateAction<TComment | undefined>>;
 }) {
-    const user = useContext(UserContext);
+    const userData = useContext(UserContext);
 
     const options = {
         method: 'DELETE',
@@ -28,7 +28,7 @@ export function ModalComment(/* props: {
             .catch((err) => console.error(err));
     };
 
-    console.log(user);
+    console.log(userData);
 
     const commentsElem = props.comms.map((elm, i) => (
         <div key={i}>
@@ -36,7 +36,7 @@ export function ModalComment(/* props: {
                 <Comment data={elm} />
             </div>
             <div className="modal-footer">
-                {user.pseudo === elm.user.pseudo ? (
+                {userData.user?.pseudo === elm.user.pseudo ? (
                     <button
                         type="button"
                         className="btn btn-primary"
@@ -49,7 +49,7 @@ export function ModalComment(/* props: {
                 ) : (
                     ''
                 )}
-                {user.access_lvl > 2 || user.pseudo === elm.user.pseudo ? (
+                {(userData.user.access_lvl > 2) || userData.user?.pseudo === elm.user.pseudo ? (
                     <button
                         type="button"
                         className="btn btn-danger"
@@ -89,5 +89,5 @@ export function ModalComment(/* props: {
                 </div>
             </div>
         </div>
-     */)
-{}
+     )
+    }
