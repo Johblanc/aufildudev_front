@@ -33,7 +33,7 @@ export default function SearchBar() {
                     <DropDown table={"categories"} />
                 </div>
 
-                <div className="col-sm-2 col-12">
+                <div className="col-md-2 col-12">
                     <DropDown table={"frameworks"} />
                 </div>
 

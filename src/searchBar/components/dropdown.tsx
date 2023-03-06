@@ -28,7 +28,7 @@ export default function DropDown(props: { table: "categories" | "languages" | "f
     ))
 
     return (
-        <div className="dropdown flex-wrap">
+        <div className="dropdown">
             <button className="btn width btn-primary dropdown-toggle " type="button" id="dropdownCategorie"
                 data-bs-toggle="dropdown" aria-expanded="false">
                 Choisir {DropdownTables[props.table]}
