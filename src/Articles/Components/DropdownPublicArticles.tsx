@@ -1,29 +1,24 @@
 import { useEffect, useState } from "react";
 import { BASE_URL } from "../../constant/url";
-import { DropdownTables } from "../types/dropdown-enum";
-import { TMini } from "../types/TMini";
-import DropdownItem from "./dropdownItem";
+import { TMini } from "../../searchBar/types/TMini";
+import DropDownPublicArticleItem from "./DropdownPublicArticlesItem";
 
-export default function DropDown(props: { table: "categories" | "languages" | "frameworks" }) {
+export default function DropDownPublicArticles( props: { }) {
 
     const [checkData, setCheckData] = useState<TMini[]>([]);
 
     useEffect(() => {
-        fetch(`${BASE_URL}/${props.table}`)
+        fetch(`${BASE_URL}/articles`)
             .then((response) =>
                 response.json())
-            .then((data) => {
-                console.log(data);
-                
-                setCheckData(data.data)
-                
-            }
-            )
-    }, [props.table])
-
+            .then((data) => data.data )
+            .then((result)=> setCheckData(result.map((item : any) => {return {id :item.id, name : item.title}})))
+    }, [])
+    console.log(checkData);
+    
     const checkList = (checkData || []).map((elm, i) => (
         <li key={i}>
-            <DropdownItem data={elm} />
+            <DropDownPublicArticleItem data={elm} />
         </li>
     ))
 
@@ -31,7 +26,7 @@ export default function DropDown(props: { table: "categories" | "languages" | "f
         <div className="dropdown">
             <button className="btn btn-primary dropdown-toggle" type="button" id="dropdownCategorie"
                 data-bs-toggle="dropdown" aria-expanded="false">
-                Choisir {DropdownTables[props.table]}
+                Choisir Prérequis
             </button>
             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 {checkList}
