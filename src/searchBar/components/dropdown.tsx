@@ -16,6 +16,7 @@ export default function DropDown(props: { table: "categories" | "languages" | "f
                 console.log(data);
                 
                 setCheckData(data.data)
+                
             }
             )
     }, [props.table])

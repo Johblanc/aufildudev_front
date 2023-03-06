@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { BASE_URL } from '../../constant/url';
 import { TComment } from '../types/TComment';
 import { ModalComment } from './ModalComment';
 import { ModalUpdate } from './ModalUpdate';
@@ -8,7 +9,7 @@ export function Comments() {
     const [commData, setCommData] = useState<TComment | undefined>();
 
     useEffect(() => {
-        fetch('http://localhost:3000/api/comments').then((response) =>
+        fetch(`${BASE_URL}/comments`).then((response) =>
             response.json().then((data) => setComms(data.data))
         );
     }, []);
@@ -23,7 +24,7 @@ export function Comments() {
             >
                 Commentaires
             </button>
-             <ModalComment
+            <ModalComment
                 comms={comms}
                 setComms={setComms}
                 setCommData={setCommData}
@@ -32,7 +33,7 @@ export function Comments() {
                 comms={comms}
                 setComms={setComms}
                 commData={commData}
-            /> 
+            />
         </div>
     );
 }
