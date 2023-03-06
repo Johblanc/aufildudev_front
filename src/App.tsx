@@ -27,7 +27,7 @@ function App() {
         <div className="App">
             <UserContext.Provider value={{ user, setUser }}>
                 <UpdateCommentContext.Provider value={{ comms, setComms }}>
-                    <header className="shadow">
+                    <header>
                         <Navbar />
                     </header>
 

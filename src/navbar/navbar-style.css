@@ -5,11 +5,7 @@
 
 .btn-green {
     background-color: #5FC2BA !important;
-    margin:0.5em ;
-}
-
-nav {
-    height: 100px;
+    
 }
 
 .navbar-toggler-icon{
@@ -22,4 +18,9 @@ nav {
     background-position: center;
     background-size: 100%;
 
+}
+
+
+.width{
+    width: 100%;
 }
