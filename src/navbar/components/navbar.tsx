@@ -1,18 +1,9 @@
 export function Navbar() {
     return (
-        <nav className="navbar navbar-expand-lg bg-body-tertiary nav-back ">
-            <div className="container-fluid">
-                <ul className="navbar-nav">
-                    <li className="nav-item">
-                        <button type="button" className="btn btn-green">
-                            Ajouter un Article
-                        </button>
-                    </li>
-                </ul>
+        <nav className="navbar navbar-expand-lg nav-back width">
+           
 
-                <a className="navbar-brand" href="/#">
-                    Navbar
-                </a>
+              {/*   <img src="ressources/titre.png" alt="icon-titre" className="mx-5 ms-0 " /> */}
                 <button
                     className="navbar-toggler"
                     type="button"
@@ -30,31 +21,37 @@ export function Navbar() {
                     id="navbarNav"
                 >
                     <ul className="navbar-nav">
-                        <li className="nav-item">
-                            <button
+                        <li className="nav-item my-1 my-md-0">
+                            <a className="nav-link active btn btn-green"
+
                                 type="button"
                                 data-bs-toggle="modal"
                                 data-bs-target="#loginModal"
-                                className="btn btn-green"
                             >
                                 {' '}
                                 Connexion
-                            </button>
+                            </a>
                         </li>
-                        <li className="nav-item">
-                            <button
+                        <li className="nav-item  my-1 my-md-0">
+                            <a className="nav-link active btn btn-green"
+
                                 type="button"
                                 data-bs-toggle="modal"
                                 data-bs-target="#registerModal"
-                                className="btn btn-green"
                             >
                                 {' '}
                                 Register
-                            </button>
+                            </a>
+                        </li>
+                        <li className="nav-item  my-1 my-md-0">
+                            <a className="nav-link active btn btn-green"
+                                type="button">
+                                Ajouter un Article
+                            </a>
                         </li>
                     </ul>
                 </div>
-            </div>
-        </nav>
+            
+        </nav >
     );
 }

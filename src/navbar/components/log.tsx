@@ -1,7 +1,7 @@
 import { useContext, useRef, useState } from 'react';
 import { BASE_URL } from '../../constant/url';
 import { UserContext } from '../../context/UserContext';
-import { TUser } from '../types/TUser';
+
 
 export function LoginForm(/* props: {
     setUser: React.Dispatch<React.SetStateAction<TUser>>;
@@ -9,7 +9,7 @@ export function LoginForm(/* props: {
     const [message, setMessage] = useState<string[]>([""])
     const pseudoRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
-    const {user, setUser} = useContext(UserContext)
+    const { setUser } = useContext(UserContext)
 
     const submitHandler = () => {
         if (

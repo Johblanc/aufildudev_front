@@ -23,14 +23,15 @@ function App() {
     return (
         <div className="App">
             <UserContext.Provider value={{user,setUser}}>
-            <header className="shadow">
+            <header>
                 <Navbar />
+                <SearchBar />
             </header>
 
             <main className="container-fluid">
-                <div className="shadow">
-                    <SearchBar />
-                </div>
+                
+                   
+                
                 <LoginForm/>
                 <RegisterForm />
                 <Comments />
