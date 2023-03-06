@@ -2,8 +2,9 @@ import { useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
 import { TComment } from '../types/TComment';
 import { Comment } from './Comment';
+import { BASE_URL } from '../../constant/url';
 
-export function ModalComment( props: {
+export function ModalComment(props: {
     comms: TComment[];
     setComms: React.Dispatch<React.SetStateAction<TComment[]>>;
     setCommData: React.Dispatch<React.SetStateAction<TComment | undefined>>;
@@ -19,7 +20,7 @@ export function ModalComment( props: {
     };
 
     const deleteComm = (index: number) => {
-        fetch(`http://localhost:3000/api/comments/${index}`, options)
+        fetch(`${BASE_URL}/api/comments/${index}`, options)
             .then((response) => response.json())
             .then((response) => console.log(response))
             .then(() =>
@@ -49,7 +50,8 @@ export function ModalComment( props: {
                 ) : (
                     ''
                 )}
-                {(userData.user.access_lvl > 2) || userData.user?.pseudo === elm.user.pseudo ? (
+                {userData.user.access_lvl > 2 ||
+                userData.user?.pseudo === elm.user.pseudo ? (
                     <button
                         type="button"
                         className="btn btn-danger"
@@ -89,5 +91,5 @@ export function ModalComment( props: {
                 </div>
             </div>
         </div>
-     )
-    }
+    );
+}
