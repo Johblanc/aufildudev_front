@@ -1,9 +1,10 @@
+import { Titre } from "../../Titre/Titre";
+
 export function Navbar() {
     return (
         <nav className="navbar navbar-expand-lg nav-back width">
-           
-
-              {/*   <img src="ressources/titre.png" alt="icon-titre" className="mx-5 ms-0 " /> */}
+                
+                <Titre/>
                 <button
                     className="navbar-toggler"
                     type="button"
