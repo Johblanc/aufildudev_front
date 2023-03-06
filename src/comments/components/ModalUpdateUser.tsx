@@ -1,10 +1,10 @@
-import { useState, useContext } from 'react';
+import { useContext, useState } from 'react';
+import { UserContext } from '../../context/UserContext';
 import { TComment } from '../types/TComment';
 import { BASE_URL } from '../../constant/url';
-import { UserContext } from '../../context/UserContext';
 import { UpdateCommentContext } from '../../context/UpdateCommentContext';
 
-export function ModalUpdate(props: { commData: TComment | undefined }) {
+export function ModalUpdateUser(props: { commData: TComment | undefined }) {
     const [bodyContent, setBodyContent] = useState('');
     const userData = useContext(UserContext);
     const { comms, setComms } = useContext(UpdateCommentContext);
@@ -50,10 +50,10 @@ export function ModalUpdate(props: { commData: TComment | undefined }) {
         <div>
             <div
                 className="modal fade"
-                id="updateComment"
+                id="updateUserComment"
                 aria-hidden="true"
-                aria-labelledby="updateComment"
-                tabIndex={10}
+                aria-labelledby="updateUserComment"
+                tabIndex={16}
             >
                 <div className="modal-dialog modal-dialog-centered modal-lg ">
                     <div className="modal-content size">
@@ -89,7 +89,7 @@ export function ModalUpdate(props: { commData: TComment | undefined }) {
                                     <button
                                         type="submit"
                                         className="btn btn-primary mt-2"
-                                        data-bs-target="#commentList"
+                                        data-bs-target="#commentUserList"
                                         data-bs-toggle="modal"
                                     >
                                         Envoyer
@@ -101,7 +101,7 @@ export function ModalUpdate(props: { commData: TComment | undefined }) {
                         <div className="modal-footer">
                             <button
                                 className="btn btn-primary"
-                                data-bs-target="#commentList"
+                                data-bs-target="#commentUserList"
                                 data-bs-toggle="modal"
                             >
                                 Retour

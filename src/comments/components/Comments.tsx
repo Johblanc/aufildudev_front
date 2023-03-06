@@ -1,18 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useState, useContext } from 'react';
 import { BASE_URL } from '../../constant/url';
+import { UpdateCommentContext } from '../../context/UpdateCommentContext';
 import { TComment } from '../types/TComment';
 import { ModalComment } from './ModalComment';
 import { ModalUpdate } from './ModalUpdate';
 
 export function Comments() {
-    const [comms, setComms] = useState<TComment[]>([]);
+    const { setComms } = useContext(UpdateCommentContext);
     const [commData, setCommData] = useState<TComment | undefined>();
 
-    useEffect(() => {
+    const getAllComms = () =>
         fetch(`${BASE_URL}/comments`).then((response) =>
             response.json().then((data) => setComms(data.data))
         );
-    }, []);
 
     return (
         <div>
@@ -21,19 +21,12 @@ export function Comments() {
                 className="btn btn-primary"
                 data-bs-toggle="modal"
                 data-bs-target="#commentList"
+                onClick={getAllComms}
             >
-                Commentaires
+                Liste des commentaires
             </button>
-            <ModalComment
-                comms={comms}
-                setComms={setComms}
-                setCommData={setCommData}
-            />
-            <ModalUpdate
-                comms={comms}
-                setComms={setComms}
-                commData={commData}
-            />
+            <ModalComment setCommData={setCommData} />
+            <ModalUpdate commData={commData} />
         </div>
     );
 }

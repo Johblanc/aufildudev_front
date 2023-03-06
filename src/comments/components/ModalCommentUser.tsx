@@ -1,16 +1,15 @@
-import { useContext } from 'react';
-import { UserContext } from '../../context/UserContext';
 import { TComment } from '../types/TComment';
-import { Comment } from './Comment';
 import { BASE_URL } from '../../constant/url';
+import { UserContext } from '../../context/UserContext';
+import { useContext } from 'react';
+import { Comment } from './Comment';
 import { UpdateCommentContext } from '../../context/UpdateCommentContext';
 
-export function ModalComment(props: {
+export function ModalCommentUser(props: {
     setCommData: React.Dispatch<React.SetStateAction<TComment | undefined>>;
 }) {
-    const userData = useContext(UserContext);
     const { comms, setComms } = useContext(UpdateCommentContext);
-
+    const userData = useContext(UserContext);
     const options = {
         method: 'DELETE',
         headers: {
@@ -25,49 +24,37 @@ export function ModalComment(props: {
             .then(() => setComms(comms.filter((item) => item.id !== index)))
             .catch((err) => console.error(err));
     };
-
-    console.log(userData);
-
     const commentsElem = comms.map((elm, i) => (
         <div key={i}>
             <div className="modal-body">
                 <Comment data={elm} />
             </div>
             <div className="modal-footer">
-                {userData.user?.pseudo === elm.user.pseudo ? (
-                    <button
-                        type="button"
-                        className="btn btn-primary"
-                        data-bs-target="#updateComment"
-                        data-bs-toggle="modal"
-                        onClick={() => props.setCommData(elm)}
-                    >
-                        Modifier
-                    </button>
-                ) : (
-                    ''
-                )}
-                {userData.user.access_lvl > 2 ||
-                userData.user?.pseudo === elm.user.pseudo ? (
-                    <button
-                        type="button"
-                        className="btn btn-danger"
-                        onClick={() => deleteComm(elm.id)}
-                    >
-                        Supprimer
-                    </button>
-                ) : (
-                    ''
-                )}
+                <button
+                    type="button"
+                    className="btn btn-primary"
+                    data-bs-target="#updateUserComment"
+                    data-bs-toggle="modal"
+                    onClick={() => props.setCommData(elm)}
+                >
+                    Modifier
+                </button>
+
+                <button
+                    type="button"
+                    className="btn btn-danger"
+                    onClick={() => deleteComm(elm.id)}
+                >
+                    Supprimer
+                </button>
             </div>
         </div>
     ));
-
     return (
         <div
             className="modal fade"
-            id="commentList"
-            tabIndex={10}
+            id="commentUserList"
+            tabIndex={15}
             aria-labelledby="commentList"
             aria-hidden="true"
         >
