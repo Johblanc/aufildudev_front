@@ -1,0 +1,49 @@
+
+.title-back {
+  fill:var(--color-font-light);
+}
+
+.title-sousligne {
+  fill: none;
+  stroke: #c60a05;
+  stroke-width: 2px;
+  stroke-dasharray: 120%;
+  stroke-dashoffset: 0%;
+  animation: 2s ease-in  appear;
+}
+
+
+@keyframes appear {
+  from { stroke-dashoffset: 120%; }
+  to   { stroke-dashoffset: 0%; }
+}
+
+
+.title-contrast {
+  fill: #c60a05;
+}
+
+.title-natural {
+  fill: #ffffff;
+}
+
+.title-text {
+  text-align: center;
+  font-size: 52px;
+  text-anchor: middle;
+}
+
+.title-small-gear {
+  transform-origin: 414.5px 16px;
+  animation: 3s linear 2s self-rotate reverse infinite;
+}
+
+.title-big-gear {
+  transform-origin: 430.8px 24px;
+  animation: 3s linear 2s self-rotate infinite;
+}
+
+@keyframes self-rotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}

@@ -1,0 +1,7 @@
+.color-bg {
+    background-color: var(--color-background-secondary);
+}
+
+.width{
+    width: 100%;
+}
