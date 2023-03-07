@@ -52,6 +52,17 @@ export function Navbar() {
                                 Register
                             </button>
                         </li>
+                        <li className="nav-item">
+                            <button
+                                type="button"
+                                data-bs-toggle="modal"
+                                data-bs-target="#profile"
+                                className="btn btn-green"
+                            >
+                                {' '}
+                                Profile
+                            </button>
+                        </li>
                     </ul>
                 </div>
             </div>
