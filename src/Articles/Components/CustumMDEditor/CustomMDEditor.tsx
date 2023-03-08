@@ -1,5 +1,6 @@
 import MDEditor, {commands} from "@uiw/react-md-editor";
 import { title2 } from "./Commands/test";
+import { titleNone } from "./Commands/titleNone";
 
 
 
@@ -18,6 +19,7 @@ export function CustomMDEditor(props : {value? : string, setValue: (val? : strin
       commands.hr,
       commands.group(
         [
+          titleNone,
           commands.title1,
           commands.title2,
           commands.title3,
