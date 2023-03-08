@@ -1,10 +1,10 @@
 :root{
-    --color-font-light: #0B162C;
-    --color-font-dark: #FFFFFF;
-    --color-background: #3B556D;
-    --color-background-t: #3B556DCC;
-    --color-item: #D9D9D9;
-    --color-button: #5FC2BA;
-    --radius-border: 10px;
-    --color-background-secondary:#1C2942;
+  --color-font-light: #0B162C;
+  --color-font-dark: #FFFFFF;
+  --color-background: #3B556D;
+  --color-background-t: #3B556DCC;
+  --color-item: #D9D9D9;
+  --color-button: #5FC2BA;
+  --radius-border: 10px;
+  --color-background-secondary:#1C2942;
 }

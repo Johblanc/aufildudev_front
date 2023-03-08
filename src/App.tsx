@@ -16,6 +16,7 @@ import { DEFAULT_USER } from './constant/visitor';
 import { UserComment } from './comments/components/UserComment';
 import { UpdateCommentContext } from './context/UpdateCommentContext';
 import { TComment } from './comments/types/TComment';
+import { ArticleFull } from './Articles/Components/ArticleFull';
 
 function App() {
     const [user, setUser] = useState<TUser>(DEFAULT_USER);
@@ -39,6 +40,7 @@ function App() {
                         <RegisterForm />
                         <Comments />
                         <UserComment />
+                        <ArticleFull id={1}/>
                     </main>
                 </UpdateCommentContext.Provider>
             </UserContext.Provider>

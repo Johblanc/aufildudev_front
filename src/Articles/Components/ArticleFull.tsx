@@ -2,14 +2,18 @@ import { useEffect, useState } from "react";
 import { EntryString } from "../../Entries/Components/EntryString";
 import { EntryStringArea } from "../../Entries/Components/EntryStringArea";
 import DropDown from "../../searchBar/components/dropdown";
-import { DropdownTables } from "../../searchBar/types/dropdown-enum";
 import { DEFAULT_ARTICLE } from "../Constant/DefaultArticle";
 import { TArticleFull } from "../Types/TArticleFull";
 import DropDownPublicArticles from "./DropdownPublicArticles";
 import { IconCheckBox } from "./Icon_CheckBox";
+import MDEditor from '@uiw/react-md-editor';
+import { CustomMDEditor } from "./CustumMDEditor/CustomMDEditor";
+
 
 export function ArticleFull(props: { id: number }) {
   const [article, setArticle] = useState<TArticleFull>(DEFAULT_ARTICLE);
+
+  const [value, setValue] = useState<string | undefined>("**Hello world!!!**");
 
   const [inModif, setInModif] = useState(false);
   const [currentModif, setCurrentModif] = useState({
@@ -53,7 +57,7 @@ export function ArticleFull(props: { id: number }) {
       </div>
       { !inModif &&
         <div>
-        <h3>{article.title}</h3>
+        <h3 className="bg-success">{article.title}</h3>
         <p>
           Prérequis :{" "}
           {article.requirements.map((item) => item.title).join(", ")}
@@ -67,7 +71,7 @@ export function ArticleFull(props: { id: number }) {
         <p>
           Catégorie : {article.categories.map((item) => item.name).join(", ")}
         </p>
-        <p>{article.content}</p>
+      <MDEditor.Markdown source={value} style={{ whiteSpace: 'pre-wrap' }} /> 
         <p>
           Par {article.user_pseudo} le{" "}
           {new Date(article.created_at).toLocaleDateString()}
@@ -87,6 +91,7 @@ export function ArticleFull(props: { id: number }) {
         <p>
           Par {article.user_pseudo} le {new Date(article.created_at).toLocaleDateString()}
         </p>
+        <CustomMDEditor value={value} setValue ={setValue} />
       </div>
       }
     </div>
