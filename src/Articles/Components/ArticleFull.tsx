@@ -13,7 +13,7 @@ import { TablesEnums } from "../../searchBar/types/tablesEnums";
 
 export function ArticleFull(props: { id: number }) {
 
-  const {id} = props
+  const { id } = props
   const [article, setArticle] = useState<TArticleFull>(DEFAULT_ARTICLE);
 
   const [value, setValue] = useState<string | undefined>("**Hello world!!!**");
@@ -28,7 +28,7 @@ export function ArticleFull(props: { id: number }) {
     languages: [] as number[],
     frameworks: [] as number[],
     categories: [] as number[]
-})
+  })
 
   const handleModif = (key: "title" | "content", value: string) => {
     const newModif = { ...currentModif };
@@ -40,7 +40,7 @@ export function ArticleFull(props: { id: number }) {
     const newSelection = { ...selections }
     newSelection[table] = value
     setSelections(newSelection)
-}
+  }
   useEffect(() => {
     fetch(`http://localhost:8000/api/articles/public/${id}`).then(
       (response) => response.json().then((data) => setArticle(data.data))
@@ -62,6 +62,7 @@ export function ArticleFull(props: { id: number }) {
             </span>
           </span>
         }
+
         <span>
           <span>
             <button onClick={() => setInModif(!inModif)}>Modifier</button>
@@ -70,7 +71,7 @@ export function ArticleFull(props: { id: number }) {
       </div>
       {!inModif &&
         <div>
-          <h3>{article.title}</h3>
+          <h3 className="bg-success">{article.title}</h3>
           <p>
             Prérequis :{" "}
             {article.requirements.map((item) => item.title).join(", ")}
@@ -84,7 +85,7 @@ export function ArticleFull(props: { id: number }) {
           <p>
             Catégorie : {article.categories.map((item) => item.name).join(", ")}
           </p>
-          <p>{article.content}</p>
+          <MDEditor.Markdown source={value} style={{ whiteSpace: 'pre-wrap' }} />
           <p>
             Par {article.user_pseudo} le{" "}
             {new Date(article.created_at).toLocaleDateString()}
@@ -95,17 +96,17 @@ export function ArticleFull(props: { id: number }) {
           </p>
         </div>
       }
-      {inModif &&
+      { inModif &&
         <div>
-          <IconCheckBox defautValue={true}/>
-        <EntryString name={"Titre"} defaultValue={article.title} setter={ (value)=> handleModif("title",value)}/>
-        <DropDownPublicArticles/>
-        <EntryStringArea name={"Contenu"} defaultValue={article.content} setter={ (value)=> handleModif("content",value)}/>
-        <p>
-          Par {article.user_pseudo} le {new Date(article.created_at).toLocaleDateString()}
-        </p>
-        <CustomMDEditor setValue={setValue}/>
-      </div>
+          <IconCheckBox defautValue={true} />
+          <EntryString name={"Titre"} defaultValue={article.title} setter={(value) => handleModif("title", value)} />
+          <DropDownPublicArticles />
+          <EntryStringArea name={"Contenu"} defaultValue={article.content} setter={(value) => handleModif("content", value)} />
+          <p>
+            Par {article.user_pseudo} le {new Date(article.created_at).toLocaleDateString()}
+          </p>
+          <CustomMDEditor value={value} setValue={setValue} />
+        </div>
       }
     </div>
   );
