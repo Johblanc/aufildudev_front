@@ -1,4 +1,5 @@
 import './App.css';
+import './profile/profile/profile-style.css';
 import './comments/commentStyle.css';
 import './navbar/navbar-style.css';
 import './navbar/login-style.css';
@@ -9,6 +10,7 @@ import { Navbar } from './navbar/components/navbar';
 import { LoginForm } from './navbar/components/log';
 import { RegisterForm } from './navbar/components/register';
 import SearchBar from './searchBar/components/searchBar';
+import { Profile } from './profile/components/Profile';
 import { useState } from 'react';
 import { TUser } from './navbar/types/TUser';
 import { UserContext } from './context/UserContext';
@@ -16,6 +18,7 @@ import { DEFAULT_USER } from './constant/visitor';
 import { UserComment } from './comments/components/userComment/UserComment';
 import { UpdateCommentContext } from './context/UpdateCommentContext';
 import { TComment } from './comments/types/TComment';
+import { ArticleFull } from './Articles/Components/ArticleFull';
 import { ArticleComments } from './comments/components/articleComments/ArticleComments';
 
 function App() {
@@ -42,6 +45,7 @@ function App() {
                         <UserComment />
                         {/*A destination de l'article*/}
                         <ArticleComments articleId={1} />
+                        <ArticleFull id={1} />
                     </main>
                 </UpdateCommentContext.Provider>
             </UserContext.Provider>
