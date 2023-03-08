@@ -2,14 +2,20 @@ import { useEffect, useState } from "react";
 import { EntryString } from "../../Entries/Components/EntryString";
 import { EntryStringArea } from "../../Entries/Components/EntryStringArea";
 import DropDown from "../../searchBar/components/dropdown";
-import { DropdownTables } from "../../searchBar/types/dropdown-enum";
 import { DEFAULT_ARTICLE } from "../Constant/DefaultArticle";
 import { TArticleFull } from "../Types/TArticleFull";
 import DropDownPublicArticles from "./DropdownPublicArticles";
 import { IconCheckBox } from "./Icon_CheckBox";
+import MDEditor from '@uiw/react-md-editor';
+import { CustomMDEditor } from "./CustumMDEditor/CustomMDEditor";
+
 
 export function ArticleFull(props: { id: number }) {
+
+  const {id} = props
   const [article, setArticle] = useState<TArticleFull>(DEFAULT_ARTICLE);
+
+  const [value, setValue] = useState<string | undefined>("**Hello world!!!**");
 
   const [inModif, setInModif] = useState(false);
   const [currentModif, setCurrentModif] = useState({
@@ -24,10 +30,10 @@ export function ArticleFull(props: { id: number }) {
   }
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/articles/public/${props.id}`).then(
+    fetch(`http://localhost:8000/api/articles/public/${id}`).then(
       (response) => response.json().then((data) => setArticle(data.data))
     );
-  }, []);
+  }, [id]);
   return (
     <div>
       <div>
@@ -79,14 +85,14 @@ export function ArticleFull(props: { id: number }) {
       }
       {inModif &&
         <div>
-          <IconCheckBox defautValue={true} />
-          <EntryString name={"Titre"} defaultValue={article.title} setter={(value) => handleModif("title", value)} />
-          <DropDownPublicArticles />
-          <EntryStringArea name={"Contenu"} defaultValue={article.content} setter={(value) => handleModif("content", value)} />
-          <p>
-            Par {article.user_pseudo} le {new Date(article.created_at).toLocaleDateString()}
-          </p>
-        </div>
+          <IconCheckBox defautValue={true}/>
+        <EntryString name={"Titre"} defaultValue={article.title} setter={ (value)=> handleModif("title",value)}/>
+        <DropDownPublicArticles/>
+        <EntryStringArea name={"Contenu"} defaultValue={article.content} setter={ (value)=> handleModif("content",value)}/>
+        <p>
+          Par {article.user_pseudo} le {new Date(article.created_at).toLocaleDateString()}
+        </p>
+      </div>
       }
     </div>
   );

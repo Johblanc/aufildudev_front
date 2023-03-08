@@ -2,66 +2,50 @@ import { useContext, useRef, useState } from 'react';
 import { BASE_URL } from '../../constant/url';
 import { UserContext } from '../../context/UserContext';
 
-
 export function LoginForm(/* props: {
     setUser: React.Dispatch<React.SetStateAction<TUser>>;
 } */) {
-    const [message, setMessage] = useState<string[]>([""])
+    const [message, setMessage] = useState<string[]>(['']);
     const pseudoRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
-    const { setUser } = useContext(UserContext)
+    const { setUser } = useContext(UserContext);
 
     const submitHandler = () => {
-        if (
-            pseudoRef.current?.value &&
-            passwordRef.current?.value
-        ) {
+        if (pseudoRef.current?.value && passwordRef.current?.value) {
             const body = {
                 pseudo: pseudoRef.current.value,
-                password: passwordRef.current.value
+                password: passwordRef.current.value,
             };
-
-
 
             const options = {
-                method: "POST",
+                method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(body)
+                body: JSON.stringify(body),
             };
 
-            console.log(options);
-
-
             fetch(`${BASE_URL}/auth/login`, options)
+                .then((response) => response.json())
 
-                .then(response => response.json())
-
-
-                .then(data => {
+                .then((data) => {
                     if (data.data) {
-
-                        setMessage([data.message])
-                        pseudoRef.current!.value = "";
-                        passwordRef.current!.value = "";
+                        setMessage([data.message]);
+                        pseudoRef.current!.value = '';
+                        passwordRef.current!.value = '';
                         setUser(data.data);
-                        
-                    }
-                    else {
-                        if (typeof data.message === "string") {
-                            setMessage([data.message])
-                        }
-                        else {
-                            setMessage(data.message)
+                    } else {
+                        if (typeof data.message === 'string') {
+                            setMessage([data.message]);
+                        } else {
+                            setMessage(data.message);
                         }
                     }
-                })
+                });
+        } else {
+            alert('informations manquantes');
         }
-        else {
-            alert('informations manquantes')
-        }
-    }
+    };
 
-    const displayMessages = message.map((item, i) => <p key={i}>{item}</p>)
+    const displayMessages = message.map((item, i) => <p key={i}>{item}</p>);
     return (
         <div className="modal" id="loginModal" tabIndex={-1}>
             <div className="modal-dialog modal-dialog-centered ">

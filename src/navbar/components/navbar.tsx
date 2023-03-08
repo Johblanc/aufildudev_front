@@ -37,23 +37,34 @@ export function Navbar() {
                     <li className="nav-item  my-1 my-md-0">
                         <a className="nav-link active btn btn-green"
 
-                            type="button"
-                            data-bs-toggle="modal"
-                            data-bs-target="#registerModal"
-                        >
-                            {' '}
-                            Register
-                        </a>
-                    </li>
-                    <li className="nav-item  my-1 my-md-0">
-                        <a className="nav-link active btn btn-green"
-                            type="button">
-                            Ajouter un Article
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
+                                type="button"
+                                data-bs-toggle="modal"
+                                data-bs-target="#registerModal"
+                            >
+                                {' '}
+                                Register
+                            </a>
+                        </li>
+                        <li className="nav-item  my-1 my-md-0">
+                            <a className="nav-link active btn btn-green"
+                                type="button">
+                                Ajouter un Article
+                            </a>
+                        </li>
+                        <li className="nav-item">
+                            <button
+                                type="button"
+                                data-bs-toggle="modal"
+                                data-bs-target="#profile"
+                                className="btn btn-green"
+                            >
+                                {' '}
+                                Profile
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            
         </nav >
     );
 }

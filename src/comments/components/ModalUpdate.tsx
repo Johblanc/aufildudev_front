@@ -1,38 +1,32 @@
-import { useContext, useState } from 'react';
-import { UserContext } from '../../context/UserContext';
+import { useState, useContext } from 'react';
 import { TComment } from '../types/TComment';
 import { BASE_URL } from '../../constant/url';
+import { UserContext } from '../../context/UserContext';
+import { UpdateCommentContext } from '../../context/UpdateCommentContext';
 
-export function ModalUpdate(props: {
-    comms: TComment[];
-    setComms: React.Dispatch<React.SetStateAction<TComment[]>>;
-    commData: TComment | undefined;
-}) {
-    const user = useContext(UserContext);
-
+export function ModalUpdate(props: { commData: TComment | undefined }) {
     const [bodyContent, setBodyContent] = useState('');
+    const userData = useContext(UserContext);
+    const { comms, setComms } = useContext(UpdateCommentContext);
 
     const options = {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
-            Authorization:
-                'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwc2V1ZG8iOiJBenVyaWVzIiwic3ViIjoxLCJpYXQiOjE2NzcwNzcyMTd9.knPilEMv3ZBqweToAiFx1QJD6WvypgnGrifg6MC7U-k',
+            Authorization: `Bearer ${userData.user.access_token}`,
         },
         body: `{"content": "${bodyContent}"}`,
     };
 
     const updater = () => {
-        console.log(props.commData?.id);
-
-        fetch(`${BASE_URL}/api/comments/${props.commData?.id}`, options)
+        fetch(`${BASE_URL}/comments/${props.commData?.id}`, options)
             .then((response) => response.json())
             .then((response) => response.data)
             .then((response) => {
                 /** Copy de la base local pour marquer la difference entre l'avant et l'apres */
-                const newComms = [...props.comms];
+                const newComms = [...comms];
                 /** L'index du commentaire modifié dans la table local */
-                const index = props.comms
+                const index = comms
                     .map((item, i) => {
                         // Récupération de l'id et l'index pour chaque commentaire
                         return { selfId: item.id, index: i };
@@ -45,7 +39,7 @@ export function ModalUpdate(props: {
                 newComms[index] = response;
 
                 // Sauvegarde de la copy à la place de l'orginal
-                props.setComms(newComms);
+                setComms(newComms);
             })
             .catch((err) => console.error(err));
     };
@@ -57,7 +51,7 @@ export function ModalUpdate(props: {
                 id="updateComment"
                 aria-hidden="true"
                 aria-labelledby="updateComment"
-                tabIndex={10}
+                tabIndex={12}
             >
                 <div className="modal-dialog modal-dialog-centered modal-lg ">
                     <div className="modal-content size">
@@ -81,13 +75,12 @@ export function ModalUpdate(props: {
                             >
                                 <textarea
                                     className="form-control"
-                                    placeholder="Modifie ton commentaire ici"
-                                    id="floatingTextarea2"
+                                    defaultValue={props.commData?.content}
+                                    id="floatingTextarea"
                                     style={{ height: 100 }}
-                                    onChange={(e) => {
-                                        setBodyContent(e.target.value);
-                                        console.log(bodyContent);
-                                    }}
+                                    onChange={(e) =>
+                                        setBodyContent(e.target.value)
+                                    }
                                 ></textarea>
                                 <div className="text-center">
                                     <button
