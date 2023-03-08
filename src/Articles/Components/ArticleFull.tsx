@@ -9,6 +9,7 @@ import { IconCheckBox } from "./Icon_CheckBox";
 import MDEditor from '@uiw/react-md-editor';
 import { CustomMDEditor } from "./CustumMDEditor/CustomMDEditor";
 import { TablesEnums } from "../../searchBar/types/tablesEnums";
+import { ArticleComments } from "../../comments/components/articleComments/ArticleComments";
 
 
 export function ArticleFull(props: { id: number }) {
@@ -94,6 +95,9 @@ export function ArticleFull(props: { id: number }) {
             voir ensuite :{" "}
             {article.needed_for.map((item) => item.title).join(", ")}
           </p>
+          
+          {/*A destination de l'article*/}
+          <ArticleComments articleId={article.id} />
         </div>
       }
       { inModif &&

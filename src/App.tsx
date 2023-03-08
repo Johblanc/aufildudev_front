@@ -19,7 +19,7 @@ import { UserComment } from './comments/components/userComment/UserComment';
 import { UpdateCommentContext } from './context/UpdateCommentContext';
 import { TComment } from './comments/types/TComment';
 import { ArticleFull } from './Articles/Components/ArticleFull';
-import { ArticleComments } from './comments/components/articleComments/ArticleComments';
+
 
 function App() {
     const [user, setUser] = useState<TUser>(DEFAULT_USER);
@@ -43,8 +43,6 @@ function App() {
                         <AllComments />
                         {/*A destination de tous profil*/}
                         <UserComment />
-                        {/*A destination de l'article*/}
-                        <ArticleComments articleId={1} />
                         <ArticleFull id={1} />
                     </main>
                 </UpdateCommentContext.Provider>
