@@ -24,7 +24,7 @@ export function Navbar() {
             >
                 <ul className="navbar-nav">
                     <li className="nav-item my-1 my-md-0">
-                        <a className="nav-link active btn btn-green"
+                        <a href="/#" className="nav-link active btn btn-green"
 
                             type="button"
                             data-bs-toggle="modal"
@@ -35,7 +35,7 @@ export function Navbar() {
                         </a>
                     </li>
                     <li className="nav-item  my-1 my-md-0">
-                        <a className="nav-link active btn btn-green"
+                        <a href="/#" className="nav-link active btn btn-green"
 
                                 type="button"
                                 data-bs-toggle="modal"
@@ -46,7 +46,7 @@ export function Navbar() {
                             </a>
                         </li>
                         <li className="nav-item  my-1 my-md-0">
-                            <a className="nav-link active btn btn-green"
+                            <a href="/#" className="nav-link active btn btn-green"
                                 type="button">
                                 Ajouter un Article
                             </a>

@@ -8,10 +8,12 @@ import { ModalUpdate } from '../ModalUpdate';
 export function AllComments() {
     const { setComms } = useContext(UpdateCommentContext);
     const [commData, setCommData] = useState<TComment | undefined>();
+    
 
     const getAllComms = () =>
         fetch(`${BASE_URL}/comments`).then((response) =>
             response.json().then((data) => setComms(data.data))
+            
         );
 
     return (
@@ -25,7 +27,7 @@ export function AllComments() {
             >
                 Liste des commentaires
             </button>
-            <ModalComment setCommData={setCommData} />
+            <ModalComment setCommData={setCommData}/>
             <ModalUpdate commData={commData} />
         </div>
     );
