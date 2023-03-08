@@ -40,7 +40,7 @@ function App() {
                         <LoginForm />
                         <RegisterForm />
                         {/*A destination de profil Admin et Modo */}
-                        <AllComments />
+                        {user.access_lvl> 2 ?<AllComments /> :''}
                         {/*A destination de tous profil*/}
                         <UserComment />
                         {/*A destination de l'article*/}
