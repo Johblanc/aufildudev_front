@@ -90,3 +90,11 @@
 .bold{
     font-weight: bold
 }
+
+.modalcut{
+    border-bottom: 3px solid #3B556D;
+}
+
+.btn-comms{
+    width: 1 vh; 
+}

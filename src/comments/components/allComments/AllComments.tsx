@@ -1,11 +1,11 @@
 import { useState, useContext } from 'react';
-import { BASE_URL } from '../../constant/url';
-import { UpdateCommentContext } from '../../context/UpdateCommentContext';
-import { TComment } from '../types/TComment';
-import { ModalComment } from './ModalComment';
-import { ModalUpdate } from './ModalUpdate';
+import { BASE_URL } from '../../../constant/url';
+import { UpdateCommentContext } from '../../../context/UpdateCommentContext';
+import { TComment } from '../../types/TComment';
+import { ModalComment } from '../ModalComment';
+import { ModalUpdate } from '../ModalUpdate';
 
-export function Comments() {
+export function AllComments() {
     const { setComms } = useContext(UpdateCommentContext);
     const [commData, setCommData] = useState<TComment | undefined>();
 

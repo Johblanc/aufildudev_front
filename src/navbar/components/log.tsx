@@ -23,8 +23,6 @@ export function LoginForm(/* props: {
                 body: JSON.stringify(body),
             };
 
-            console.log(options);
-
             fetch(`${BASE_URL}/auth/login`, options)
                 .then((response) => response.json())
 
