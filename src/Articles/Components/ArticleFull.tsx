@@ -13,14 +13,13 @@ export function ArticleFull(props: { id: number }) {
 
   const [inModif, setInModif] = useState(false);
   const [currentModif, setCurrentModif] = useState({
-    title : "" ,
-    content : ""
+    title: "",
+    content: ""
   })
 
-  const handleModif = (key : "title" | "content" , value : string) =>
-  {
-    const newModif = {...currentModif} ;
-    newModif[key] = value ;
+  const handleModif = (key: "title" | "content", value: string) => {
+    const newModif = { ...currentModif };
+    newModif[key] = value;
     setCurrentModif(newModif)
   }
 
@@ -32,62 +31,62 @@ export function ArticleFull(props: { id: number }) {
   return (
     <div>
       <div>
-      { inModif &&
+        {inModif &&
+          <span>
+            <span>
+              <DropDown table={"categories"} defaultValue={[]} />
+            </span>
+            <span>
+              <DropDown table={"languages"} defaultValue={[]} />
+            </span>
+            <span>
+              <DropDown table={"frameworks"} defaultValue={[]} />
+            </span>
+          </span>
+        }
         <span>
           <span>
-            <DropDown table={"categories"}/>
-          </span>
-          <span>
-            <DropDown table={"languages"}/>
-          </span>
-          <span>
-            <DropDown table={"frameworks"}/>
+            <button onClick={() => setInModif(!inModif)}>Modifier</button>
           </span>
         </span>
-      }
-      <span>
-        <span>
-          <button onClick={()=>setInModif(!inModif)}>Modifier</button>
-        </span>
-      </span>
       </div>
-      { !inModif &&
+      {!inModif &&
         <div>
-        <h3>{article.title}</h3>
-        <p>
-          Prérequis :{" "}
-          {article.requirements.map((item) => item.title).join(", ")}
-        </p>
-        <p>
-          Langages : {article.languages.map((item) => item.name).join(", ")}
-        </p>
-        <p>
-          FrameWorks : {article.frameworks.map((item) => item.name).join(", ")}
-        </p>
-        <p>
-          Catégorie : {article.categories.map((item) => item.name).join(", ")}
-        </p>
-        <p>{article.content}</p>
-        <p>
-          Par {article.user_pseudo} le{" "}
-          {new Date(article.created_at).toLocaleDateString()}
-        </p>
-        <p>
-          voir ensuite :{" "}
-          {article.needed_for.map((item) => item.title).join(", ")}
-        </p>
-      </div>
+          <h3>{article.title}</h3>
+          <p>
+            Prérequis :{" "}
+            {article.requirements.map((item) => item.title).join(", ")}
+          </p>
+          <p>
+            Langages : {article.languages.map((item) => item.name).join(", ")}
+          </p>
+          <p>
+            FrameWorks : {article.frameworks.map((item) => item.name).join(", ")}
+          </p>
+          <p>
+            Catégorie : {article.categories.map((item) => item.name).join(", ")}
+          </p>
+          <p>{article.content}</p>
+          <p>
+            Par {article.user_pseudo} le{" "}
+            {new Date(article.created_at).toLocaleDateString()}
+          </p>
+          <p>
+            voir ensuite :{" "}
+            {article.needed_for.map((item) => item.title).join(", ")}
+          </p>
+        </div>
       }
-      { inModif &&
+      {inModif &&
         <div>
-          <IconCheckBox defautValue={true}/>
-        <EntryString name={"Titre"} defaultValue={article.title} setter={ (value)=> handleModif("title",value)}/>
-        <DropDownPublicArticles/>
-        <EntryStringArea name={"Contenu"} defaultValue={article.content} setter={ (value)=> handleModif("content",value)}/>
-        <p>
-          Par {article.user_pseudo} le {new Date(article.created_at).toLocaleDateString()}
-        </p>
-      </div>
+          <IconCheckBox defautValue={true} />
+          <EntryString name={"Titre"} defaultValue={article.title} setter={(value) => handleModif("title", value)} />
+          <DropDownPublicArticles />
+          <EntryStringArea name={"Contenu"} defaultValue={article.content} setter={(value) => handleModif("content", value)} />
+          <p>
+            Par {article.user_pseudo} le {new Date(article.created_at).toLocaleDateString()}
+          </p>
+        </div>
       }
     </div>
   );

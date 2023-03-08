@@ -4,9 +4,12 @@ import { DropdownTables } from "../types/dropdown-enum";
 import { TMini } from "../types/TMini";
 import DropdownItem from "./dropdownItem";
 
-export default function DropDown(props: { table: "categories" | "languages" | "frameworks" }) {
+export default function DropDown(props: { table: "categories" | "languages" | "frameworks", defaultValue: number[] }) {
 
     const [checkData, setCheckData] = useState<TMini[]>([]);
+
+    const [currentValue, setCurrentValue] = useState<number[]>(props.defaultValue);
+
 
     useEffect(() => {
         fetch(`${BASE_URL}/${props.table}`)
@@ -14,18 +17,39 @@ export default function DropDown(props: { table: "categories" | "languages" | "f
                 response.json())
             .then((data) => {
                 console.log(data);
-                
+
                 setCheckData(data.data)
-                
+
             }
             )
     }, [props.table])
 
+
+    const handleValue = (id: number, value: boolean) => {
+        let newValue = [...currentValue]
+        if (value) {
+            newValue.push(id)
+        }
+        else {
+            newValue = newValue.filter((item) => item !== id)
+        }
+        setCurrentValue(newValue)
+        
+    }
+    console.log(...currentValue);
+
+
     const checkList = (checkData || []).map((elm, i) => (
         <li key={i}>
-            <DropdownItem data={elm} />
+            <DropdownItem data={elm} value={currentValue.includes(elm.id)} setValue={handleValue} />
         </li>
     ))
+
+
+
+
+
+
 
     return (
         <div className="dropdown">
