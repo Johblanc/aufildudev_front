@@ -11,6 +11,8 @@ import { CustomMDEditor } from "./CustumMDEditor/CustomMDEditor";
 
 
 export function ArticleFull(props: { id: number }) {
+
+  const {id} = props
   const [article, setArticle] = useState<TArticleFull>(DEFAULT_ARTICLE);
 
   const [value, setValue] = useState<string | undefined>("**Hello world!!!**");
@@ -29,10 +31,10 @@ export function ArticleFull(props: { id: number }) {
   }
 
   useEffect(() => {
-    fetch(`http://localhost:8000/api/articles/public/${props.id}`).then(
+    fetch(`http://localhost:8000/api/articles/public/${id}`).then(
       (response) => response.json().then((data) => setArticle(data.data))
     );
-  }, []);
+  }, [id]);
   return (
     <div>
       <div>
