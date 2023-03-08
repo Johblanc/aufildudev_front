@@ -1,12 +1,14 @@
-import { useContext } from 'react';
-import { TComment } from '../types/TComment';
-import { Comment } from './Comment';
-import { UpdateCommentContext } from '../../context/UpdateCommentContext';
+import { useContext } from "react";
+import { UpdateCommentContext } from "../../../context/UpdateCommentContext";
+import { UserContext } from "../../../context/UserContext";
+import { TComment } from "../../types/TComment";
+import { Comment } from '../Comment';
 
-export function ModalComment(props: {
+export function ArticleModal(props: {
     setCommData: React.Dispatch<React.SetStateAction<TComment | undefined>>;
 }) {
     const { comms } = useContext(UpdateCommentContext);
+    const userData = useContext(UserContext)
     
 
     const commentsElem = comms.map((elm, i) => (
@@ -21,15 +23,15 @@ export function ModalComment(props: {
     return (
         <div
             className="modal fade"
-            id="commentList"
+            id="commentArticleList"
             tabIndex={11}
-            aria-labelledby="commentList"
+            aria-labelledby="commentArticleList"
             aria-hidden="true"
         >
             <div className="modal-dialog modal-dialog-centered modal-lg">
                 <div className="modal-content scroll">
                     <div className="modal-header">
-                        <h1 className="modal-title fs-5" id="commentList">
+                        <h1 className="modal-title fs-5" id="commentArticleList">
                             Commentaires
                         </h1>
                         <button
@@ -39,7 +41,17 @@ export function ModalComment(props: {
                             aria-label="Close"
                         ></button>
                     </div>
-                    {commentsElem}                   
+                    {commentsElem}
+                    <div className="modal-footer">
+                        {userData.user.id !== -1? <button
+                            type="button"
+                            className="btn btn-primary"
+                            data-bs-toggle="modal"
+                            data-bs-target="#addComment"
+                        >
+                            Ajouter un commentaire
+                        </button> : ''}
+                    </div>
                 </div>
             </div>
         </div>
