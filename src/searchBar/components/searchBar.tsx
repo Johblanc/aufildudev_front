@@ -1,8 +1,39 @@
+import { useEffect, useState } from "react";
+import { TArticleFull } from "../../Articles/Types/TArticleFull";
+import { BASE_URL } from "../../constant/url";
+import { TablesEnums } from "../types/tablesEnums";
 import DropDown from "./dropdown";
 
 export default function SearchBar() {
 
+    const [allArticles, setAllArticles] = useState<TArticleFull[]>([])
 
+    useEffect(() => {
+        fetch(`${BASE_URL}/articles`)
+            .then((response) =>
+                response.json())
+            .then((data) => {
+                console.log(data);
+
+                setAllArticles(data.data)
+            }
+            )
+    },[]
+    )
+    const [selections, setSelections] = useState({
+        languages: [] as number[],
+        frameworks: [] as number[],
+        categories: [] as number[]
+    })
+
+
+    const handleSelections = (table: TablesEnums, value: number[]) => {
+        const newSelection = { ...selections }
+        newSelection[table] = value
+        setSelections(newSelection)
+    }
+    console.log(selections);
+    
 
 
 
@@ -34,15 +65,17 @@ export default function SearchBar() {
                 </div>
 
                 <div className="col-md-2 col-12 mb-2">
-                    <DropDown table={"categories"} defaultValue={[]} />
+                    <DropDown table={TablesEnums.categories} defaultValue={[]} setValue={handleSelections} />
                 </div>
 
                 <div className="col-md-2 col-12 mb-2">
-                    <DropDown table={"frameworks"} defaultValue={[]} />
+                    <DropDown table={TablesEnums.frameworks} defaultValue={[]}
+                        setValue={handleSelections} />
                 </div>
 
                 <div className="col-md-2 col-12 mb-2">
-                    <DropDown table={"languages"} defaultValue={[]} />
+                    <DropDown table={TablesEnums.languages} defaultValue={[]}
+                        setValue={handleSelections} />
                 </div>
 
 

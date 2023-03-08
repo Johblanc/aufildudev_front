@@ -8,6 +8,7 @@ import DropDownPublicArticles from "./DropdownPublicArticles";
 import { IconCheckBox } from "./Icon_CheckBox";
 import MDEditor from '@uiw/react-md-editor';
 import { CustomMDEditor } from "./CustumMDEditor/CustomMDEditor";
+import { TablesEnums } from "../../searchBar/types/tablesEnums";
 
 
 export function ArticleFull(props: { id: number }) {
@@ -23,12 +24,23 @@ export function ArticleFull(props: { id: number }) {
     content: ""
   })
 
+  const [selections, setSelections] = useState({
+    languages: [] as number[],
+    frameworks: [] as number[],
+    categories: [] as number[]
+})
+
   const handleModif = (key: "title" | "content", value: string) => {
     const newModif = { ...currentModif };
     newModif[key] = value;
     setCurrentModif(newModif)
   }
 
+  const handleSelections = (table: TablesEnums, value: number[]) => {
+    const newSelection = { ...selections }
+    newSelection[table] = value
+    setSelections(newSelection)
+}
   useEffect(() => {
     fetch(`http://localhost:8000/api/articles/public/${id}`).then(
       (response) => response.json().then((data) => setArticle(data.data))
@@ -40,13 +52,13 @@ export function ArticleFull(props: { id: number }) {
         {inModif &&
           <span>
             <span>
-              <DropDown table={"categories"} defaultValue={[]} />
+              <DropDown table={TablesEnums.categories} defaultValue={[]} setValue={handleSelections} />
             </span>
             <span>
-              <DropDown table={"languages"} defaultValue={[]} />
+              <DropDown table={TablesEnums.languages} defaultValue={[]} setValue={handleSelections} />
             </span>
             <span>
-              <DropDown table={"frameworks"} defaultValue={[]} />
+              <DropDown table={TablesEnums.frameworks} defaultValue={[]} setValue={handleSelections} />
             </span>
           </span>
         }

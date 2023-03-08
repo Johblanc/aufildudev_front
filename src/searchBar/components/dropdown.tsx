@@ -1,18 +1,24 @@
 import { useEffect, useState } from "react";
 import { BASE_URL } from "../../constant/url";
 import { DropdownTables } from "../types/dropdown-enum";
+import { TablesEnums } from "../types/tablesEnums";
 import { TMini } from "../types/TMini";
 import DropdownItem from "./dropdownItem";
 
-export default function DropDown(props: { table: "categories" | "languages" | "frameworks", defaultValue: number[] }) {
+export default function DropDown(props: {
+    table: TablesEnums,
+    defaultValue: number[],
+    setValue: (table: TablesEnums, value: number[])=>void
+}) {
+    const { table, defaultValue, setValue } = props
 
     const [checkData, setCheckData] = useState<TMini[]>([]);
 
-    const [currentValue, setCurrentValue] = useState<number[]>(props.defaultValue);
+    const [currentValue, setCurrentValue] = useState<number[]>(defaultValue);
 
 
     useEffect(() => {
-        fetch(`${BASE_URL}/${props.table}`)
+        fetch(`${BASE_URL}/${table}`)
             .then((response) =>
                 response.json())
             .then((data) => {
@@ -22,7 +28,7 @@ export default function DropDown(props: { table: "categories" | "languages" | "f
 
             }
             )
-    }, [props.table])
+    }, [table])
 
 
     const handleValue = (id: number, value: boolean) => {
@@ -33,8 +39,10 @@ export default function DropDown(props: { table: "categories" | "languages" | "f
         else {
             newValue = newValue.filter((item) => item !== id)
         }
-        setCurrentValue(newValue)
-        
+        setCurrentValue(newValue);
+        setValue(table, newValue)
+
+
     }
     console.log(...currentValue);
 
@@ -55,7 +63,7 @@ export default function DropDown(props: { table: "categories" | "languages" | "f
         <div className="dropdown">
             <button className="btn width btn-primary dropdown-toggle " type="button" id="dropdownCategorie"
                 data-bs-toggle="dropdown" aria-expanded="false">
-                Choisir {DropdownTables[props.table]}
+                Choisir {DropdownTables[table]}
             </button>
             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 {checkList}

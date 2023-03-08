@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import { TMini } from "../types/TMini";
 
-export default function DropdownItem(props: { data: TMini, value: boolean, setValue: (id: number, val: boolean) => void }) {
+export default function DropdownItem(props: {
+    data: TMini,
+    value: boolean,
+    setValue: (id: number, val: boolean) => void
+}) {
     const { data, value, setValue } = props
     const [currentValue, setCurrentValue] = useState<boolean>(value);
 
@@ -15,7 +19,7 @@ export default function DropdownItem(props: { data: TMini, value: boolean, setVa
     return (
         <div className="dropdown-item" onClick={() => setValue(data.id, !currentValue)} >
             <div className="form-check">
-                <input className="form-check-input" type="checkbox" defaultChecked={currentValue} />
+                <input className="form-check-input" type="checkbox" checked={currentValue} readOnly={true} />
                 <label className="form-check-label" htmlFor="Checkme1">{data.name}</label>
             </div>
         </div>
