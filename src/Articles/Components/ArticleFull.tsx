@@ -29,7 +29,7 @@ export function ArticleFull(props: { id: number }) {
   }
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/articles/public/${props.id}`).then(
+    fetch(`http://localhost:8000/api/articles/public/${props.id}`).then(
       (response) => response.json().then((data) => setArticle(data.data))
     );
   }, []);
