@@ -1,5 +1,4 @@
 import './App.css';
-import './profile/profile/profile-style.css';
 import './comments/commentStyle.css';
 import './navbar/navbar-style.css';
 import './navbar/login-style.css';
@@ -10,7 +9,6 @@ import { Navbar } from './navbar/components/navbar';
 import { LoginForm } from './navbar/components/log';
 import { RegisterForm } from './navbar/components/register';
 import SearchBar from './searchBar/components/searchBar';
-import { Profile } from './profile/components/Profile';
 import { useState } from 'react';
 import { TUser } from './navbar/types/TUser';
 import { UserContext } from './context/UserContext';
@@ -18,6 +16,7 @@ import { DEFAULT_USER } from './constant/visitor';
 import { UserComment } from './comments/components/UserComment';
 import { UpdateCommentContext } from './context/UpdateCommentContext';
 import { TComment } from './comments/types/TComment';
+import { Profile } from './profile/components/Profile';
 
 function App() {
     const [user, setUser] = useState<TUser>(DEFAULT_USER);
@@ -41,6 +40,7 @@ function App() {
                         <RegisterForm />
                         <Comments />
                         <UserComment />
+                        <Profile id={0} name={'bob'} />
                     </main>
                 </UpdateCommentContext.Provider>
             </UserContext.Provider>
