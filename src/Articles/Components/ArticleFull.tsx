@@ -92,6 +92,7 @@ export function ArticleFull(props: { id: number }) {
         <p>
           Par {article.user_pseudo} le {new Date(article.created_at).toLocaleDateString()}
         </p>
+        <CustomMDEditor setValue={setValue}/>
       </div>
       }
     </div>
