@@ -13,7 +13,7 @@ export default function SearchBar() {
             .then((response) =>
                 response.json())
             .then((data) => {
-                console.log(data);
+                //console.log(data);
 
                 setAllArticles(data.data)
             }
@@ -32,7 +32,7 @@ export default function SearchBar() {
         newSelection[table] = value
         setSelections(newSelection)
     }
-    console.log(selections);
+    //console.log(selections);
     
 
 

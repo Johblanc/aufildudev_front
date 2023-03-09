@@ -22,7 +22,7 @@ export default function DropDown(props: {
             .then((response) =>
                 response.json())
             .then((data) => {
-                console.log(data);
+                //console.log(data);
 
                 setCheckData(data.data)
 
@@ -44,7 +44,7 @@ export default function DropDown(props: {
 
 
     }
-    console.log(...currentValue);
+    //console.log(...currentValue);
 
 
     const checkList = (checkData || []).map((elm, i) => (

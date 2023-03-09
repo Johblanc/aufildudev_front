@@ -40,13 +40,13 @@ export function RegisterForm() {
                 headers: { 'Content-Type': 'application/json' },
                 body: body,
             };
-            console.log(options);
+            //console.log(options);
 
             fetch(`${BASE_URL}/users/register`, options)
                 .then(response => response.json())
                 .then(data => {
                     if (data.data) {
-                        console.log(data.data)
+                        //console.log(data.data)
                         setMessage([data.message])
                         pseudoRef.current!.value = "";
                         emailRef.current!.value = "";
