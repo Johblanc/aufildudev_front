@@ -76,7 +76,6 @@ export function ModalUpdate(props: { commData: TComment | undefined }) {
                                 <textarea
                                     className="form-control"
                                     defaultValue={props.commData?.content}
-                                    id="floatingTextarea"
                                     style={{ height: 100 }}
                                     onChange={(e) =>
                                         setBodyContent(e.target.value)

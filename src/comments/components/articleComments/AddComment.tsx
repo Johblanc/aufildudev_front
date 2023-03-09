@@ -58,8 +58,6 @@ export function AddComment(props: {articleId: number}) {
                         >
                             <textarea
                                 className="form-control"
-                                
-                                id="floatingTextarea"
                                 style={{ height: 100 }}
                                 onChange={(e) =>
                                     setBodyContent(e.target.value)
