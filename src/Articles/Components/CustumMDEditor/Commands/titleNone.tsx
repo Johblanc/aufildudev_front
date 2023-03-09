@@ -21,9 +21,8 @@ export const titleNone : commands.ICommand<string> = {
     )
   },
   execute: (state, api) => {
-    console.log(state);
-    console.log(api);
-
+    //console.log(state);
+    
     let titleless = state.selectedText
 
     if (titleless.charAt(0) === "#"){
