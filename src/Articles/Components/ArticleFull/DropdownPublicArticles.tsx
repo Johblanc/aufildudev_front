@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { BASE_URL } from "../../constant/url";
-import { TMini } from "../../searchBar/types/TMini";
+import { BASE_URL } from "../../../constant/url";
+import { TMini } from "../../../searchBar/types/TMini";
 import DropDownPublicArticleItem from "./DropdownPublicArticlesItem";
 
 export default function DropDownPublicArticles (props: {

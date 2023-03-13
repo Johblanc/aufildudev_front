@@ -1,15 +1,15 @@
 import { useContext, useEffect, useState } from "react";
-import { EntryString } from "../../Entries/Components/EntryString";
-import DropDown from "../../searchBar/components/dropdown";
-import { DEFAULT_ARTICLE } from "../Constant/DefaultArticle";
-import { TArticleFull } from "../Types/TArticleFull";
+import { EntryString } from "../../../Entries/Components/EntryString";
+import DropDown from "../../../searchBar/components/dropdown";
+import { DEFAULT_ARTICLE } from "../../Constant/DefaultArticle";
+import { TArticleFull } from "../../Types/TArticleFull";
 import DropDownPublicArticles from "./DropdownPublicArticles";
 import MDEditor from "@uiw/react-md-editor";
-import { CustomMDEditor } from "./CustumMDEditor/CustomMDEditor";
-import { TablesEnums } from "../../searchBar/types/tablesEnums";
-import { ArticleComments } from "../../comments/components/articleComments/ArticleComments";
-import { BASE_URL } from "../../constant/url";
-import { UserContext } from "../../context/UserContext";
+import { CustomMDEditor } from "../CustumMDEditor/CustomMDEditor";
+import { TablesEnums } from "../../../searchBar/types/tablesEnums";
+import { ArticleComments } from "../../../comments/components/articleComments/ArticleComments";
+import { BASE_URL } from "../../../constant/url";
+import { UserContext } from "../../../context/UserContext";
 
 export function ArticleFull(props: { id: number }) {
   const { id } = props;
