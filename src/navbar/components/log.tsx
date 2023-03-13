@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { BASE_URL } from '../../constant/url';
 import { UserContext } from '../../context/UserContext';
 
@@ -9,6 +9,10 @@ export function LoginForm(/* props: {
     const pseudoRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
     const { setUser } = useContext(UserContext);
+    const userData = useContext(UserContext);
+
+
+
 
     const submitHandler = () => {
         if (pseudoRef.current?.value && passwordRef.current?.value) {
@@ -32,6 +36,10 @@ export function LoginForm(/* props: {
                         pseudoRef.current!.value = '';
                         passwordRef.current!.value = '';
                         setUser(data.data);
+                        setTimeout(() => {
+                            document.getElementById("close")?.click();
+                        }, 1500);
+
                     } else {
                         if (typeof data.message === 'string') {
                             setMessage([data.message]);
@@ -45,9 +53,11 @@ export function LoginForm(/* props: {
         }
     };
 
-    const displayMessages = message.map((item, i) => <p key={i}>{item}</p>);
+    const displayMessages = message.map((item, i) => <p className='align-item-center' key={i}>{item}</p>);
+
+
     return (
-        <div className="modal" id="loginModal" tabIndex={-1}>
+        <div className="modal fade" aria-labelledby='loginModal' id="loginModal" tabIndex={-1}>
             <div className="modal-dialog modal-dialog-centered ">
                 <div className="modal-content login-color ">
                     <div className="modal-header">
@@ -57,6 +67,8 @@ export function LoginForm(/* props: {
                             className="btn-close green-close"
                             data-bs-dismiss="modal"
                             aria-label="Close"
+                            id="close"
+
                         ></button>
                     </div>
                     <div className="modal-body login-color">
@@ -86,19 +98,32 @@ export function LoginForm(/* props: {
                         ></input>
                     </div>
 
-                    <div className="modal-footer">
-                        <div>{displayMessages}</div>
-                        <button
-                            onClick={submitHandler}
-                            type="button"
-                            className="btn btn-green"
-                        >
-                            {' '}
-                            Connexion
-                        </button>
+                    <div className="modal-footer d-flex justify-content-center">
+                        {userData.user.access_lvl < 1 ? (
+                            <>
+                                <button
+                                    onClick={submitHandler}
+                                    type="button"
+                                    className="btn btn-green"
+
+                                >
+                                    {' '}
+                                    Connexion
+                                </button></>
+
+                        ) : (
+                            ''
+                        )}
+                        <div className=''>
+                            {displayMessages}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     );
 }
+function setCount(arg0: string) {
+    throw new Error('Function not implemented.');
+}
+
