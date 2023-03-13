@@ -7,13 +7,14 @@
   --color-button: #5FC2BA;
   --radius-border: 10px;
   --color-background-secondary:#1C2942;
-  
+
   --bs-dark-rgb      : 11, 22, 44 ;
   --bs-primary-rgb   : 28, 41, 66 ;
   --bs-success-rgb   : 59, 85, 109 ;
   --bs-secondary-rgb : 95, 194, 186 ;
   --bs-light-rgb     : 255, 255, 255 ;
   --bs-danger-rgb    : 198, 10, 5 ;
+  --bs-info-rgb      : 217, 217, 217 ;
   
   --dark      : var(--bs-dark-rgb);
   --primary   : var(--bs-primary-rgb);
@@ -21,6 +22,7 @@
   --secondary : var(--bs-secondary-rgb);
   --light     : var(--bs-light-rgb);
   --danger    : var(--bs-danger-rgb);
+  --info      : var(--bs-info-rgb);
 }
 
 .dropdown-menu:hover{
