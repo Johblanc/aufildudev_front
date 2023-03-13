@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { BASE_URL } from '../../constant/url';
 import { UserContext } from '../../context/UserContext';
 
@@ -122,8 +122,5 @@ export function LoginForm(/* props: {
             </div>
         </div>
     );
-}
-function setCount(arg0: string) {
-    throw new Error('Function not implemented.');
 }
 
