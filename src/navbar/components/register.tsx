@@ -15,9 +15,6 @@ export function RegisterForm() {
 
     const submitHandler = () => {
 
-
-        //console.log(pseudoRef?.current?.value, emailRef?.current?.value, passwordRef?.current?.value, passVerifRef?.current?.value);
-
         if (
             pseudoRef.current?.value &&
             emailRef.current?.value &&
@@ -52,6 +49,11 @@ export function RegisterForm() {
                         emailRef.current!.value = "";
                         passwordRef.current!.value = "";
                         passVerifRef.current!.value = "";
+                        setTimeout(() => {
+                            document.getElementById("loginButton")?.click();
+                        }, 1500);
+
+
 
                     }
                     else {
@@ -75,7 +77,7 @@ export function RegisterForm() {
 
     return (
 
-        <div className="modal" id="registerModal" tabIndex={-1} >
+        <div className="modal fade" id="registerModal" tabIndex={-1} >
             <div className="modal-dialog modal-dialog-centered ">
                 <div className="modal-content login-color ">
                     <div className="modal-header">
