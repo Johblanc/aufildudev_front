@@ -1,27 +1,30 @@
 import { useEffect, useState } from "react";
+import { IconCheckBox } from "../../Articles/Components/Icon_CheckBox";
 import { TMini } from "../types/TMini";
 
 export default function DropdownItem(props: {
-    data: TMini,
-    value: boolean,
-    setValue: (id: number, val: boolean) => void
+  data: TMini;
+  value: boolean;
+  setValue: (id: number, val: boolean) => void;
 }) {
-    const { data, value, setValue } = props
-    const [currentValue, setCurrentValue] = useState<boolean>(value);
+  const { data, value, setValue } = props;
+  const [currentValue, setCurrentValue] = useState<boolean>(value);
 
-    useEffect(() => {
-        setCurrentValue(value)
-    },
-        [value]
-    )
+  useEffect(() => {
+    setCurrentValue(value);
+  }, [value]);
 
-
-    return (
-        <div className="dropdown-item" onClick={() => setValue(data.id, !currentValue)} >
-            <div className="form-check">
-                <input className="form-check-input" type="checkbox" checked={currentValue} readOnly={true} />
-                <label className="form-check-label" htmlFor="Checkme1">{data.name}</label>
-            </div>
-        </div>
-    )
+  return (
+    <span
+      className="dropdown-item d-flex"
+      onClick={() => setValue(data.id, !currentValue)}
+    >
+      <span>
+        <IconCheckBox value={value} />
+      </span>
+      <span>
+        <p>{data.name}</p>
+      </span>
+    </span>
+  );
 }

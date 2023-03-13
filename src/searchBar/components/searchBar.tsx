@@ -5,8 +5,8 @@ import { TablesEnums } from "../types/tablesEnums";
 import DropDown from "./dropdown";
 
 export default function SearchBar() {
-  //#region search-dropdown
-  
+  //#region search
+
   //contient tout les articles publiques de la BDD
   const [allArticles, setAllArticles] = useState<TArticleFull[]>([]);
 
@@ -77,18 +77,19 @@ export default function SearchBar() {
 
 
   return (
-    <div className="container-fluid color-bg ">
-      <div className="row d-flex flex-row justify-content-between align-items-center ">
+    <div className="container-fluid color-bg rounded-bottom ">
+      <div className="row d-flex flex-row justify-content-between align-items-center py-3 ">
+
         <div className="col-md-2 col-12 mb-2 ">
-          <div className="form-floating ">
+          <div className="form-floating  ">
             <input
-              className="form-control form-control-sm"
+              className="form-control height-form "
               type="text"
               placeholder="Recherche Rapide"
               aria-label="search"
               onChange={(event) => setInputSearch(event.target.value)}
             />
-            <label htmlFor="floatingInput">Recherche rapide</label>
+            <label htmlFor="floatingInput" className="padding-label" >Recherche rapide</label>
           </div>
         </div>
 
@@ -96,12 +97,12 @@ export default function SearchBar() {
           <div className="form-floating ">
             <input
               type="text"
-              className="form-control form-control-sm "
+              className="form-control height-form "
               placeholder="Rechercher par Titre"
               aria-label="search"
               onChange={(event) => setInputTitle(event.target.value)}
             />
-            <label htmlFor="floatingInput">Recherche par Titre</label>
+            <label htmlFor="floatingInput" className="padding-label">Recherche par Titre</label>
           </div>
         </div>
 
@@ -109,12 +110,12 @@ export default function SearchBar() {
           <div className="form-floating ">
             <input
               type="text"
-              className="form-control "
+              className="form-control height-form "
               placeholder="Rechercher par Auteur"
               aria-label="search"
               onChange={(event) => setInputAuthor(event.target.value)}
             />
-            <label htmlFor="floatingInput">Recherche par Auteur</label>
+            <label htmlFor="floatingInput" className="padding-label">Recherche par Auteur</label>
           </div>
         </div>
 
@@ -141,16 +142,17 @@ export default function SearchBar() {
             setValue={handleSelections}
           />
         </div>
-      </div>
-      <div className="w-md-100 w-50">
-        <button
-          type="button"
-          className="btn btn-green mb-2"
-          onClick={handleResearch}
-        >
-          {" "}
-          Rechercher
-        </button>
+
+        <div className="col-md-2 col-12">
+          <button
+            type="button"
+            className="btn btn-green "
+            onClick={handleResearch}
+          >
+            {" "}
+            Lancer la Recherche
+          </button>
+        </div>
       </div>
       {/* {filterArticles.map(item=>item.title).join(", ")} */}
     </div>
