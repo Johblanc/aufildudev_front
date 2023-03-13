@@ -19,12 +19,14 @@ import { UserComment } from './comments/components/userComment/UserComment';
 import { UpdateCommentContext } from './context/UpdateCommentContext';
 import { TComment } from './comments/types/TComment';
 import { ArticleFull } from './Articles/Components/ArticleFull';
+import { Tchat } from './Tchat/components/Tchat';
+
 
 
 function App() {
     const [user, setUser] = useState<TUser>(DEFAULT_USER);
     const [comms, setComms] = useState<TComment[]>([]);
-
+   
     return (
         <div className="App">
             <UserContext.Provider value={{ user, setUser }}>
@@ -44,6 +46,7 @@ function App() {
                         {/*A destination de tous profil*/}
                         <UserComment />
                         <ArticleFull id={1} />
+                        <Tchat/>
                     </main>
                 </UpdateCommentContext.Provider>
             </UserContext.Provider>
