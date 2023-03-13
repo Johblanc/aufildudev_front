@@ -11,7 +11,7 @@ import { LoginForm } from './navbar/components/log';
 import { RegisterForm } from './navbar/components/register';
 import SearchBar from './searchBar/components/searchBar';
 //import { Profile } from './profile/components/Profile';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { TUser } from './navbar/types/TUser';
 import { UserContext } from './context/UserContext';
 import { DEFAULT_USER } from './constant/visitor';

@@ -11,7 +11,7 @@ export function Tchat(){
     const userData = useContext(UserContext)
 
     const send = (value: string) => {
-        const envoi = {pseudo: userData.user.pseudo, message: value}
+        const envoi = {pseudo: userData.user.pseudo, message: value, id: userData.user.id}
         socket?.emit('message', JSON.stringify(envoi))
     }
 
@@ -28,7 +28,7 @@ export function Tchat(){
     useEffect(() => {
         socket?.on('message', messageListener)
         return () => {socket?.off('message', messageListener )}
-    }, [messageListener])
+    })
 
     return (
         <>
