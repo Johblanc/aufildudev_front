@@ -31,16 +31,17 @@ function App() {
                 <UpdateCommentContext.Provider value={{ comms, setComms }}>
                     <header>
                         <Navbar />
-                    </header>
-
-                    <main className="container-fluid">
                         <div className="shadow">
                             <SearchBar />
                         </div>
+                    </header>
+
+                    <main className="container-fluid">
+
                         <LoginForm />
                         <RegisterForm />
                         {/*A destination de profil Admin et Modo */}
-                        {user.access_lvl> 2 ?<AllComments /> :''}
+                        {user.access_lvl > 2 ? <AllComments /> : ''}
                         {/*A destination de tous profil*/}
                         <UserComment />
                         <ArticleFull id={1} />
