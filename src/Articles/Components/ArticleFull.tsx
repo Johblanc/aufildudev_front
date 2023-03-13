@@ -73,29 +73,34 @@ export function ArticleFull(props: { id: number }) {
     }
   }, [article, inModif]);
 
+  enum BootStrap {
+    ARTICLE = "m-2 border border-primary bg-info text-dark border-2 rounded rounded-4 p-4" ,
+    BUTTON = "btn bg-secondary border border-1 border-dark text-light m-1"
+  }
+
   return (
-    <div className="m-2 border border-2 rounded rounded-4 p-4">
+    <div className={BootStrap.ARTICLE}>
       <div>
         <span>
           {user.pseudo === article.user_pseudo && (
             <span>
-              {id !== -1 && <button onClick={() => setInModif(!inModif)}>
+              {id !== -1 && <button onClick={() => setInModif(!inModif)} className={BootStrap.BUTTON}>
                 {inModif ? "Annuler" : "Modifier"}
               </button>}
-              {inModif && <button>Enregistrer</button>}
+              {inModif && <button className={BootStrap.BUTTON}>Enregistrer</button>}
               {!inModif && article.status === "private" && (
-                <button>Demande de publication</button>
+                <button className={BootStrap.BUTTON}>Demande de publication</button>
               )}
               {!inModif && (
                 <span onMouseLeave={() => setInDelete(false)}>
-                  <button onClick={() => setInDelete(true)}>Supprimer</button>
-                  {inDelete && <button>Valider la suppression</button>}
+                  <button onClick={() => setInDelete(true)} className={BootStrap.BUTTON}>Supprimer</button>
+                  {inDelete && <button className={BootStrap.BUTTON}>Valider la suppression</button>}
                 </span>
               )}
             </span>
           )}
           {!inModif && article.status === "submit" && user.access_lvl > 2 && (
-            <button>Publier</button>
+            <button className={BootStrap.BUTTON}>Publier</button>
           )}
         </span>
       </div>
