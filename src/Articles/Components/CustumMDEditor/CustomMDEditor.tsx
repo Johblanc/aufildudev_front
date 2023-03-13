@@ -1,5 +1,6 @@
 import MDEditor, {commands} from "@uiw/react-md-editor";
 import { titleNone } from "./Commands/titleNone";
+import "./CustomMDEditor.style.css"
 
 
 
@@ -7,7 +8,7 @@ export function CustomMDEditor(props : {value? : string, setValue: (val? : strin
 
   const {value, setValue} = props
   return (
-    
+    <div className="">
     <MDEditor
     value={value}
     onChange={setValue}
@@ -54,5 +55,7 @@ export function CustomMDEditor(props : {value? : string, setValue: (val? : strin
     ]}
     
     />
+      
+    </div>
   )
 }
