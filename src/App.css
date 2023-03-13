@@ -1,30 +1,49 @@
-:root{
+:root {
   --color-font-light: #0B162C;
   --color-font-dark: #FFFFFF;
   --color-background: #3B556D;
   --color-background-t: #3B556DCC;
   --color-item: #D9D9D9;
   --color-button: #5FC2BA;
-  --radius-border: 10px;
-  --color-background-secondary:#1C2942;
+  --color-background-secondary: #1C2942;
 
-  --bs-dark-rgb      : 11, 22, 44 ;
-  --bs-primary-rgb   : 28, 41, 66 ;
-  --bs-success-rgb   : 59, 85, 109 ;
-  --bs-secondary-rgb : 95, 194, 186 ;
-  --bs-light-rgb     : 255, 255, 255 ;
-  --bs-danger-rgb    : 198, 10, 5 ;
-  --bs-info-rgb      : 217, 217, 217 ;
-  
-  --dark      : var(--bs-dark-rgb);
-  --primary   : var(--bs-primary-rgb);
-  --success   : var(--bs-success-rgb);
-  --secondary : var(--bs-secondary-rgb);
-  --light     : var(--bs-light-rgb);
-  --danger    : var(--bs-danger-rgb);
-  --info      : var(--bs-info-rgb);
+
+  --radius-border: 10px;
+
+  /* Surcharge Bootstrap */
+  --bs-dark-rgb: 11, 22, 44;
+  --bs-primary-rgb: 28, 41, 66;
+  --bs-success-rgb: 59, 85, 109;
+  --bs-secondary-rgb: 95, 194, 186;
+  --bs-light-rgb: 255, 255, 255;
+  --bs-danger-rgb: 198, 10, 5;
+  --bs-info-rgb: 217, 217, 217;
+
+  --dark:       rgb(var(--bs-dark-rgb));
+  --primary:    rgb(var(--bs-primary-rgb));
+  --success:    rgb(var(--bs-success-rgb));
+  --secondary:  rgb(var(--bs-secondary-rgb));
+  --light:      rgb(var(--bs-light-rgb));
+  --danger:     rgb(var(--bs-danger-rgb));
+  --info:       rgb(var(--bs-info-rgb));
 }
 
-.dropdown-menu:hover{
+.dropdown-menu:hover {
   display: block;
+}
+
+.drop-resize {
+  width: auto;
+}
+
+@media (max-width: 767.98px) {
+
+  .drop-resize {
+    width: 100%;
+  }
+
+}
+
+.no-list-style {
+  list-style: none;
 }
