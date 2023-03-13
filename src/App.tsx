@@ -37,7 +37,6 @@ function App() {
                     </header>
 
                     <main className="container-fluid">
-
                         <LoginForm />
                         <RegisterForm />
                         {/*A destination de profil Admin et Modo */}
