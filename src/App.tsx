@@ -17,6 +17,7 @@ import { UserComment } from './comments/components/UserComment';
 import { UpdateCommentContext } from './context/UpdateCommentContext';
 import { TComment } from './comments/types/TComment';
 import { Profile } from './profile/components/Profile';
+import { ArticleFull } from './Articles/Components/ArticleFull';
 
 function App() {
     const [user, setUser] = useState<TUser>(DEFAULT_USER);
@@ -40,8 +41,8 @@ function App() {
                         <RegisterForm />
                         <Comments />
                         <UserComment />
-                        <Profile id={0} name={'bob'} />
-                    </main>
+                        <ArticleFull id={1}/>
+                        <Profile id={0} name={''} />                  </main>
                 </UpdateCommentContext.Provider>
             </UserContext.Provider>
         </div>
