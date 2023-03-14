@@ -24,6 +24,7 @@ import { Tchat } from "./Tchat/components/Tchat";
 import { ArticlesSelector } from "./Articles/Components/ArticlesSelector/ArticlesSelector";
 import { DEFAULT_ARTICLE } from "./Articles/Constant/DefaultArticle";
 import { ArticleContext } from "./context/ArticleContext";
+import Footer from "./footer/components/footer";
 
 function App() {
   const [user, setUser] = useState<TUser>(DEFAULT_USER);
@@ -31,7 +32,7 @@ function App() {
   const [article, setArticle] = useState(DEFAULT_ARTICLE);
 
   return (
-    <div className="App">
+    <div>
       <UserContext.Provider value={{ user, setUser }}>
         <UpdateCommentContext.Provider value={{ comms, setComms }}>
           <ArticleContext.Provider value={{ article, setArticle }}>
@@ -42,7 +43,7 @@ function App() {
               </div>
             </header>
 
-            <main className="container-fluid">
+            <main className="container-fluid m-bottom ">
               <LoginForm />
               <RegisterForm />
               {/*A destination de profil Admin et Modo */}
@@ -58,6 +59,7 @@ function App() {
           </ArticleContext.Provider>
         </UpdateCommentContext.Provider>
       </UserContext.Provider>
+      <Footer/>
     </div>
   );
 }

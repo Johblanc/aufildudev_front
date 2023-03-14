@@ -1,0 +1,9 @@
+.taille-footer {
+    height: 5%;
+}
+
+.bg-img-footer {
+    position: fixed;
+    bottom:5%;
+    margin-top: 10%;
+}
