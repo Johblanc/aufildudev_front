@@ -49,7 +49,7 @@ function App() {
               {user.access_lvl > 2 ? <AllComments /> : ""}
               {/*A destination de tous profil*/}
               <UserComment />
-              <div className="d-flex">
+              <div className="d-md-flex">
                 <ArticlesSelector />
                 <ArticleFull />
                 <Tchat />

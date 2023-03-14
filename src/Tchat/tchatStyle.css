@@ -1,6 +1,32 @@
-.tchat {
-    height:max-content;
-    max-height: 700px;
-    overflow-y: scroll;
+.tchat-button {
+  display: none;
 }
 
+.tchat-hidden {
+  display: none;
+}
+
+@media (max-width: 767.98px) {
+
+  .tchat {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    position: fixed;
+    right: 1em;
+    bottom: 1em;
+    z-index: 1000;
+  }
+
+  .tchat-mini {
+    display: none;
+  }
+
+
+  .tchat-button {
+    width: 2em;
+    display: block;
+
+  }
+
+}

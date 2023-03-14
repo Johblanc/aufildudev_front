@@ -49,5 +49,9 @@
 }
 
 .side-column {
-  width: 12em;
+  height: max-content;
+  width: 14em;
+  max-height: 700px;
+  overflow-y: scroll;
 }
+
