@@ -1,9 +1,11 @@
 import { useContext } from "react";
+import { DEFAULT_ARTICLE } from "../../Articles/Constant/DefaultArticle";
+import { ArticleContext } from "../../context/ArticleContext";
 import { UserContext } from "../../context/UserContext";
 import { Titre } from "../../Titre/Titre";
 
 export function Navbar() {
-
+    const { setArticle } = useContext(ArticleContext);
     const userData = useContext(UserContext);
 
 
@@ -25,7 +27,7 @@ export function Navbar() {
             </button>
 
             <div
-                className="collapse navbar-collapse flex-row-reverse no-wrap"
+                className="collapse navbar-collapse flex-row-reverse no-wrap "
                 id="navbarNav"
             >
                 <ul className="navbar-nav">
@@ -37,7 +39,7 @@ export function Navbar() {
                                 type="button"
                                 data-bs-toggle="modal"
                                 data-bs-target="#loginModal"
-                            id="loginButton"
+                                id="loginButton"
                             >
                                 {' '}
                                 Login
@@ -58,9 +60,9 @@ export function Navbar() {
                         ''
                     )}
                     {userData.user.access_lvl > 0 ? (
-                        <li className="nav-item  my-1 my-md-0">
+                        <li className="nav-item  my-1 my-md-0" onClick={() => setArticle(DEFAULT_ARTICLE)}>
                             <a href="/#" className="nav-link active btn btn-green"
-                                type="button">
+                                type="button" >
                                 Ajouter un Article
                             </a>
                         </li>
