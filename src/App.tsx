@@ -3,6 +3,7 @@ import "./profile/style/profile-style.css";
 import "./comments/commentStyle.css";
 import "./navbar/navbar-style.css";
 import "./navbar/login-style.css";
+import './Tchat/tchatStyle.css'
 import "./style.css";
 import "./searchBar/searchBar-style.css";
 import { AllComments } from "./comments/components/allComments/AllComments";
