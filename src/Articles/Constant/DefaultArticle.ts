@@ -1,4 +1,6 @@
-export const DEFAULT_ARTICLE = {
+import { TArticleFull } from "../Types/TArticleFull";
+
+export const DEFAULT_ARTICLE : TArticleFull = {
     id : -1 ,
     title : "" ,
     content : "" ,

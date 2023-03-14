@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import { EntryString } from "../../../Entries/Components/EntryString";
 import DropDown from "../../../searchBar/components/dropdown";
 import { DEFAULT_ARTICLE } from "../../Constant/DefaultArticle";
-import { TArticleFull } from "../../Types/TArticleFull";
 import DropDownPublicArticles from "./DropdownPublicArticles";
 import MDEditor from "@uiw/react-md-editor";
 import { CustomMDEditor } from "../CustumMDEditor/CustomMDEditor";
@@ -10,18 +9,20 @@ import { TablesEnums } from "../../../searchBar/types/tablesEnums";
 import { ArticleComments } from "../../../comments/components/articleComments/ArticleComments";
 import { BASE_URL } from "../../../constant/url";
 import { UserContext } from "../../../context/UserContext";
+import { Requester } from "../../Types/requester";
+import { ArticleContext } from "../../../context/ArticleContext";
 
-export function ArticleFull(props: { id: number }) {
-  const { id } = props;
+export function ArticleFull() {
   const { user } = useContext(UserContext);
-  const [article, setArticle] = useState<TArticleFull>(DEFAULT_ARTICLE);
+  const { article , setArticle } = useContext(ArticleContext);
 
+  
 
   const [inModif, setInModif] = useState(false);
   const [inDelete, setInDelete] = useState(false);
   const [currentModif, setCurrentModif] = useState({
-    title: article.title,
-    content: article.content,
+    title: article.title ,
+    content: article.content ,
   });
 
   const [selections, setSelections] = useState({
@@ -46,19 +47,6 @@ export function ArticleFull(props: { id: number }) {
     setSelections(newSelection);
   };
 
-  useEffect(() => {
-    if (id !== -1) {
-      fetch(`${BASE_URL}/articles/public/${id}`)
-        .then((response) => response.json())
-        .then((data) => {
-          setArticle(data.data);
-          setInModif(false);
-        });
-    } else {
-      setArticle(DEFAULT_ARTICLE);
-      setInModif(true);
-    }
-  }, [id]);
 
   useEffect(() => {
     if (!inModif) {
@@ -84,20 +72,9 @@ export function ArticleFull(props: { id: number }) {
       categories : selections.categories ,
       requirements : selections.requirements ,
     } ;
-    const options = {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwc2V1ZG8iOiJBZG1pbiIsInN1YiI6MSwiaWF0IjoxNjc3MTgzODM0fQ.YUe4JJUC9So2GypNo7HqjyIy_ZjTpeIF1kEcXXSO8ts'
-      },
-      body: JSON.stringify(newArticle)
-    };
-    
-    fetch(`${BASE_URL}/articles/${id}`, options)
-      .then(response => response.json())
-      .then(response => setArticle(response.data))
-      .catch(err => console.error(err));
-    console.log(newArticle);
+    const data = await Requester.articleUpdate(article.id,newArticle,user.access_token)
+    setArticle(data)
+
     
   }
 
@@ -117,7 +94,7 @@ export function ArticleFull(props: { id: number }) {
         <span className={BootStrap.FLEX}>
           {user.pseudo === article.user_pseudo && (
             <span className={BootStrap.COMMANDS}>
-              {id !== -1 && (
+              {article.id !== -1 && (
                 <button
                   onClick={() => setInModif(!inModif)}
                   className={BootStrap.BUTTON}
