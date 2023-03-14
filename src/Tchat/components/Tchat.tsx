@@ -31,7 +31,7 @@ export function Tchat(){
     })
 
     return (
-        <div className='ms-auto text-end p-2 border rounded tchat scroll bg-dark'>
+        <div className='side-column text-end p-2 border rounded tchat scroll bg-dark'>
         <Messages messages={messages}/>
         <MessageInput send={send}/>
         </div>

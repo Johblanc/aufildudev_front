@@ -47,3 +47,7 @@
 .no-list-style {
   list-style: none;
 }
+
+.side-column {
+  width: 12em;
+}

@@ -1,13 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { EntryString } from "../../../Entries/Components/EntryString";
 import DropDown from "../../../searchBar/components/dropdown";
-import { DEFAULT_ARTICLE } from "../../Constant/DefaultArticle";
 import DropDownPublicArticles from "./DropdownPublicArticles";
 import MDEditor from "@uiw/react-md-editor";
 import { CustomMDEditor } from "../CustumMDEditor/CustomMDEditor";
 import { TablesEnums } from "../../../searchBar/types/tablesEnums";
 import { ArticleComments } from "../../../comments/components/articleComments/ArticleComments";
-import { BASE_URL } from "../../../constant/url";
 import { UserContext } from "../../../context/UserContext";
 import { Requester } from "../../Types/requester";
 import { ArticleContext } from "../../../context/ArticleContext";
@@ -49,7 +47,7 @@ export function ArticleFull() {
 
 
   useEffect(() => {
-    if (!inModif) {
+    
       setCurrentModif({
         title: article.title,
         content: article.content,
@@ -60,6 +58,8 @@ export function ArticleFull() {
         categories: article.categories.map((item) => item.id),
         requirements: article.requirements.map((item) => item.id),
       });
+    if (article.id <0 ){
+      setInModif(true)
     }
   }, [article, inModif]);
 
@@ -80,7 +80,7 @@ export function ArticleFull() {
 
 
   enum BootStrap {
-    ARTICLE = "m-2 border border-primary bg-info text-dark border-2 rounded rounded-4 p-4",
+    ARTICLE = "m-2 border border-primary bg-info text-dark border-2 rounded rounded-4 p-4 flex-grow-1",
     BUTTON = "btn bg-secondary border border-1 border-dark text-light m-1",
     DROPDOWN = "m-1 drop-resize",
     FLEX = "d-flex flex-wrap drop-resize",

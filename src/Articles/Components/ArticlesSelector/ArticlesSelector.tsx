@@ -83,7 +83,7 @@ export function ArticlesSelector(){
   },[access,publicsArticles])
 
   return (
-    <div className="bg-primary border border-1 border-dark rounded m-1">
+    <div className="side-column bg-primary border border-1 border-dark rounded m-1">
       <div>
         {user.access_lvl > 0 && 
           <select onChange={(e) => setAccess(e.target.value)} className="m-1 bg-secondary border border-1 border-dark text-light rounded p-1">
