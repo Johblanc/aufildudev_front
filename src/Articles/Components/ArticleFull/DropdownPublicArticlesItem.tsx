@@ -1,5 +1,5 @@
 
-import { TMini } from "../../searchBar/types/TMini";
+import { TMini } from "../../../searchBar/types/TMini";
 import { IconCheckBox } from "./Icon_CheckBox";
 
 

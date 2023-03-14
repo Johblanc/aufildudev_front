@@ -19,7 +19,7 @@ import { DEFAULT_USER } from './constant/visitor';
 import { UserComment } from './comments/components/userComment/UserComment';
 import { UpdateCommentContext } from './context/UpdateCommentContext';
 import { TComment } from './comments/types/TComment';
-import { ArticleFull } from './Articles/Components/ArticleFull';
+import { ArticleFull } from './Articles/Components/ArticleFull/ArticleFull';
 import { Tchat } from './Tchat/components/Tchat';
 
 

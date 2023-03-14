@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { BASE_URL } from "../../constant/url";
-import { TMini } from "../../searchBar/types/TMini";
+import { BASE_URL } from "../../../constant/url";
+import { TMini } from "../../../searchBar/types/TMini";
 import DropDownPublicArticleItem from "./DropdownPublicArticlesItem";
 
 export default function DropDownPublicArticles (props: {
@@ -51,9 +51,9 @@ export default function DropDownPublicArticles (props: {
 const selectList = (checkData || [])
   .filter(elm => value.includes(elm.id))
   .map((elm, i) => (
-    <li key={i}>
+    <li key={i} className="bg-success border border-1 border-secondary text-light rounded m-1 p-1">
       {elm.name}
-      <button onClick={()=>handleValue(elm.id,false)}>X</button>
+      <button className="bg-primary text-secondary border border-1 border-secondary rounded-circle ms-2 ps-2 pe-2" onClick={()=>handleValue(elm.id,false)}>X</button>
     </li>
   ))
 
@@ -66,7 +66,7 @@ const selectList = (checkData || [])
             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 {checkList}
             </ul>
-            <ul>
+            <ul className="no-list-style d-flex p-0">
                 {selectList}
             </ul>
         </div>

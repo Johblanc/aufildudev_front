@@ -1,6 +1,12 @@
+import { useContext } from "react";
+import { UserContext } from "../../context/UserContext";
 import { Titre } from "../../Titre/Titre";
 
 export function Navbar() {
+
+    const userData = useContext(UserContext);
+
+
     return (
         <nav className="navbar navbar-expand-lg nav-back width">
             <div className="m-3">
@@ -23,48 +29,57 @@ export function Navbar() {
                 id="navbarNav"
             >
                 <ul className="navbar-nav">
-                    <li className="nav-item my-1 my-md-0">
-                        <a href="/#" className="nav-link active btn btn-green"
+                    {userData.user.access_lvl < 1 ? (
+                        <><li className="nav-item my-1 my-md-0">
 
-                            type="button"
-                            data-bs-toggle="modal"
-                            data-bs-target="#loginModal"
-                        >
-                            {' '}
-                            Connexion
-                        </a>
-                    </li>
-                    <li className="nav-item  my-1 my-md-0">
-                        <a href="/#" className="nav-link active btn btn-green"
+                            <a href="/#" className="nav-link active btn btn-green"
 
                                 type="button"
                                 data-bs-toggle="modal"
-                                data-bs-target="#registerModal"
+                                data-bs-target="#loginModal"
+                            id="loginButton"
                             >
                                 {' '}
-                                Register
+                                Login
                             </a>
-                        </li>
+                        </li><li className="nav-item  my-1 my-md-0">
+                                <a href="/#" className="nav-link active btn btn-green"
+
+                                    type="button"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#registerModal"
+                                    id="registerButton"
+                                >
+                                    {' '}
+                                    Register
+                                </a>
+                            </li></>
+                    ) : (
+                        ''
+                    )}
+                    {userData.user.access_lvl > 0 ? (
                         <li className="nav-item  my-1 my-md-0">
                             <a href="/#" className="nav-link active btn btn-green"
                                 type="button">
                                 Ajouter un Article
                             </a>
                         </li>
-                        <li className="nav-item">
-                            <button
-                                type="button"
-                                data-bs-toggle="modal"
-                                data-bs-target="#profile"
-                                className="btn btn-green"
-                            >
-                                {' '}
-                                Profile
-                            </button>
+                    ) : (
+                        ''
+                    )}
+                    {userData.user.access_lvl > 0 ? (
+                        <li className="nav-item my-1 my-md-0">
+                            <a href="/#" className="nav-link active btn btn-green"
+                                type="button">
+                                Profil
+                            </a>
                         </li>
-                    </ul>
-                </div>
-            
+                    ) : (
+                        ''
+                    )}
+                </ul>
+            </div>
+
         </nav >
     );
 }

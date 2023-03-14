@@ -1,0 +1,20 @@
+
+.w-md-editor, .w-md-editor * {
+  --color-fg-default          : var(--primary) !important ;
+  --color-canvas-default      : var(--light) !important ;
+  --color-border-default      : var(--secondary) !important ;
+
+  --color-neutral-muted       : var(--success) !important ;
+  --color-accent-fg           : var(--secondary) !important ;
+
+}
+.w-md-editor-preview {
+  background-color: var(--info);
+}
+.wmde-markdown , .wmde-markdown * {
+  --color-fg-default          : var(--primary) !important ;
+  --color-canvas-default      : var(--info) !important ;
+  --color-canvas-subtle       : var(--light) !important ;
+  --color-border-default      : var(--secondary) !important ;
+
+}

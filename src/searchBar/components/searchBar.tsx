@@ -146,10 +146,10 @@ export default function SearchBar() {
         <div className="col-md-2 col-12">
           <button
             type="button"
-            className="btn btn-green "
+            className="btn btn-green col-12 "
             onClick={handleResearch}
           >
-            {" "}
+
             Lancer la Recherche
           </button>
         </div>

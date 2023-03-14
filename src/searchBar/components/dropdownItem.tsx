@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { IconCheckBox } from "../../Articles/Components/Icon_CheckBox";
+import { IconCheckBox } from "../../Articles/Components/ArticleFull/Icon_CheckBox";
 import { TMini } from "../types/TMini";
 
 export default function DropdownItem(props: {
