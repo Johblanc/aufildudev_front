@@ -1,0 +1,6 @@
+.tchat {
+    height:max-content;
+    max-height: 700px;
+    overflow-y: scroll;
+}
+

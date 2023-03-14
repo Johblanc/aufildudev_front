@@ -4,6 +4,7 @@ import './comments/commentStyle.css';
 import './navbar/navbar-style.css';
 import './navbar/login-style.css';
 import './style.css';
+import './Tchat/tchatStyle.css'
 import './searchBar/searchBar-style.css';
 import { AllComments } from './comments/components/allComments/AllComments';
 import { Navbar } from './navbar/components/navbar';
@@ -45,8 +46,10 @@ function App() {
                         {user.access_lvl > 2 ? <AllComments /> : ''}
                         {/*A destination de tous profil*/}
                         <UserComment />
+                        <div className='d-flex'>
                         <ArticleFull id={1} />
-                        <Tchat/>
+                        <Tchat />
+                        </div>
                     </main>
                 </UpdateCommentContext.Provider>
             </UserContext.Provider>

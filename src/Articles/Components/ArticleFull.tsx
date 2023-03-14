@@ -74,12 +74,12 @@ export function ArticleFull(props: { id: number }) {
   }, [article, inModif]);
 
   enum BootStrap {
-    ARTICLE = "m-2 border border-primary bg-info text-dark border-2 rounded rounded-4 p-4" ,
+    ARTICLE = "m-2 border border-primary bg-info text-dark border-2 rounded rounded-4 p-4 col-9" ,
     BUTTON = "btn bg-secondary border border-1 border-dark text-light m-1"
   }
 
   return (
-    <div className={BootStrap.ARTICLE}>
+    <div className={BootStrap.ARTICLE} >
       <div>
         <span>
           {user.pseudo === article.user_pseudo && (
