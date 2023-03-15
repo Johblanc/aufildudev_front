@@ -22,3 +22,12 @@
     border: 2px solid #5FC2BA !important;
 }
 
+
+
+.modal-content-login{
+    height:42%
+}
+
+.modal-content-register{
+    height:62%
+}

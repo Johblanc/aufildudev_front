@@ -12,7 +12,7 @@ export function LoginForm(/* props: {
     const passwordRef = useRef<HTMLInputElement>(null);
     const { setUser } = useContext(UserContext);
     const userData = useContext(UserContext);
-    const notify = (msg: string,) => toast(msg,
+    const notifySuccess = (msg: string,) => toast.success(msg,
         {
             position: "bottom-right",
             autoClose: 3000,
@@ -24,6 +24,19 @@ export function LoginForm(/* props: {
             theme: "light",
         });
     ;
+    const notifyError = (msg: string,) => toast.error(msg,
+        {
+            position: "bottom-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            progress: undefined,
+            theme: "light",
+        });
+    ;
+
 
 
 
@@ -55,21 +68,21 @@ export function LoginForm(/* props: {
                         setTimeout(() => {
                             document.getElementById("close")?.click();
                         }, 1500);
-                        notify(data.message)
-                        
+                        notifySuccess(data.message)
+
                     } else {
                         if (typeof data.message === 'string') {
-                            notify(data.message);
+                            notifyError(data.message);
                         } else {
-                            notify(data.message[0]);
+                            notifyError(data.message[0]);
                             data.message.forEach((element: string) => {
-                                notify(element)
+                                notifyError(element)
                             });
                         }
                     }
                 });
         } else {
-            notify('informations manquantes');
+            notifyError('informations manquantes');
         }
     };
 
@@ -79,8 +92,8 @@ export function LoginForm(/* props: {
     return (
         <>
             <div className="modal fade" aria-labelledby='loginModal' id="loginModal" tabIndex={-1}>
-                <div className="modal-dialog modal-dialog-centered ">
-                    <div className="modal-content login-color ">
+                <div className="modal-dialog modal-dialog-centered  ">
+                    <div className=" modal-content modal-content-login login-color ">
                         <div className="modal-header">
                             <h5 className="modal-title">LOGIN</h5>
                             <button
@@ -99,17 +112,22 @@ export function LoginForm(/* props: {
                             >
                                 Identifiant
                             </label>
-                            <input
-                                ref={pseudoRef}
-                                type="pseudo"
-                                className="form-control"
-                                id="inputEmail"
-                                placeholder="Pseudo"
-                            ></input>
-                            <br></br>
+                            <p>
+                                <input
+                                    ref={pseudoRef}
+                                    type="pseudo"
+                                    className="form-control"
+                                    id="inputEmail"
+                                    placeholder="Pseudo"
+                                ></input>
+                            </p>
+
+
+
                             <label htmlFor="inputPassword" className="form-label">
                                 Password
                             </label>
+
                             <input
                                 ref={passwordRef}
                                 type="password"
@@ -139,10 +157,7 @@ export function LoginForm(/* props: {
             </div>
 
             <div>
-
-
                 <ToastContainer />
-
             </div>
         </>
     );
