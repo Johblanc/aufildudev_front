@@ -112,17 +112,22 @@ export function LoginForm(/* props: {
                             >
                                 Identifiant
                             </label>
-                            <input
-                                ref={pseudoRef}
-                                type="pseudo"
-                                className="form-control"
-                                id="inputEmail"
-                                placeholder="Pseudo"
-                            ></input>
-                            <br></br>
+                            <p>
+                                <input
+                                    ref={pseudoRef}
+                                    type="pseudo"
+                                    className="form-control"
+                                    id="inputEmail"
+                                    placeholder="Pseudo"
+                                ></input>
+                            </p>
+
+
+
                             <label htmlFor="inputPassword" className="form-label">
                                 Password
                             </label>
+
                             <input
                                 ref={passwordRef}
                                 type="password"

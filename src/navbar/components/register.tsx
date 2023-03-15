@@ -107,24 +107,25 @@ export function RegisterForm() {
                         <button type="button" className="btn-close green-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div className="modal-body login-color">
-                        <label htmlFor="exampleFormControlInput1" className="form-label">pseudo</label>
-                        <input ref={pseudoRef} type="pseudo" className="form-control" name="pseudo" id="inputpseudo" placeholder="Pseudo"></input>
+                        <p>
+                            <label htmlFor="exampleFormControlInput1" className="form-label">pseudo</label>
+                            <input ref={pseudoRef} type="pseudo" className="form-control" name="pseudo" id="inputpseudo" placeholder="Pseudo"></input>
+                        </p>
 
-                        <br></br>
+                        <p>
+                            <label htmlFor="exampleFormControlInput1" className="form-label">Email</label>
+                            <input ref={emailRef} type="email" className="form-control" id="inputEmailRegister" placeholder="@Email"></input>
+                        </p>
 
-                        <label htmlFor="exampleFormControlInput1" className="form-label">Email</label>
-                        <input ref={emailRef} type="email" className="form-control" id="inputEmailRegister" placeholder="@Email"></input>
+                        <p>
+                            <label htmlFor="inputPassword" className="form-label">Password</label>
+                            <input ref={passwordRef} type="password" className="form-control" id="inputPasswordRegister" placeholder="Password"></input>
+                        </p>
 
-                        <br></br>
-
-                        <label htmlFor="inputPassword" className="form-label">Password</label>
-                        <input ref={passwordRef} type="password" className="form-control" id="inputPasswordRegister" placeholder="Password"></input>
-
-                        <br></br>
-
-                        <label htmlFor="inputPassword" className="form-label">Verify Password</label>
-                        <input ref={passVerifRef} type="password" className="form-control" id="inputPasswordVerify" placeholder="Verify your password"></input>
-
+                        <p>
+                            <label htmlFor="inputPassword" className="form-label">Verify Password</label>
+                            <input ref={passVerifRef} type="password" className="form-control" id="inputPasswordVerify" placeholder="Verify your password"></input>
+                        </p>
                     </div>
 
                     <div className="modal-footer">
