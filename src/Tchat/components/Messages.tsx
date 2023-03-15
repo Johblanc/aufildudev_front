@@ -5,23 +5,27 @@ import { TTchat } from "../types/TTchat";
 export function Messages({ messages }: { messages: TTchat[] }) {
   const userData = useContext(UserContext);
 
-  const BS_COMMUN = "text-break m-1 p-1 border-bottom";
-  const BS_USER = "bg-secondary";
-  const BS_OTHER = "bg-info";
+  const BS_COMMUN = "text-break m-2 pt-2 pb-2 pe-3 ps-3 rounded-pill messages";
+  const BS_USER = "bg-secondary align-self-end ";
+  const BS_OTHER = "bg-info ";
 
+
+  const preventDragHandler = (e: any) => {
+    e.preventDefault();
+  }
 
   return (
-    <>
+    <div className="d-flex flex-column">
       {messages.map((message, index) => (
-        <div
+        <div draggable onDragStart={preventDragHandler}
           className={`${BS_COMMUN} ${
             userData.user.pseudo === message.pseudo ? BS_USER : BS_OTHER
           }`}
           key={index}
         >
-          {message.pseudo} : {message.message}
+          <span className="bold">{message.pseudo}</span> : {message.message}
         </div>
       ))}
-    </>
+    </div>
   );
 }
