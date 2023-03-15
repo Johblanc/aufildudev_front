@@ -93,7 +93,7 @@ export function LoginForm(/* props: {
         <>
             <div className="modal fade" aria-labelledby='loginModal' id="loginModal" tabIndex={-1}>
                 <div className="modal-dialog modal-dialog-centered  ">
-                    <div className="modal-content login-color ">
+                    <div className=" modal-content modal-content-login login-color ">
                         <div className="modal-header">
                             <h5 className="modal-title">LOGIN</h5>
                             <button
@@ -152,10 +152,7 @@ export function LoginForm(/* props: {
             </div>
 
             <div>
-
-
                 <ToastContainer />
-
             </div>
         </>
     );

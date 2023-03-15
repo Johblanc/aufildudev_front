@@ -24,6 +24,10 @@
 
 
 
-.modal-content{
-    height:50%
+.modal-content-login{
+    height:42%
+}
+
+.modal-content-register{
+    height:65%
 }

@@ -101,7 +101,7 @@ export function RegisterForm() {
 
         <div className="modal fade" id="registerModal" tabIndex={-1} >
             <div className="modal-dialog modal-dialog-centered ">
-                <div className="modal-content login-color ">
+                <div className="modal-content modal-content-register login-color ">
                     <div className="modal-header">
                         <h5 className="modal-title">REGISTER</h5>
                         <button type="button" className="btn-close green-close" data-bs-dismiss="modal" aria-label="Close"></button>
