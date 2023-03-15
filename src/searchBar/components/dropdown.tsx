@@ -61,7 +61,7 @@ export default function DropDown(props: {
 
     return (
         <div className="dropdown">
-            <button className="btn width btn-primary dropdown-toggle text-wrap " type="button" id="dropdownCategorie"
+            <button className="btn width btn-primary dropdown-toggle text-wrap text-dark " type="button" id="dropdownCategorie"
                 data-bs-toggle="dropdown" aria-expanded="false">
                 Choisir {DropdownTables[table]}
             </button>
