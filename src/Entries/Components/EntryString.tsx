@@ -13,6 +13,7 @@ export function EntryString(props: {
         aria-label="search"
         onChange={(e) => setter(e.target.value)}
         defaultValue={defaultValue}
+        
       />
       <label htmlFor="floatingInput" className="padding-label">
         {name}
