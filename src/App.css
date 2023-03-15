@@ -50,8 +50,11 @@
 
 .side-column {
   height: max-content;
-  width: 14em;
+  width: 20em;
   max-height: 700px;
   overflow-y: scroll;
 }
 
+.m-bottom{
+  margin-bottom: 16vh;
+}

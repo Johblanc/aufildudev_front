@@ -34,7 +34,7 @@ export function Navbar() {
                     {userData.user.access_lvl < 1 ? (
                         <><li className="nav-item my-1 my-md-0">
 
-                            <a href="/#" className="nav-link active btn btn-green"
+                            <a href="/#" className="nav-link active btn btn-green mx-3S"
 
                                 type="button"
                                 data-bs-toggle="modal"
@@ -44,8 +44,10 @@ export function Navbar() {
                                 {' '}
                                 Login
                             </a>
-                        </li><li className="nav-item  my-1 my-md-0">
-                                <a href="/#" className="nav-link active btn btn-green"
+                        </li>
+
+                            <li className="nav-item  my-1 my-md-0">
+                                <a href="/#" className="nav-link active btn btn-green mx-3"
 
                                     type="button"
                                     data-bs-toggle="modal"
@@ -59,9 +61,10 @@ export function Navbar() {
                     ) : (
                         ''
                     )}
+
                     {userData.user.access_lvl > 0 ? (
                         <li className="nav-item  my-1 my-md-0" onClick={() => setArticle(DEFAULT_ARTICLE)}>
-                            <a href="/#" className="nav-link active btn btn-green"
+                            <a href="/#" className="nav-link active btn btn-green mx-3"
                                 type="button" >
                                 Ajouter un Article
                             </a>
@@ -69,9 +72,10 @@ export function Navbar() {
                     ) : (
                         ''
                     )}
+
                     {userData.user.access_lvl > 0 ? (
                         <li className="nav-item my-1 my-md-0">
-                            <a href="/#" className="nav-link active btn btn-green"
+                            <a href="/#" className="nav-link active btn btn-green mx-3"
                                 type="button">
                                 Profil
                             </a>
