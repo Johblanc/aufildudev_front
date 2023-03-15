@@ -9,7 +9,7 @@ export function MessageInput( props: {isDraggable: boolean, setIsDraggable: Reac
       props.setIsDraggable(!props.isDraggable)
     }
 
-    const preventDragHandler = (e: any) => {
+    const preventDefault = (e: any) => {
       e.preventDefault();
     }
 
@@ -23,11 +23,14 @@ export function MessageInput( props: {isDraggable: boolean, setIsDraggable: Reac
 
     return <>
         {userData.user.id > 0 && <>
-        <div className="input-group-sm d-flex mt-2">
-        <button className='tchat-mini btn btn-primary rounded-circle pb-2' onClick={toggleClass}>{props.isDraggable ? select : selected}</button>
-        <input draggable onDragStart={preventDragHandler} className="form-control ms-3 me-3 " placeholder="Message..." value={value} onChange={(e) => {setValue(e.target.value);}} />   
-        <button className='btn btn-primary rounded-circle pe-2 pb-2 ' onClick={() => {props.send(value); setValue('')}}><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-send-fill" viewBox="0 0 16 16">
+       <div className="input-group-sm d-flex mt-2">
+        <button className='tchat-mini btn btn-primary rounded-circle' onClick={toggleClass}>{props.isDraggable ? select : selected}</button>
+        {/* <form onSubmit={preventDefault}> */}
+        <input tabIndex={0} type="text" draggable onDragStart={preventDefault} className="form-control ms-3 me-3 " placeholder="Message..." value={value} onChange={(e) => {setValue(e.target.value);}} />   
+        {/* </form> */}
+       <button className='btn btn-primary rounded-circle pe-2 pb-2 ' onClick={() => {props.send(value); setValue('')}}><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-send-fill" viewBox="0 0 16 16"> 
+        
           <path d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.002.26.41a.5.5 0 0 0 .886-.083l6-15Zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471-.47 1.178Z"/>
-          </svg></button></div></>}
+          </svg></button> </div></>}
         </>   
 }
