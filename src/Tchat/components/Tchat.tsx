@@ -5,6 +5,7 @@ import { TTchat } from "../types/TTchat";
 import { MessageInput } from "./MessageInput";
 import { Messages } from "./Messages";
 
+
 export function Tchat() {
   const [isVisible, setIsVisible] = useState(false);
   const [isMini, setIsMini] = useState(true);
@@ -83,7 +84,7 @@ export function Tchat() {
       <div
         className={`${
           isMini && "tchat-mini"
-        } side-column text-end p-2 border rounded scroll bg-dark`}
+        } side-column text-end p-2 shadow-lg border border-success rounded scroll bg-dark`}
       >
         <Messages messages={messages} />
         <MessageInput isDraggable={isDraggable} setIsDraggable={setIsDraggable} send={send}/>
