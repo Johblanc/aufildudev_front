@@ -34,7 +34,7 @@ export function Navbar() {
                     {userData.user.access_lvl < 1 ? (
                         <><li className="nav-item my-1 my-md-0">
 
-                            <a href="/#" className="nav-link active btn btn-green mx-3S"
+                            <a href="/#" className="nav-link active btn btn-green mx-3"
 
                                 type="button"
                                 data-bs-toggle="modal"
@@ -46,7 +46,7 @@ export function Navbar() {
                             </a>
                         </li>
 
-                            <li className="nav-item  my-1 my-md-0">
+                            <li className="nav-item my-1 my-md-0">
                                 <a href="/#" className="nav-link active btn btn-green mx-3"
 
                                     type="button"
