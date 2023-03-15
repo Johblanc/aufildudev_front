@@ -9,6 +9,7 @@ export function CustomMDEditor(props : {value? : string, setValue: (val? : strin
   const {value, setValue} = props
   return (
     <div className="">
+      <label>Contenu : </label>
     <MDEditor
     value={value}
     onChange={setValue}

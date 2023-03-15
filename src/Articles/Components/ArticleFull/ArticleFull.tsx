@@ -10,10 +10,12 @@ import { UserContext } from "../../../context/UserContext";
 import { Requester } from "../../Types/requester";
 import { ArticleContext } from "../../../context/ArticleContext";
 import { DEFAULT_ARTICLE } from "../../Constant/DefaultArticle";
+import { TArticleFull } from "../../Types/TArticleFull";
+import { TResponse } from "../../Types/TResponse";
 
 export function ArticleFull() {
   const { user } = useContext(UserContext);
-  const { article, setArticle } = useContext(ArticleContext);
+  const { article, setArticle, setArticlesHandle } = useContext(ArticleContext);
 
   const [inModif, setInModif] = useState(false);
   const [inDelete, setInDelete] = useState(false);
@@ -42,13 +44,14 @@ export function ArticleFull() {
 
   useEffect(() => {
     setInModif(false);
-    if (article.id < 0) { 
-      article.user_pseudo = user.pseudo ;
+    if (article.id < 0) {
+      article.user_pseudo = user.pseudo;
       setTimeout(() => setInModif(true), 1);
     }
-  }, [article]);
+  }, [article,user]);
 
   useEffect(() => {
+    setInDelete(false)
     setCurrentModif({
       title: article.title,
       content: article.content,
@@ -63,6 +66,8 @@ export function ArticleFull() {
 
   useEffect(() => {
     const newMessages = messages.copy();
+    let hasChange = false
+
     if (
       currentModif.title === "" ||
       currentModif.title === DEFAULT_ARTICLE.title
@@ -71,36 +76,33 @@ export function ArticleFull() {
     } else {
       newMessages.title = "";
     }
+    hasChange = hasChange || newMessages.title !== messages.title
 
-    if ( currentModif.content === "" ) 
-    {
+    if (currentModif.content === "") {
       newMessages.content = "Il n'y a pas de contenu";
-    } 
-    else 
-    {
+    } else {
       newMessages.content = "";
     }
+    hasChange = hasChange || newMessages.content !== messages.content
 
-    if ( selections.categories.length === 0 ) 
-    {
+    if (selections.categories.length === 0) {
       newMessages.categories = "Il faut au moins une catégorie";
-    } 
-    else 
-    {
+    } else {
       newMessages.categories = "";
     }
+    hasChange = hasChange || newMessages.categories !== messages.categories
 
-    if ( selections.languages.length === 0 ) 
-    {
+    if (selections.languages.length === 0) {
       newMessages.languages = "Il faut au moins un langage";
-    } 
-    else 
-    {
+    } else {
       newMessages.languages = "";
     }
+    hasChange = hasChange || newMessages.languages !== messages.languages
 
-    setMessages(newMessages);
-  }, [currentModif, selections]);
+    hasChange && setMessages(newMessages);
+  }, 
+  [currentModif, selections, messages]
+  );
 
   /** Récupération d'une modif du titre ou contenu */
   const handleModif = (key: "title" | "content", value: string) => {
@@ -128,28 +130,69 @@ export function ArticleFull() {
       categories: selections.categories,
       requirements: selections.requirements,
     };
+
+    let res: TResponse<TArticleFull>;
+    let command: "update" | "add" = "update";
+
+    // Pour un nouvelle article
     if (article.id === -1) {
-      const res = await Requester.articleCreatePrivate(
-        newArticle,
-        user.access_token
-      );
-      if (res.statusCode === 409){
-        const newMessage = messages.copy()
-        newMessage.title = "Ce titre est déjà pris"
-        setMessages(newMessage)
-      }
-      else {
-        setArticle(res.data);
-      }
-    } else {
-      const data = await Requester.articleUpdate(
+      res = await Requester.articleCreatePrivate(newArticle, user.access_token);
+      command = "add";
+    } // Pour update un article existant
+    else {
+      res = await Requester.articleUpdate(
         article.id,
         newArticle,
         user.access_token
       );
-      setArticle(data.data);
+    }
+    if (res.statusCode === 409) {
+      const newMessage = messages.copy();
+      newMessage.title = "Ce titre est déjà pris";
+      setMessages(newMessage);
+    } else {
+      setArticle(res.data);
+      setArticlesHandle({ command: command, article: res.data });
+      return res.data
     }
   };
+
+  const handlePublicSave = async () => {
+    const newArticle = await handleSave()
+    Promise.all([newArticle]);
+    if (newArticle){
+      const res = await Requester.articleValidate(newArticle.id, user.access_token);
+      setArticlesHandle({ command: "update", article: res });
+    }
+  };
+
+  const handleDelete = async () => {
+    const res = await Requester.articleDelete(article.id, user.access_token);
+    res.id = article.id;
+    setArticlesHandle({ command: "sup", article: res });
+  };
+
+  const handleSubmit = async () => {
+    const res = await Requester.articleSubmit(article.id, user.access_token);
+    res.id = article.id;
+    setArticlesHandle({ command: "update", article: res });
+  };
+
+  const handleValidate = async () => {
+    const res = await Requester.articleValidate(article.id, user.access_token);
+    res.id = article.id;
+    setArticlesHandle({ command: "update", article: res });
+  };
+
+  enum BootStrap {
+    ARTICLE = "m-2 border border-primary bg-info text-primary border-2 rounded rounded-4 p-4 flex-grow-1",
+    BUTTON = "btn bg-secondary border border-1 border-dark text-primary m-1",
+    BAD_BUTTON = "btn bg-secondary border border-1 border-dark text-primary m-1",
+    DROPDOWN = "m-1 drop-resize",
+    FLEX = "d-flex flex-wrap drop-resize",
+    DROPDOWNS = "d-flex flex-wrap drop-resize order-md-0",
+    COMMANDS = "d-flex flex-wrap drop-resize order-md-1 ms-auto",
+  }
 
   const isValid =
     messages.title === "" &&
@@ -157,16 +200,18 @@ export function ArticleFull() {
     messages.languages === "" &&
     messages.categories === "";
 
-
-
-  enum BootStrap {
-    ARTICLE = "m-2 border border-primary bg-info text-primary border-2 rounded rounded-4 p-4 flex-grow-1",
-    BUTTON = "btn bg-secondary border border-1 border-dark text-primary m-1",
-    DROPDOWN = "m-1 drop-resize",
-    FLEX = "d-flex flex-wrap drop-resize",
-    DROPDOWNS = "d-flex flex-wrap drop-resize order-md-0",
-    COMMANDS = "d-flex flex-wrap drop-resize order-md-1 ms-auto",
-  }
+  const isOwner = user.pseudo === article.user_pseudo;
+  const isAuthor = user.access_lvl > 1;
+  const isModo = user.access_lvl > 2;
+  const isUpdatable = isOwner && article.id !== -1 && !inDelete;
+  const isSavable = (isUpdatable || article.id === -1) && inModif && isValid && !inDelete;
+  const isPublicSavable = isSavable && isAuthor && article.status !== "public";
+  const isDeletable = (isOwner || isModo) && !inModif;
+  const isSubmitable = isOwner && !inModif && article.status === "private" && !inDelete ;
+  const isPublishable =
+    ((isOwner && isAuthor) || isModo) &&
+    !inModif &&
+    article.status !== "public" && !inDelete;
 
   return (
     <div className={BootStrap.ARTICLE}>
@@ -180,48 +225,55 @@ export function ArticleFull() {
       )}
       <div>
         <span className={BootStrap.FLEX}>
-          {user.pseudo === article.user_pseudo && (
-            <span className={BootStrap.COMMANDS}>
-              {article.id !== -1 && (
-                <button
-                  onClick={() => setInModif(!inModif)}
-                  className={BootStrap.BUTTON}
-                >
-                  {inModif ? "Annuler" : "Modifier"}
-                </button>
-              )}
-              {inModif && isValid && (
-                <button className={BootStrap.BUTTON} onClick={handleSave}>
-                  Enregistrer
-                </button>
-              )}
-              {!inModif && article.status === "private" && (
-                <button className={BootStrap.BUTTON}>
-                  Demande de publication
-                </button>
-              )}
-              {!inModif && (
-                <span onMouseLeave={() => setInDelete(false)}>
-                  <button
-                    onClick={() => setInDelete(true)}
-                    className={BootStrap.BUTTON}
-                  >
+          <span className={BootStrap.COMMANDS}>
+            {isUpdatable && (
+              <button
+                onClick={() => setInModif(!inModif)}
+                className={BootStrap.BUTTON}
+              >
+                {inModif ? "Annuler" : "Modifier"}
+              </button>
+            )}
+            {isSavable && (
+              <button className={BootStrap.BUTTON} onClick={handleSave}>
+                Enregistrer
+              </button>
+            )}
+            {isPublicSavable && (
+              <button className={BootStrap.BUTTON} onClick={handlePublicSave}>
+                Enregistrer et Publier
+              </button>
+            )}
+            {isSubmitable && (
+              <button className={BootStrap.BUTTON} onClick={handleSubmit}>
+                Demande de publication
+              </button>
+            )}
+            {isDeletable && (
+              <span>
+                {!inDelete && (
+                  <button onClick={()=> setInDelete(true)} className={BootStrap.BAD_BUTTON}>
                     Supprimer
                   </button>
-                  {inDelete && (
-                    <button className={BootStrap.BUTTON}>
-                      Valider la suppression
-                    </button>
-                  )}
-                </span>
-              )}
-              {!inModif &&
-                article.status === "submit" &&
-                user.access_lvl > 2 && (
-                  <button className={BootStrap.BUTTON}>Publier</button>
                 )}
-            </span>
-          )}
+                {inDelete && (
+                  <button onClick={handleDelete} className={BootStrap.BAD_BUTTON}>
+                    Valider la suppression
+                  </button>
+                )}
+                {inDelete && (
+                  <button onClick={()=> setInDelete(false)} className={BootStrap.BUTTON}>
+                    Annuler la suppression
+                  </button>
+                )}
+              </span>
+            )}
+            {isPublishable && user.access_lvl > 2 && (
+              <button className={BootStrap.BUTTON} onClick={handleValidate}>
+                Publier
+              </button>
+            )}
+          </span>
           {inModif && (
             <span className={BootStrap.DROPDOWNS}>
               <span className={BootStrap.DROPDOWN}>

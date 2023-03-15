@@ -1,13 +1,9 @@
 import { BASE_URL } from "../../constant/url";
 import { TArticleDto } from "./TArticleDto";
 import { TArticleFull } from "./TArticleFull";
+import { TResponse } from "./TResponse";
 
 
-type TResponse<Data> = {
-  statusCode : number,
-  message: string;
-  data: Data;
-};
 
 enum RequestMethods {
   POST = "POST",
@@ -150,6 +146,8 @@ export class Requester {
       {},
       token
     )
+    console.log(responce);
+
     return responce.data
   }
 }

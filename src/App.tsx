@@ -25,17 +25,22 @@ import { ArticlesSelector } from "./Articles/Components/ArticlesSelector/Article
 import { DEFAULT_ARTICLE } from "./Articles/Constant/DefaultArticle";
 import { ArticleContext } from "./context/ArticleContext";
 import Footer from "./footer/components/footer";
+import { TArticleFull } from "./Articles/Types/TArticleFull";
+import { TArticlesHandleParams } from "./Articles/Types/TArticlesHandleParams";
 
 function App() {
   const [user, setUser] = useState<TUser>(DEFAULT_USER);
   const [comms, setComms] = useState<TComment[]>([]);
   const [article, setArticle] = useState(DEFAULT_ARTICLE);
+  const [articlesHandle, setArticlesHandle] = useState<TArticlesHandleParams>();
+  
+    
 
   return (
     <div>
       <UserContext.Provider value={{ user, setUser }}>
         <UpdateCommentContext.Provider value={{ comms, setComms }}>
-          <ArticleContext.Provider value={{ article, setArticle }}>
+          <ArticleContext.Provider value={{ article, setArticle , articlesHandle, setArticlesHandle }}>
             <header>
               <Navbar />
               <div className="shadow">
