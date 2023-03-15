@@ -1,4 +1,5 @@
 import { useRef, useState } from "react"
+import { toast } from "react-toastify";
 import { BASE_URL } from "../../constant/url";
 
 
@@ -12,6 +13,30 @@ export function RegisterForm() {
     const emailRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
     const passVerifRef = useRef<HTMLInputElement>(null);
+    const notifySuccess = (msg: string,) => toast.success(msg,
+        {
+            position: "bottom-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            progress: undefined,
+            theme: "light",
+        });
+    const notifyError = (msg: string,) => toast.error(msg,
+        {
+            position: "bottom-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            progress: undefined,
+            theme: "light",
+        });
+
+
 
     const submitHandler = () => {
 
@@ -37,13 +62,11 @@ export function RegisterForm() {
                 headers: { 'Content-Type': 'application/json' },
                 body: body,
             };
-            //console.log(options);
 
             fetch(`${BASE_URL}/users/register`, options)
                 .then(response => response.json())
                 .then(data => {
                     if (data.data) {
-                        //console.log(data.data)
                         setMessage([data.message])
                         pseudoRef.current!.value = "";
                         emailRef.current!.value = "";
@@ -52,28 +75,27 @@ export function RegisterForm() {
                         setTimeout(() => {
                             document.getElementById("loginButton")?.click();
                         }, 1500);
-
+                        notifySuccess(data.message)
 
 
                     }
                     else {
-                        if (typeof data.message === "string") {
-                            setMessage([data.message])
-                        }
-                        else {
-                            setMessage(data.message)
+                        if (typeof data.message === 'string') {
+                            notifyError(data.message);
+                        } else {
+                            notifyError(data.message[0]);
+                            data.message.forEach((element: string) => {
+                                notifyError(element)
+                            });
                         }
                     }
-                })
+                });
 
         }
         else {
-            alert('informations manquantes')
+            notifyError('informations manquantes')
         }
     }
-
-
-    const displayMessages = message.map((item, i) => <p key={i}>{item}</p>)
 
     return (
 
@@ -106,8 +128,6 @@ export function RegisterForm() {
                     </div>
 
                     <div className="modal-footer">
-                        <div>{displayMessages}</div>
-
                         <button type="button" onClick={submitHandler} className="btn btn-green"> Valider</button>
                     </div>
                 </div>
