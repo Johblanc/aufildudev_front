@@ -53,7 +53,7 @@ function App() {
               <div className="d-md-flex">
                 <ArticlesSelector />
                 <ArticleFull />
-                <Tchat />
+                <Tchat /> 
               </div>
             </main>
           </ArticleContext.Provider>

@@ -2,7 +2,7 @@ import { TArticleFull } from "../Types/TArticleFull";
 
 export const DEFAULT_ARTICLE : TArticleFull = {
     id : -1 ,
-    title : "" ,
+    title : "Nouvel Article" ,
     content : "" ,
     status : "" ,
     user_pseudo : "" ,
