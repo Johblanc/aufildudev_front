@@ -9,6 +9,7 @@ export default function Footer() {
             <svg className="bg-img-footer "
                 width="100vw"
                 
+                
 
                 preserveAspectRatio="true"
                 viewBox="0 0 100 7"
@@ -17,8 +18,8 @@ export default function Footer() {
 
             >
                 <path
-                    style={{ fill: '#0B162C', strokeWidth: 0.836684 }}
-                    d="m 0,6 c 11.1,-4 25,-5.5 31.5,-5.5 c 4.6,0 14.8,1.5 18.5,3 c 6.4,2.6 10.1,2 25,2 c 14.9,0 25,0 25,0 l 0,2 h -100 z"
+                    style={{ fill: '#D9D9D9', strokeWidth: 0.836684 }}
+                    d="m -16.499998,10.500001 c 11.5000001,-3.0000003 26.5,-4.0000002 31.5,-4.0000002 4,0 14.999999,0.9999999 18.5,1.4999999 6.838538,0.9769337 13.999999,2.0000003 25,2.0000003 h 25 v 2 h -100 z"
                 />
             </svg>
 

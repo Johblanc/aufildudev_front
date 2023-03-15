@@ -4,6 +4,7 @@ import { TArticleFull } from "./TArticleFull";
 
 
 type TResponse<Data> = {
+  statusCode : number,
   message: string;
   data: Data;
 };
@@ -69,7 +70,6 @@ export class Requester {
 
   static async allArticlesSubmits(token : string) : Promise<TArticleFull[]>
   {
-    console.log("eeeeeee");
     
     const responce = await Requester.base<TArticleFull[]>(
       "articles/submit",
@@ -81,13 +81,73 @@ export class Requester {
     return responce.data
   }
 
-  static async articleUpdate(id:number,body : TArticleDto , token : string) : Promise<TArticleFull>
+  static async articleCreatePuclic(body : TArticleDto , token : string) : Promise<TResponse<TArticleFull>>
+  {
+    const responce = await Requester.base<TArticleFull>(
+      "articles/public",
+      RequestMethods.POST,
+      [],
+      body,
+      token
+    )
+    return responce
+  }
+
+  static async articleCreatePrivate(body : TArticleDto , token : string) :Promise<TResponse<TArticleFull>>
+  {
+    const responce = await Requester.base<TArticleFull>(
+      "articles",
+      RequestMethods.POST,
+      [],
+      body,
+      token
+    )
+    return responce
+  }
+
+  static async articleUpdate(id:number,body : TArticleDto , token : string) : Promise<TResponse<TArticleFull>>
   {
     const responce = await Requester.base<TArticleFull>(
       "articles",
       RequestMethods.PATCH,
       [id],
       body,
+      token
+    )
+    return responce
+  }
+
+  static async articleSubmit(id:number , token : string) : Promise<TArticleFull>
+  {
+    const responce = await Requester.base<TArticleFull>(
+      "articles/submit",
+      RequestMethods.PATCH,
+      [id],
+      {},
+      token
+    )
+    return responce.data
+  }
+
+  static async articleValidate(id:number , token : string) : Promise<TArticleFull>
+  {
+    const responce = await Requester.base<TArticleFull>(
+      "articles/validate",
+      RequestMethods.PATCH,
+      [id],
+      {},
+      token
+    )
+    return responce.data
+  }
+
+  static async articleDelete(id:number , token : string) : Promise<TArticleFull>
+  {
+    const responce = await Requester.base<TArticleFull>(
+      "articles",
+      RequestMethods.DELETE,
+      [id],
+      {},
       token
     )
     return responce.data
