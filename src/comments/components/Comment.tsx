@@ -1,7 +1,30 @@
+import { useContext } from 'react';
+import { UserContext } from '../../context/UserContext';
 import { TComment } from '../types/TComment';
+import { BASE_URL } from '../../constant/url';
+import { UpdateCommentContext } from '../../context/UpdateCommentContext';
 
-export function Comment(props: { data: TComment }) {
+export function Comment(props: {
+    data: TComment;
+    setCommData: React.Dispatch<React.SetStateAction<TComment | undefined>>;
+}) {
     const comm = props.data;
+    const userData = useContext(UserContext);
+    const { comms, setComms } = useContext(UpdateCommentContext);
+
+    const options = {
+        method: 'DELETE',
+        headers: {
+            Authorization: `Bearer ${userData.user.access_token}`,
+        },
+    };
+
+    const deleteComm = (index: number) => {
+        fetch(`${BASE_URL}/comments/${index}`, options)
+            .then((response) => response.json())
+            .then(() => setComms(comms.filter((item) => item.id !== index)))
+            .catch((err) => console.error(err));
+    };
 
     const created = new Date(comm.created_at).toLocaleDateString('fr');
     const updated = new Date(comm.updated_at).toLocaleDateString('fr');
@@ -22,6 +45,33 @@ export function Comment(props: { data: TComment }) {
                     <span className="bold">Crée</span> le {created}
                 </p>
             )}
+            <div className="align-self-end ">
+                {userData.user?.pseudo === comm.user.pseudo ? (
+                    <button
+                        type="button"
+                        className="btn btn-primary btn-sm btn-comms m-2"
+                        data-bs-target="#updateComment"
+                        data-bs-toggle="modal"
+                        onClick={() => props.setCommData(comm)}
+                    >
+                        Modifier
+                    </button>
+                ) : (
+                    ''
+                )}
+                {userData.user.access_lvl > 2 ||
+                userData.user?.pseudo === comm.user.pseudo ? (
+                    <button
+                        type="button"
+                        className="btn btn-danger btn-sm btn-comms"
+                        onClick={() => deleteComm(comm.id)}
+                    >
+                        Supprimer
+                    </button>
+                ) : (
+                    ''
+                )}
+            </div>
         </div>
     );
 }

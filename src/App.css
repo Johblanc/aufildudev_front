@@ -8,3 +8,7 @@
   --radius-border: 10px;
   --color-background-secondary:#1C2942;
 }
+
+.dropdown-menu:hover{
+  display: block;
+}

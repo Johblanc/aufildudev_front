@@ -1,17 +1,23 @@
-import { useState } from "react";
+
 import { TMini } from "../../searchBar/types/TMini";
 import { IconCheckBox } from "./Icon_CheckBox";
 
 
-export default function DropDownPublicArticleItem(props:{data :TMini, }) {
-  const [isChecked, setIsChecked] = useState(false)
+export default function DropDownPublicArticleItem(props:{
+  data: TMini,
+  value: boolean,
+  setValue: (val: boolean) => void
+  }) {
+  const { data, value, setValue } = props
+    
+  
     return (
-        <span className="dropdown-item d-flex">
+        <span className="dropdown-item d-flex" onClick={()=>setValue(!value)}>
           <span>
-            <IconCheckBox/>
+            <IconCheckBox value={value} />
           </span>
             <span>
-              <p>{props.data.name}</p>
+              <p>{data.name}</p>
             </span>
         </span>
     )

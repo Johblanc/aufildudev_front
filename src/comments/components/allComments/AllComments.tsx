@@ -1,17 +1,19 @@
 import { useState, useContext } from 'react';
-import { BASE_URL } from '../../constant/url';
-import { UpdateCommentContext } from '../../context/UpdateCommentContext';
-import { TComment } from '../types/TComment';
-import { ModalComment } from './ModalComment';
-import { ModalUpdate } from './ModalUpdate';
+import { BASE_URL } from '../../../constant/url';
+import { UpdateCommentContext } from '../../../context/UpdateCommentContext';
+import { TComment } from '../../types/TComment';
+import { ModalComment } from '../ModalComment';
+import { ModalUpdate } from '../ModalUpdate';
 
-export function Comments() {
+export function AllComments() {
     const { setComms } = useContext(UpdateCommentContext);
     const [commData, setCommData] = useState<TComment | undefined>();
+    
 
     const getAllComms = () =>
         fetch(`${BASE_URL}/comments`).then((response) =>
             response.json().then((data) => setComms(data.data))
+            
         );
 
     return (
@@ -25,7 +27,7 @@ export function Comments() {
             >
                 Liste des commentaires
             </button>
-            <ModalComment setCommData={setCommData} />
+            <ModalComment setCommData={setCommData}/>
             <ModalUpdate commData={commData} />
         </div>
     );

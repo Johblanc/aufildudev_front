@@ -19,8 +19,6 @@ export function ModalUpdate(props: { commData: TComment | undefined }) {
     };
 
     const updater = () => {
-        console.log(props.commData?.id);
-
         fetch(`${BASE_URL}/comments/${props.commData?.id}`, options)
             .then((response) => response.json())
             .then((response) => response.data)
@@ -53,7 +51,7 @@ export function ModalUpdate(props: { commData: TComment | undefined }) {
                 id="updateComment"
                 aria-hidden="true"
                 aria-labelledby="updateComment"
-                tabIndex={10}
+                tabIndex={12}
             >
                 <div className="modal-dialog modal-dialog-centered modal-lg ">
                     <div className="modal-content size">
@@ -78,12 +76,10 @@ export function ModalUpdate(props: { commData: TComment | undefined }) {
                                 <textarea
                                     className="form-control"
                                     defaultValue={props.commData?.content}
-                                    id="floatingTextarea2"
                                     style={{ height: 100 }}
-                                    onChange={(e) => {
-                                        setBodyContent(e.target.value);
-                                        console.log(bodyContent);
-                                    }}
+                                    onChange={(e) =>
+                                        setBodyContent(e.target.value)
+                                    }
                                 ></textarea>
                                 <div className="text-center">
                                     <button
