@@ -1,0 +1,42 @@
+.tchat-button {
+  display: none;
+}
+
+.tchat-hidden {
+  display: none;
+}
+
+.drag{
+    position: 'absolute';
+        left: x;
+        top: y;
+}
+
+.messages{
+  width:max-content;
+}
+
+
+@media (max-width: 768px) {
+
+  .tchat {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    position: fixed;
+    right: 1em;
+    bottom: 1em;
+    z-index: 1000;
+  }
+
+  .tchat-mini {
+    display: none;
+  }
+
+  .tchat-button {
+    width: 2em;
+    display: block;
+
+  }
+
+}

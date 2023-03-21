@@ -1,4 +1,5 @@
 import { TMini } from "../../searchBar/types/TMini"
+import { ArticleStatus } from "./ArticlesStatus"
 import { TArticleMini } from "./TArticleMini"
 
 
@@ -6,7 +7,7 @@ export type TArticleFull = {
     id : number ,
     title : string ,
     content : string ,
-    status : string ,
+    status : ArticleStatus ,
     user_pseudo : string ,
     created_at : Date ,
     requirements : TArticleMini[] ,

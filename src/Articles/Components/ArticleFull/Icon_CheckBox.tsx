@@ -4,7 +4,7 @@
 export function IconCheckBox(props : {value? : boolean ; setValue? : (value : boolean) => void ,info? : string }){
 
   const {value,setValue,info} = props
-  const pathCheck = "M -5,1 -1,3 5,-4 3,-1  1,2  -1,5 -2,4  -3,3 Z" ;
+  const pathCheck = "M -5,0 -1,2 5,-5 3,-2  1,1  -1,4 -2,3  -3,2 Z" ;
   const pathNotCheck = "M -5,-5 0,-1 5,-5 1,0 5,5 0,1  -5,5 -1,0 Z" ;
 
   
