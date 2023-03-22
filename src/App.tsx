@@ -34,6 +34,14 @@ function App() {
     const [article, setArticle] = useState(DEFAULT_ARTICLE);
     const [articlesHandle, setArticlesHandle] =
         useState<TArticlesHandleParams>();
+    const [searchOption, setSearchOption] = useState({
+        languages: [] as number[],
+        frameworks: [] as number[],
+        categories: [] as number[],
+        inputSearch: '',
+        inputTitle: '',
+        inputAuthor: '',
+    });
 
     return (
         <div>
@@ -50,7 +58,7 @@ function App() {
                         <header>
                             <Navbar />
                             <div className="shadow">
-                                <SearchBar />
+                                <SearchBar setSearchOption={setSearchOption} />
                             </div>
                         </header>
 
@@ -62,7 +70,7 @@ function App() {
                             {/*A destination de tous profil*/}
                             <UserComment />
                             <div className="d-md-flex">
-                                <ArticlesSelector />
+                                <ArticlesSelector searchOption={searchOption} />
                                 <ArticleFull />
                                 <Tchat />
                             </div>
