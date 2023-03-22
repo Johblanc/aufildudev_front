@@ -59,9 +59,9 @@ export default function SearchBar(props: {
 
 
   return (
+
     <div className="container-fluid color-bg rounded-bottom ">
       <div className="row d-flex flex-row justify-content-between align-items-center py-3 ">
-
         <div className="col-md-2 col-12 mb-2 ">
           <div className="form-floating  ">
             <input
@@ -131,12 +131,10 @@ export default function SearchBar(props: {
             className="btn btn-green col-12 "
             onClick={handleResearch}
           >
-
             Lancer la Recherche
           </button>
         </div>
       </div>
-      {/* {filterArticles.map(item=>item.title).join(", ")} */}
     </div>
   );
 }
