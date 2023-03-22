@@ -16,6 +16,9 @@
   width:max-content;
 }
 
+.size-btn{
+  width: 3em;
+}
 
 @media (max-width: 768px) {
 

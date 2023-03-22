@@ -10,14 +10,12 @@ export function ArticleComments(props: { articleId: number }) {
     const { setComms } = useContext(UpdateCommentContext);
     const [commData, setCommData] = useState<TComment | undefined>();
 
-    const getArticleComment = () =>{
+    const getArticleComment = () => {
         fetch(`${BASE_URL}/comments/article/${props.articleId}`)
             .then((response) => response.json())
             .then((data) => setComms(data.data))
             .catch((err) => console.error(err));
-        
-        }
-
+    };
 
     return (
         <div>
@@ -31,8 +29,8 @@ export function ArticleComments(props: { articleId: number }) {
                 Commentaires
             </button>
             <ArticleModal setCommData={setCommData} />
-            <ModalUpdate commData={commData} />
-            <AddComment articleId={props.articleId}/>
+            <ModalUpdate commData={commData} setCommData={setCommData} />
+            <AddComment articleId={props.articleId} />
         </div>
     );
 }
