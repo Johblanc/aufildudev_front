@@ -12,6 +12,12 @@ export default function SearchBar(props: {
 
   //contient tout les articles publiques de la BDD
   const [allArticles, setAllArticles] = useState<TArticleFull[]>([]);
+  //permet de faire un onSubmit sur chaque input sans avoir besoin de mettre un <form> 
+  const handleKeyDown = (event:any) => {
+    if (event.key === 'Enter') {
+      handleResearch();
+    }
+  };
 
   //permet de recupérer les articles via un fetch
   useEffect(() => {
@@ -59,9 +65,9 @@ export default function SearchBar(props: {
 
 
   return (
+
     <div className="container-fluid color-bg rounded-bottom ">
       <div className="row d-flex flex-row justify-content-between align-items-center py-3 ">
-
         <div className="col-md-2 col-12 mb-2 ">
           <div className="form-floating  ">
             <input
@@ -70,6 +76,7 @@ export default function SearchBar(props: {
               placeholder="Recherche Rapide"
               aria-label="search"
               onChange={(event) => setInputSearch(event.target.value)}
+              onKeyDown={handleKeyDown}
             />
             <label htmlFor="floatingInput" className="padding-label" >Recherche rapide</label>
           </div>
@@ -83,6 +90,7 @@ export default function SearchBar(props: {
               placeholder="Rechercher par Titre"
               aria-label="search"
               onChange={(event) => setInputTitle(event.target.value)}
+              onKeyDown={handleKeyDown}
             />
             <label htmlFor="floatingInput" className="padding-label">Recherche par Titre</label>
           </div>
@@ -96,6 +104,7 @@ export default function SearchBar(props: {
               placeholder="Rechercher par Auteur"
               aria-label="search"
               onChange={(event) => setInputAuthor(event.target.value)}
+              onKeyDown={handleKeyDown}
             />
             <label htmlFor="floatingInput" className="padding-label">Recherche par Auteur</label>
           </div>
@@ -130,13 +139,12 @@ export default function SearchBar(props: {
             type="button"
             className="btn btn-green col-12 "
             onClick={handleResearch}
+            onKeyDown={handleKeyDown}
           >
-
             Lancer la Recherche
           </button>
         </div>
       </div>
-      {/* {filterArticles.map(item=>item.title).join(", ")} */}
     </div>
   );
 }

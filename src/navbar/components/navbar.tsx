@@ -33,7 +33,7 @@ export function Navbar(props: {
                 className="collapse navbar-collapse flex-row-reverse no-wrap "
                 id="navbarNav"
             >
-                <ul className="navbar-nav">
+                <ul className="navbar-nav ">
                     {userData.user.access_lvl < 1 ? (
                         <>
                             <li className="nav-item my-1 my-md-0">
