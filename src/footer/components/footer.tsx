@@ -6,7 +6,7 @@ export default function Footer() {
     return (
         <>
 
-            <svg className="bg-img-footer "
+            <svg className="bg-img-footer"
                 width="100vw"
                 
                 
