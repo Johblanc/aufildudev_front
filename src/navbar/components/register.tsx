@@ -38,8 +38,8 @@ export function RegisterForm() {
 
 
 
-    const submitHandler = () => {
-
+    const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
         if (
             pseudoRef.current?.value &&
             emailRef.current?.value &&
@@ -106,31 +106,33 @@ export function RegisterForm() {
                         <h5 className="modal-title">REGISTER</h5>
                         <button type="button" className="btn-close green-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div className="modal-body login-color">
-                        <p>
-                            <label htmlFor="exampleFormControlInput1" className="form-label">pseudo</label>
-                            <input ref={pseudoRef} type="pseudo" className="form-control" name="pseudo" id="inputpseudo" placeholder="Pseudo"></input>
-                        </p>
+                    <form onSubmit={submitHandler}>
+                        <div className="modal-body login-color">
+                            <p>
+                                <label htmlFor="exampleFormControlInput1" className="form-label">pseudo</label>
+                                <input ref={pseudoRef} type="pseudo" className="form-control" name="pseudo" id="inputpseudo" placeholder="Pseudo"></input>
+                            </p>
 
-                        <p>
-                            <label htmlFor="exampleFormControlInput1" className="form-label">Email</label>
-                            <input ref={emailRef} type="email" className="form-control" id="inputEmailRegister" placeholder="@Email"></input>
-                        </p>
+                            <p>
+                                <label htmlFor="exampleFormControlInput1" className="form-label">Email</label>
+                                <input ref={emailRef} type="email" className="form-control" id="inputEmailRegister" placeholder="@Email"></input>
+                            </p>
 
-                        <p>
-                            <label htmlFor="inputPassword" className="form-label">Password</label>
-                            <input ref={passwordRef} type="password" className="form-control" id="inputPasswordRegister" placeholder="Password"></input>
-                        </p>
+                            <p>
+                                <label htmlFor="inputPassword" className="form-label">Password</label>
+                                <input ref={passwordRef} type="password" className="form-control" id="inputPasswordRegister" placeholder="Password"></input>
+                            </p>
 
-                        <p>
-                            <label htmlFor="inputPassword" className="form-label">Verify Password</label>
-                            <input ref={passVerifRef} type="password" className="form-control" id="inputPasswordVerify" placeholder="Verify your password"></input>
-                        </p>
-                    </div>
+                            <p>
+                                <label htmlFor="inputPassword" className="form-label">Verify Password</label>
+                                <input ref={passVerifRef} type="password" className="form-control" id="inputPasswordVerify" placeholder="Verify your password"></input>
+                            </p>
+                        </div>
 
-                    <div className="modal-footer">
-                        <button type="button" onClick={submitHandler} className="btn btn-green"> Valider</button>
-                    </div>
+                        <div className="modal-footer">
+                            <button type="submit" className="btn btn-green"> Valider</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
