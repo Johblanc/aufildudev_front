@@ -11,11 +11,12 @@ export function UserComment() {
     const userData = useContext(UserContext);
     const [commData, setCommData] = useState<TComment | undefined>();
 
-    const getComments = () =>{
+    const getComments = () => {
         fetch(`${BASE_URL}/comments/user/${userData.user.id}`)
             .then((response) => response.json())
             .then((data) => setComms(data.data))
-            .catch((err) => console.error(err));}
+            .catch((err) => console.error(err));
+    };
 
     return (
         <div>
@@ -29,7 +30,7 @@ export function UserComment() {
                 Commentaires User
             </button>
             <ModalComment setCommData={setCommData} />
-            <ModalUpdate commData={commData} />
+            <ModalUpdate commData={commData} setCommData={setCommData} />
         </div>
     );
 }

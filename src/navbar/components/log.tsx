@@ -42,7 +42,8 @@ export function LoginForm(/* props: {
 
 
 
-    const submitHandler = () => {
+    const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
         if (pseudoRef.current?.value && passwordRef.current?.value) {
             const body = {
                 pseudo: pseudoRef.current.value,
@@ -91,7 +92,9 @@ export function LoginForm(/* props: {
 
     return (
         <>
+
             <div className="modal fade" aria-labelledby='loginModal' id="loginModal" tabIndex={-1}>
+
                 <div className="modal-dialog modal-dialog-centered  ">
                     <div className=" modal-content modal-content-login login-color ">
                         <div className="modal-header">
@@ -102,63 +105,65 @@ export function LoginForm(/* props: {
                                 data-bs-dismiss="modal"
                                 aria-label="Close"
                                 id="close"
-
                             ></button>
                         </div>
-                        <div className="modal-body login-color">
-                            <label
-                                htmlFor="exampleFormControlInput1"
-                                className="form-label"
-                            >
-                                Identifiant
-                            </label>
-                            <p>
+                        <form onSubmit={submitHandler}>
+                            <div className="modal-body login-color">
+                                <label
+                                    htmlFor="exampleFormControlInput1"
+                                    className="form-label"
+                                >
+                                    Identifiant
+                                </label>
+                                <p>
+                                    <input
+                                        ref={pseudoRef}
+                                        type="pseudo"
+                                        className="form-control"
+                                        id="inputEmail"
+                                        placeholder="Pseudo"
+                                    ></input>
+                                </p>
+
+
+                                <label htmlFor="inputPassword" className="form-label">
+                                    Password
+                                </label>
+
                                 <input
-                                    ref={pseudoRef}
-                                    type="pseudo"
+                                    ref={passwordRef}
+                                    type="password"
                                     className="form-control"
-                                    id="inputEmail"
-                                    placeholder="Pseudo"
+                                    id="inputPassword"
+                                    placeholder="password"
                                 ></input>
-                            </p>
+                            </div>
 
+                            <div className="modal-footer d-flex justify-content-center">
+                                {userData.user.access_lvl < 1 ? (
+                                    <>
+                                        <button
 
-
-                            <label htmlFor="inputPassword" className="form-label">
-                                Password
-                            </label>
-
-                            <input
-                                ref={passwordRef}
-                                type="password"
-                                className="form-control"
-                                id="inputPassword"
-                                placeholder="password"
-                            ></input>
-                        </div>
-
-                        <div className="modal-footer d-flex justify-content-center">
-                            {userData.user.access_lvl < 1 ? (
-                                <>
-                                    <button
-                                        onClick={submitHandler}
-                                        type="button"
-                                        className="btn btn-green"
-                                    >
-                                        {' '}
-                                        Connexion
-                                    </button></>
-                            ) : (
-                                ''
-                            )}
-                        </div>
+                                            type="submit"
+                                            className="btn btn-green"
+                                        >
+                                            {' '}
+                                            Connexion
+                                        </button></>
+                                ) : (
+                                    ''
+                                )}
+                            </div>
+                        </form>
                     </div>
                 </div>
+
             </div>
 
             <div>
                 <ToastContainer />
             </div>
+
         </>
     );
 }

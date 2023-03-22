@@ -13,6 +13,7 @@ import { DEFAULT_ARTICLE } from "../../Constant/DefaultArticle";
 import { TArticleFull } from "../../Types/TArticleFull";
 import { TResponse } from "../../Types/TResponse";
 
+
 export function ArticleFull() {
   const { user } = useContext(UserContext);
   const { article, setArticle, setArticlesHandle } = useContext(ArticleContext);
@@ -48,7 +49,7 @@ export function ArticleFull() {
       article.user_pseudo = user.pseudo;
       setTimeout(() => setInModif(true), 1);
     }
-  }, [article,user]);
+  }, [article, user]);
 
   useEffect(() => {
     setInDelete(false)
@@ -100,8 +101,8 @@ export function ArticleFull() {
     hasChange = hasChange || newMessages.languages !== messages.languages
 
     hasChange && setMessages(newMessages);
-  }, 
-  [currentModif, selections, messages]
+  },
+    [currentModif, selections, messages]
   );
 
   /** Récupération d'une modif du titre ou contenu */
@@ -160,7 +161,7 @@ export function ArticleFull() {
   const handlePublicSave = async () => {
     const newArticle = await handleSave()
     Promise.all([newArticle]);
-    if (newArticle){
+    if (newArticle) {
       const res = await Requester.articleValidate(newArticle.id, user.access_token);
       setArticlesHandle({ command: "update", article: res });
     }
@@ -185,7 +186,7 @@ export function ArticleFull() {
   };
 
   enum BootStrap {
-    ARTICLE = "m-2 border border-primary bg-info text-primary border-2 rounded rounded-4 p-4 flex-grow-1",
+    ARTICLE = "mx-2 border border-primary bg-info text-primary border-2 rounded rounded-4 p-4 flex-grow-1",
     BUTTON = "btn bg-secondary border border-1 border-dark text-primary m-1",
     BAD_BUTTON = "btn bg-light border border-1 border-danger text-primary m-1",
     DROPDOWN = "m-1 drop-resize",
@@ -207,11 +208,16 @@ export function ArticleFull() {
   const isSavable = (isUpdatable || article.id === -1) && inModif && isValid && !inDelete;
   const isPublicSavable = isSavable && isAuthor && article.status !== "public";
   const isDeletable = (isOwner || isModo) && !inModif;
-  const isSubmitable = isOwner && !inModif && article.status === "private" && !inDelete ;
+  const isSubmitable = isOwner && !inModif && article.status === "private" && !inDelete;
   const isPublishable =
     ((isOwner && isAuthor) || isModo) &&
     !inModif &&
     article.status !== "public" && !inDelete;
+
+
+
+
+  
 
   return (
     <div className={BootStrap.ARTICLE}>
@@ -252,7 +258,7 @@ export function ArticleFull() {
             {isDeletable && (
               <span>
                 {!inDelete && (
-                  <button onClick={()=> setInDelete(true)} className={BootStrap.BAD_BUTTON}>
+                  <button onClick={() => setInDelete(true)} className={BootStrap.BAD_BUTTON}>
                     Supprimer
                   </button>
                 )}
@@ -262,7 +268,7 @@ export function ArticleFull() {
                   </button>
                 )}
                 {inDelete && (
-                  <button onClick={()=> setInDelete(false)} className={BootStrap.BUTTON}>
+                  <button onClick={() => setInDelete(false)} className={BootStrap.BUTTON}>
                     Annuler la suppression
                   </button>
                 )}

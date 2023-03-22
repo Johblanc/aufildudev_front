@@ -4,10 +4,20 @@ import { BASE_URL } from '../../constant/url';
 import { UserContext } from '../../context/UserContext';
 import { UpdateCommentContext } from '../../context/UpdateCommentContext';
 
-export function ModalUpdate(props: { commData: TComment | undefined }) {
+export function ModalUpdate(props: {
+    commData: TComment | undefined;
+    setCommData: React.Dispatch<React.SetStateAction<TComment | undefined>>;
+}) {
     const [bodyContent, setBodyContent] = useState('');
     const userData = useContext(UserContext);
     const { comms, setComms } = useContext(UpdateCommentContext);
+
+    /** Récupération d'une modif du titre ou contenu */
+    const handleModif = async (key: 'content', value: string) => {
+        const newModif = { ...props.commData! };
+        newModif[key] = value;
+        props.setCommData(newModif);
+    };
 
     const options = {
         method: 'PATCH',
@@ -75,11 +85,12 @@ export function ModalUpdate(props: { commData: TComment | undefined }) {
                             >
                                 <textarea
                                     className="form-control"
-                                    defaultValue={props.commData?.content}
+                                    value={props.commData?.content}
                                     style={{ height: 100 }}
-                                    onChange={(e) =>
-                                        setBodyContent(e.target.value)
-                                    }
+                                    onChange={(e) => {
+                                        handleModif('content', e.target.value);
+                                        setBodyContent(e.target.value);
+                                    }}
                                 ></textarea>
                                 <div className="text-center">
                                     <button

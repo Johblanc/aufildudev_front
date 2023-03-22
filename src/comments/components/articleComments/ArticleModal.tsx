@@ -1,15 +1,14 @@
-import { useContext } from "react";
-import { UpdateCommentContext } from "../../../context/UpdateCommentContext";
-import { UserContext } from "../../../context/UserContext";
-import { TComment } from "../../types/TComment";
+import { useContext } from 'react';
+import { UpdateCommentContext } from '../../../context/UpdateCommentContext';
+import { UserContext } from '../../../context/UserContext';
+import { TComment } from '../../types/TComment';
 import { Comment } from '../Comment';
 
 export function ArticleModal(props: {
     setCommData: React.Dispatch<React.SetStateAction<TComment | undefined>>;
 }) {
     const { comms } = useContext(UpdateCommentContext);
-    const userData = useContext(UserContext)
-    
+    const userData = useContext(UserContext);
 
     const commentsElem = comms.map((elm, i) => (
         <div key={i}>
@@ -18,7 +17,6 @@ export function ArticleModal(props: {
             </div>
         </div>
     ));
-
 
     return (
         <div
@@ -31,7 +29,10 @@ export function ArticleModal(props: {
             <div className="modal-dialog modal-dialog-centered modal-lg">
                 <div className="modal-content scroll">
                     <div className="modal-header">
-                        <h1 className="modal-title fs-5" id="commentArticleList">
+                        <h1
+                            className="modal-title fs-5"
+                            id="commentArticleList"
+                        >
                             Commentaires
                         </h1>
                         <button
@@ -43,14 +44,18 @@ export function ArticleModal(props: {
                     </div>
                     {commentsElem}
                     <div className="modal-footer">
-                        {userData.user.id !== -1? <button
-                            type="button"
-                            className="btn btn-primary"
-                            data-bs-toggle="modal"
-                            data-bs-target="#addComment"
-                        >
-                            Ajouter un commentaire
-                        </button> : ''}
+                        {userData.user.id !== -1 ? (
+                            <button
+                                type="button"
+                                className="btn btn-primary"
+                                data-bs-toggle="modal"
+                                data-bs-target="#addComment"
+                            >
+                                Ajouter un commentaire
+                            </button>
+                        ) : (
+                            ''
+                        )}
                     </div>
                 </div>
             </div>

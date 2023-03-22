@@ -29,6 +29,8 @@ export function Comment(props: {
     const created = new Date(comm.created_at).toLocaleDateString('fr');
     const updated = new Date(comm.updated_at).toLocaleDateString('fr');
 
+    //const test = () => Promise.all(props.setCommData(comm)!);
+
     return (
         <div className="d-flex flex-column">
             <p className="align-self-end">
@@ -52,7 +54,9 @@ export function Comment(props: {
                         className="btn btn-primary btn-sm btn-comms m-2"
                         data-bs-target="#updateComment"
                         data-bs-toggle="modal"
-                        onClick={() => props.setCommData(comm)}
+                        onClick={() => {
+                            props.setCommData(comm);
+                        }}
                     >
                         Modifier
                     </button>
