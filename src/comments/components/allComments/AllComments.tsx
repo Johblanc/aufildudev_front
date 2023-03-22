@@ -18,12 +18,12 @@ export function AllComments() {
         <div>
             <button
                 type="button"
-                className="btn btn-primary"
+                className="btn btn-primary text-dark w-100 mb-3"
                 data-bs-toggle="modal"
                 data-bs-target="#commentList"
                 onClick={getAllComms}
             >
-                Liste des commentaires
+                Modération
             </button>
             <ModalComment setCommData={setCommData} />
             <ModalUpdate commData={commData} setCommData={setCommData} />
