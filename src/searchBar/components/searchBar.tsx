@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import { TArticleFull } from "../../Articles/Types/TArticleFull";
+import { TSearchOption } from "../../Articles/Types/TSearchOption";
 import { BASE_URL } from "../../constant/url";
 import { TablesEnums } from "../types/tablesEnums";
 import DropDown from "./dropdown";
 
-export default function SearchBar() {
+export default function SearchBar(props: {
+  setSearchOption: React.Dispatch<React.SetStateAction<TSearchOption>>
+}) {
   //#region search
 
   //contient tout les articles publiques de la BDD
@@ -33,7 +36,7 @@ export default function SearchBar() {
     newSelection[table] = value;
     setSelections(newSelection);
   };
-  //console.log(selections);
+
 
   //recupere et contient les values entrées dans les inputs correspondant
   const [inputSearch, setInputSearch] = useState("");
@@ -41,38 +44,17 @@ export default function SearchBar() {
   const [inputAuthor, setInputAuthor] = useState("");
 
   //permet de lancer la recherche via le button, et lance le filtrage des parametres
-  const [filterArticles, setFilterArticles] = useState(allArticles);
+
   const handleResearch = () => {
-    const newArticles = allArticles.filter((article) => {
-      const isincludeArray = (target: number[], include: number[]) => {
-        //include=selection de l'utilisateur && target=ID de chaques articles
-        let result = true; //par defaut il est inclus et on va s'assurer que c'est vrai(permet de renvoyer une liste d'article si aucun filtre n'est actif car true d'origine)
-        include.forEach((item) => {
-          //on verifie chaque element de la selection, et on regarde (oui/non) si il se trouve à l'interieur de l'article
-          result = result && target.includes(item); //SI item inclus dans target alors result=true
-        });
-        return result;
-      };
-
-      //permet de recupérer l'ID de chacuns et de la stocker
-      const categoriesId = article.categories.map((elm) => elm.id);
-      const languagesId = article.languages.map((elm) => elm.id);
-      const frameworksId = article.frameworks.map((elm) => elm.id);
-
-      //conditions de resultat pour chaques filtres
-      return (
-        (article.title.includes(inputSearch.toLowerCase()) ||
-          article.user_pseudo.includes(inputSearch.toLowerCase()) ||
-          article.content.includes(inputSearch.toLowerCase())) &&
-        article.title.includes(inputTitle.toLowerCase()) &&
-        article.user_pseudo.includes(inputAuthor.toLowerCase()) &&
-        isincludeArray(categoriesId, selections.categories) &&
-        isincludeArray(languagesId, selections.languages) &&
-        isincludeArray(frameworksId, selections.frameworks)
-      );
-    });
-    setFilterArticles(newArticles);
-  };
+    props.setSearchOption({
+      languages: selections.languages,
+      frameworks: selections.frameworks,
+      categories: selections.categories,
+      inputSearch: inputSearch.toLowerCase(),
+      inputTitle: inputTitle.toLowerCase(),
+      inputAuthor: inputAuthor.toLowerCase(),
+    })
+  }
   //#endregion
 
 
