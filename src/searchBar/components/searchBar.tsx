@@ -13,7 +13,7 @@ export default function SearchBar(props: {
   //contient tout les articles publiques de la BDD
   const [allArticles, setAllArticles] = useState<TArticleFull[]>([]);
   //permet de faire un onSubmit sur chaque input sans avoir besoin de mettre un <form> 
-  const handleKeyDown = (event:any) => {
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       handleResearch();
     }
@@ -139,7 +139,6 @@ export default function SearchBar(props: {
             type="button"
             className="btn btn-green col-12 "
             onClick={handleResearch}
-            onKeyDown={handleKeyDown}
           >
             Lancer la Recherche
           </button>

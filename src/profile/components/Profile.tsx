@@ -1,4 +1,5 @@
 import { useContext, useState } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
 import { AllComments } from '../../comments/components/allComments/AllComments';
 import { UserComment } from '../../comments/components/userComment/UserComment';
 import { BASE_URL } from '../../constant/url';
@@ -10,6 +11,30 @@ export function Profile() {
     const userData = useContext(UserContext);
     const [updating, setUpdating] = useState<boolean>(false);
     const [mail, setMail] = useState<string>(userData.user.email);
+    const notifySuccess = (msg: string,) => toast.success(msg,
+        {
+            position: "bottom-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            progress: undefined,
+            theme: "light",
+        });
+    ;
+    const notifyError = (msg: string,) => toast.error(msg,
+        {
+            position: "bottom-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            progress: undefined,
+            theme: "light",
+        });
+    ;
 
     const handleModif = (key: 'email', value: string) => {
         const newModif = { ...userData.user };
@@ -29,7 +54,14 @@ export function Profile() {
     const updateMail = () =>
         fetch(`${BASE_URL}/users`, options)
             .then((response) => response.json())
-            .catch((err) => console.error(err));
+
+            .then((data) => {
+                if (data) {
+                    notifySuccess("Email modifié!")
+                } else {
+                    notifyError("erreur")
+                }
+            })
 
     return (
         <div className="m-2 border border-primary bg-info text-primary border-2 rounded rounded-4 px-4 pt-4  flex-grow-1 ">
@@ -80,6 +112,12 @@ export function Profile() {
                 )}
             </div>
             <UpdateProfil setUpdating={setUpdating} />
+            <div>
+                <ToastContainer />
+            </div>
         </div>
+
+        
+        
     );
 }
