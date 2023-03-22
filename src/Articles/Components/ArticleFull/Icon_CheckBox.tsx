@@ -12,7 +12,7 @@ export function IconCheckBox(props : {value? : boolean ; setValue? : (value : bo
         
         <svg
             onClick={()=> setValue ? setValue(!value) : {}}
-            width="1em"
+            width="1.2em"
             viewBox="-8 -8 16 16"
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"

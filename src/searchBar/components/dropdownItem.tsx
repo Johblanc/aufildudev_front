@@ -16,7 +16,7 @@ export default function DropdownItem(props: {
 
   return (
     <span
-      className="dropdown-item d-flex"
+      className="dropdown-item d-flex justify-content-between"
       onClick={() => setValue(data.id, !currentValue)}
     >
       <span>
@@ -24,6 +24,9 @@ export default function DropdownItem(props: {
       </span>
       <span>
         <p>{data.name}</p>
+      </span>
+      <span>
+        <img className="item-icon" src={`./ressources/icons/${data.name}.svg`} />
       </span>
     </span>
   );

@@ -14,3 +14,6 @@
     height: calc(2.2rem + calc(var(--bs-border-width) * 2))!important;
 }
 
+.item-icon {
+  height: 1.5em;
+}
