@@ -7,7 +7,6 @@ export function ModalComment(props: {
     setCommData: React.Dispatch<React.SetStateAction<TComment | undefined>>;
 }) {
     const { comms } = useContext(UpdateCommentContext);
-    
 
     const commentsElem = comms.map((elm, i) => (
         <div key={i}>
@@ -16,7 +15,6 @@ export function ModalComment(props: {
             </div>
         </div>
     ));
-
 
     return (
         <div
@@ -39,7 +37,7 @@ export function ModalComment(props: {
                             aria-label="Close"
                         ></button>
                     </div>
-                    {commentsElem}                   
+                    {commentsElem}
                 </div>
             </div>
         </div>
