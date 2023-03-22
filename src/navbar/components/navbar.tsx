@@ -6,7 +6,7 @@ import { UserContext } from '../../context/UserContext';
 import { Titre } from '../../Titre/Titre';
 
 export function Navbar(props: {
-    setPage: React.Dispatch<React.SetStateAction<string>>;
+    setPage: React.Dispatch<React.SetStateAction<'Article' | 'Profile'>>;
     page: string;
 }) {
     const { setArticle } = useContext(ArticleContext);

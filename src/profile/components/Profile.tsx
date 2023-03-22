@@ -17,6 +17,13 @@ export function Profile() {
         userData.setUser(newModif);
     };
 
+    const isMail = (value: string) =>
+        Boolean(
+            value.match(
+                /^(([^<>()[].,;:\s@"]+(.[^<>()[].,;:\s@"]+)*)|(".+"))@(([^<>()[].,;:\s@"]+.)+[^<>()[].,;:\s@"]{2,})$/i
+            )
+        );
+
     const options = {
         method: 'PATCH',
         headers: {

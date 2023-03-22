@@ -26,7 +26,7 @@ import Footer from './footer/components/footer';
 import { TArticlesHandleParams } from './Articles/Types/TArticlesHandleParams';
 
 function App() {
-    const [page, setPage] = useState<string>('Article');
+    const [page, setPage] = useState<'Article' | 'Profile'>('Article');
     const [user, setUser] = useState<TUser>(DEFAULT_USER);
     const [comms, setComms] = useState<TComment[]>([]);
     const [article, setArticle] = useState(DEFAULT_ARTICLE);
@@ -63,8 +63,11 @@ function App() {
                         <main className="container-fluid m-bottom ">
                             <LoginForm />
                             <RegisterForm />
-                            <div className="d-md-flex">
-                                <ArticlesSelector searchOption={searchOption} />
+                            <div className="d-md-flex mt-3">
+                                <ArticlesSelector
+                                    setPage={setPage}
+                                    searchOption={searchOption}
+                                />
                                 {page === 'Article' && <ArticleFull />}
                                 {page === 'Profile' && <Profile />}
                                 <Tchat />
