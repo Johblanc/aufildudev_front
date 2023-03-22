@@ -33,14 +33,14 @@ function App() {
   const [comms, setComms] = useState<TComment[]>([]);
   const [article, setArticle] = useState(DEFAULT_ARTICLE);
   const [articlesHandle, setArticlesHandle] = useState<TArticlesHandleParams>();
-  
-    
+
+
 
   return (
     <div>
       <UserContext.Provider value={{ user, setUser }}>
         <UpdateCommentContext.Provider value={{ comms, setComms }}>
-          <ArticleContext.Provider value={{ article, setArticle , articlesHandle, setArticlesHandle }}>
+          <ArticleContext.Provider value={{ article, setArticle, articlesHandle, setArticlesHandle }}>
             <header>
               <Navbar />
               <div className="shadow">
@@ -58,13 +58,13 @@ function App() {
               <div className="d-md-flex">
                 <ArticlesSelector />
                 <ArticleFull />
-                <Tchat /> 
+                <Tchat />
               </div>
             </main>
           </ArticleContext.Provider>
         </UpdateCommentContext.Provider>
       </UserContext.Provider>
-      <Footer/>
+      <Footer />
     </div>
   );
 }
