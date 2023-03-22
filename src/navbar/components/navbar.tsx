@@ -1,13 +1,16 @@
-import { useContext } from "react";
-import { DEFAULT_ARTICLE } from "../../Articles/Constant/DefaultArticle";
-import { ArticleContext } from "../../context/ArticleContext";
-import { UserContext } from "../../context/UserContext";
-import { Titre } from "../../Titre/Titre";
+import { useContext } from 'react';
+import { DEFAULT_ARTICLE } from '../../Articles/Constant/DefaultArticle';
+import { DEFAULT_USER } from '../../constant/visitor';
+import { ArticleContext } from '../../context/ArticleContext';
+import { UserContext } from '../../context/UserContext';
+import { Titre } from '../../Titre/Titre';
 
-export function Navbar() {
+export function Navbar(props: {
+    setPage: React.Dispatch<React.SetStateAction<'Article' | 'Profile'>>;
+    page: string;
+}) {
     const { setArticle } = useContext(ArticleContext);
     const userData = useContext(UserContext);
-
 
     return (
         <nav className="navbar navbar-expand-lg nav-back width">
@@ -32,23 +35,25 @@ export function Navbar() {
             >
                 <ul className="navbar-nav ">
                     {userData.user.access_lvl < 1 ? (
-                        <><li className="nav-item my-1 my-md-0">
-
-                            <a href="/#" className="nav-link active btn btn-green mx-1"
-
-                                type="button"
-                                data-bs-toggle="modal"
-                                data-bs-target="#loginModal"
-                                id="loginButton"
-                            >
-                                {' '}
-                                Login
-                            </a>
-                        </li>
+                        <>
+                            <li className="nav-item my-1 my-md-0">
+                                <a
+                                    href="/#"
+                                    className="nav-link active btn btn-green mx-1"
+                                    type="button"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#loginModal"
+                                    id="loginButton"
+                                >
+                                    {' '}
+                                    Login
+                                </a>
+                            </li>
 
                             <li className="nav-item my-1 my-md-0">
-                                <a href="/#" className="nav-link active btn btn-green mx-3"
-
+                                <a
+                                    href="/#"
+                                    className="nav-link active btn btn-green mx-3"
                                     type="button"
                                     data-bs-toggle="modal"
                                     data-bs-target="#registerModal"
@@ -57,15 +62,25 @@ export function Navbar() {
                                     {' '}
                                     Register
                                 </a>
-                            </li></>
+                            </li>
+                        </>
                     ) : (
                         ''
                     )}
 
                     {userData.user.access_lvl > 0 ? (
-                        <li className="nav-item  my-1 my-md-0" onClick={() => setArticle(DEFAULT_ARTICLE)}>
-                            <a href="/#" className="nav-link active btn btn-green mx-3"
-                                type="button" >
+                        <li
+                            className="nav-item  my-1 my-md-0"
+                            onClick={() => {
+                                props.setPage('Article');
+                                setArticle(DEFAULT_ARTICLE);
+                            }}
+                        >
+                            <a
+                                href="/#"
+                                className="nav-link active btn btn-green mx-3"
+                                type="button"
+                            >
                                 Ajouter un Article
                             </a>
                         </li>
@@ -75,17 +90,35 @@ export function Navbar() {
 
                     {userData.user.access_lvl > 0 ? (
                         <li className="nav-item my-1 my-md-0">
-                            <a href="/#" className="nav-link active btn btn-green mx-3"
-                                type="button">
-                                Profil
-                            </a>
+                            {props.page !== 'Profile' && (
+                                <a
+                                    href="/#"
+                                    className="nav-link active btn btn-green mx-3"
+                                    type="button"
+                                    onClick={() => props.setPage('Profile')}
+                                >
+                                    Profil
+                                </a>
+                            )}
+                            {props.page === 'Profile' && (
+                                <a
+                                    href="/#"
+                                    className="nav-link active btn btn-danger mx-3 text-light"
+                                    type="button"
+                                    onClick={() => {
+                                        userData.setUser(DEFAULT_USER);
+                                        props.setPage('Article');
+                                    }}
+                                >
+                                    Déconnexion
+                                </a>
+                            )}
                         </li>
                     ) : (
                         ''
                     )}
                 </ul>
             </div>
-
-        </nav >
+        </nav>
     );
 }

@@ -1,24 +1,6 @@
-.profile-back {
-    background-color: #D9D9D9 !important;
-    height : 500px;
-    width :1300px;
-}
-
-.text-color {
-    color : #5FC2BA !important;
-}
-
-.container {
-    background-color: #0B162C !important;
-    height: 200;
-}
-
-.test {
-    background: #0B162C;
+.update-input{
+    height: calc(1.6rem + calc(var(--bs-border-width) * 2))!important;
     
+    width: 13rem !important;
 }
 
-.test2 {
-    background: #0B162C;
-    
-}

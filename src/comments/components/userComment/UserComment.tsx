@@ -22,12 +22,12 @@ export function UserComment() {
         <div>
             <button
                 type="button"
-                className="btn btn-primary"
+                className="btn btn-primary text-dark"
                 data-bs-toggle="modal"
                 data-bs-target="#commentList"
                 onClick={getComments}
             >
-                Commentaires User
+                Vos commentaires
             </button>
             <ModalComment setCommData={setCommData} />
             <ModalUpdate commData={commData} setCommData={setCommData} />

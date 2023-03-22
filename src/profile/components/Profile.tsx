@@ -1,68 +1,130 @@
-import { useState, useEffect } from "react";
-import "../style/profile-style.css"
+import { useContext, useState } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import { AllComments } from '../../comments/components/allComments/AllComments';
+import { UserComment } from '../../comments/components/userComment/UserComment';
+import { BASE_URL } from '../../constant/url';
+import { UserContext } from '../../context/UserContext';
+import '../style/profile-style.css';
+import UpdateProfil from './UpdateProfile';
 
+export function Profile() {
+    const userData = useContext(UserContext);
+    const [updating, setUpdating] = useState<boolean>(false);
+    const [mail, setMail] = useState<string>(userData.user.email);
+    const notifySuccess = (msg: string,) => toast.success(msg,
+        {
+            position: "bottom-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            progress: undefined,
+            theme: "light",
+        });
+    ;
+    const notifyError = (msg: string,) => toast.error(msg,
+        {
+            position: "bottom-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            progress: undefined,
+            theme: "light",
+        });
+    ;
 
+    const handleModif = (key: 'email', value: string) => {
+        const newModif = { ...userData.user };
+        newModif[key] = value;
+        userData.setUser(newModif);
+    };
 
+    const isMail = (value: string) =>
+        Boolean(
+            value.match(
+                /^(([^<>()[].,;:\s@"]+(.[^<>()[].,;:\s@"]+)*)|(".+"))@(([^<>()[].,;:\s@"]+.)+[^<>()[].,;:\s@"]{2,})$/i
+            )
+        );
 
-export function Profile(props : {id : number, name : string}) {
-   /**console.log(props);
-   const [compteur, setCompteur] = useState <number> (0)*/
+    const options = {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${userData.user.access_token}`,
+        },
+        body: JSON.stringify({ email: `${mail}` }),
+    };
 
-   /**useEffect (() => {
-   console.log(compteur);
-   }, [compteur])
-   <button onClick={() => setCompteur(compteur + 1)}>{compteur}</button>
-   {compteur%2 === 0 && "paire"} 
-   {compteur%2 === 1 && "impaire"} 
-   */
+    const updateMail = () =>
+        fetch(`${BASE_URL}/users`, options)
+            .then((response) => response.json())
 
-   return (
-      <div className=" border-2  rounded-5 profile-back w-100 h-100 cont" id="profile">
-         <div className="text-color text-center">
-            <div className="row test">
-               <div className="col-3  pt-4 pb-4 ">
-                  Column
-               </div>
-               <div className="col-3  pt-4 pb-4">
-                  Column
-               </div>
-               <div className="col-3  pt-4 pb-4">
-                  Column
-               </div>
-               <div className="col-3  pt-4 pb-4">
-                  Column
-               </div>
+            .then((data) => {
+                if (data) {
+                    notifySuccess("Email modifié!")
+                } else {
+                    notifyError("erreur")
+                }
+            })
+
+    return (
+        <div className="m-2 border border-primary bg-info text-primary border-2 rounded rounded-4 px-4 pt-4  flex-grow-1 ">
+            <div className="d-flex justify-content-between">
+                <h1 className="mb-5">Profile :</h1>
+                <span>
+                    {userData.user.access_lvl > 2 && <AllComments />}
+                    <UserComment />
+                </span>
             </div>
-            <div className="row">
-               <div className="col-3  pt-4 pb-4 test2">
-                  Column
-               </div>
-               <div className="col-3  pt-4 pb-4">
-                  Column
-               </div>
-               <div className="col-3  pt-4 pb-4">
-                  Column
-               </div>
-               <div className="col-3  pt-4 pb-4">
-                  Column
-               </div>
+            <p>
+                <span className="bold">Pseudo</span> : {userData.user.pseudo}
+            </p>
+            <div className="d-flex align-center mb-5 flex-wrap align-items-end">
+                <span className="bold">E-Mail </span> :{' '}
+                {updating === false ? (
+                    userData.user.email
+                ) : (
+                    <input
+                        className=" form-control update-input mx-2"
+                        value={mail}
+                        onChange={(e) => setMail(e.target.value)}
+                        type="email"
+                        required
+                    ></input>
+                )}{' '}
+                {updating === true && (
+                    <div className=" mt-2">
+                        <button
+                            type="button"
+                            className="btn btn-success btn-sm"
+                            onClick={() => {
+                                handleModif('email', mail);
+                                updateMail();
+                                setUpdating(false);
+                            }}
+                        >
+                            Modifier
+                        </button>{' '}
+                        <button
+                            type="button"
+                            className="btn btn-primary btn-sm text-dark"
+                            onClick={() => setUpdating(false)}
+                        >
+                            Retour
+                        </button>
+                    </div>
+                )}
             </div>
-            <div className="row">
-               <div className="col-3  pt-4 pb-4 test2">
-                  Column
-               </div>
-               <div className="col-3  pt-4 pb-4">
-                  Column
-               </div>
-               <div className="col-3  pt-4 pb-4">
-                  Column
-               </div>
-               <div className="col-3  pt-4 pb-4">
-                  Column
-               </div>
+            <UpdateProfil setUpdating={setUpdating} />
+            <div>
+                <ToastContainer />
             </div>
-         </div>
-      </div>
-   );
-   
+        </div>
+
+        
+        
+    );
 }

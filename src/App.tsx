@@ -6,17 +6,15 @@ import './navbar/login-style.css';
 import './Tchat/tchatStyle.css';
 import './style.css';
 import './searchBar/searchBar-style.css';
-import { AllComments } from './comments/components/allComments/AllComments';
 import { Navbar } from './navbar/components/navbar';
 import { LoginForm } from './navbar/components/log';
 import { RegisterForm } from './navbar/components/register';
 import SearchBar from './searchBar/components/searchBar';
-//import { Profile } from './profile/components/Profile';
+import { Profile } from './profile/components/Profile';
 import { useState } from 'react';
 import { TUser } from './navbar/types/TUser';
 import { UserContext } from './context/UserContext';
 import { DEFAULT_USER } from './constant/visitor';
-import { UserComment } from './comments/components/userComment/UserComment';
 import { UpdateCommentContext } from './context/UpdateCommentContext';
 import { TComment } from './comments/types/TComment';
 import { ArticleFull } from './Articles/Components/ArticleFull/ArticleFull';
@@ -25,10 +23,10 @@ import { ArticlesSelector } from './Articles/Components/ArticlesSelector/Article
 import { DEFAULT_ARTICLE } from './Articles/Constant/DefaultArticle';
 import { ArticleContext } from './context/ArticleContext';
 import Footer from './footer/components/footer';
-import { TArticleFull } from './Articles/Types/TArticleFull';
 import { TArticlesHandleParams } from './Articles/Types/TArticlesHandleParams';
 
 function App() {
+    const [page, setPage] = useState<'Article' | 'Profile'>('Article');
     const [user, setUser] = useState<TUser>(DEFAULT_USER);
     const [comms, setComms] = useState<TComment[]>([]);
     const [article, setArticle] = useState(DEFAULT_ARTICLE);
@@ -56,7 +54,7 @@ function App() {
                         }}
                     >
                         <header>
-                            <Navbar />
+                            <Navbar setPage={setPage} page={page} />
                             <div className="shadow">
                                 <SearchBar setSearchOption={setSearchOption} />
                             </div>
@@ -65,13 +63,13 @@ function App() {
                         <main className="container-fluid m-bottom ">
                             <LoginForm />
                             <RegisterForm />
-                            {/*A destination de profil Admin et Modo */}
-                            {user.access_lvl > 2 ? <AllComments /> : ''}
-                            {/*A destination de tous profil*/}
-                            <UserComment />
-                            <div className="d-md-flex">
-                                <ArticlesSelector searchOption={searchOption} />
-                                <ArticleFull />
+                            <div className="d-md-flex mt-3">
+                                <ArticlesSelector
+                                    setPage={setPage}
+                                    searchOption={searchOption}
+                                />
+                                {page === 'Article' && <ArticleFull />}
+                                {page === 'Profile' && <Profile />}
                                 <Tchat />
                             </div>
                         </main>
