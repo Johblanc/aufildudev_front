@@ -18,8 +18,8 @@ export function ArticleFull() {
     const { article, setArticle, setArticlesHandle } =
         useContext(ArticleContext);
 
-    const [inModif, setInModif] = useState(false);
-    const [inDelete, setInDelete] = useState(false);
+  const [inModif, setInModif] = useState(false);
+  const [inDelete, setInDelete] = useState(false);
 
     const [currentModif, setCurrentModif] = useState({
         title: article.title,

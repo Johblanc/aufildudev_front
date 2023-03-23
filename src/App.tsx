@@ -42,7 +42,7 @@ function App() {
     });
 
     return (
-        <div>
+        <div className='app'>
             <UserContext.Provider value={{ user, setUser }}>
                 <UpdateCommentContext.Provider value={{ comms, setComms }}>
                     <ArticleContext.Provider
@@ -60,7 +60,7 @@ function App() {
                             </div>
                         </header>
 
-                        <main className="container-fluid m-bottom ">
+                        <main className="container-fluid">
                             <LoginForm />
                             <RegisterForm />
                             <div className="d-md-flex mt-3">
