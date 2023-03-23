@@ -11,7 +11,7 @@ export function Profile() {
     const userData = useContext(UserContext);
     const [updating, setUpdating] = useState<boolean>(false);
     const [mail, setMail] = useState<string>(userData.user.email);
-    const [mailValid, setMailValid] = useState<boolean>(false);
+
     const notifySuccess = (msg: string) =>
         toast.success(msg, {
             position: 'bottom-right',
@@ -34,23 +34,27 @@ export function Profile() {
             progress: undefined,
             theme: 'light',
         });
-    const handleModif = (key: 'email', value: string) => {
-        const newModif = { ...userData.user };
-        newModif[key] = value;
-        if (!isMail(value)) {
-            setMailValid(false);
-            return;
-        }
-        setMailValid(true);
-        userData.setUser(newModif);
-    };
 
-    const isMail = (value: string) =>
-        Boolean(
-            value.match(
-                /^(([^<>()[].,;:\s@"]+(.[^<>()[].,;:\s@"]+)*)|(".+"))@(([^<>()[].,;:\s@"]+.)+[^<>()[].,;:\s@"]{2,})$/i
-            )
-        );
+     const handleModif = (key: 'email', value: string) => {
+        const newModif = { ...userData.user };
+        newModif[key] = value;         
+        userData.setUser(newModif);
+    }; 
+
+    function checkEmail(email: string) {
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
+    function validate() {
+        if (checkEmail(mail)) {
+            notifySuccess('Email modifié!')
+            return true
+        } else {
+            notifyError('Veuillez entrer un mail valide');
+            return false
+        }
+        
+    }
 
     const options = {
         method: 'PATCH',
@@ -81,27 +85,25 @@ export function Profile() {
                 {updating === false ? (
                     userData.user.email
                 ) : (
-                    <input
+                    <input id='email'
                         className=" form-control update-input mx-2"
                         value={mail}
                         onChange={(e) => setMail(e.target.value)}
-                        type="email"
+                        type='email'
                         required
                     ></input>
                 )}{' '}
                 {updating === true && (
                     <div className=" mt-2">
                         <button
-                            type="button"
+                            type="submit"
                             className="btn btn-success btn-sm"
-                            onClick={() => {
-                                if (mailValid === true) {
-                                    handleModif('email', mail);
+                            onClick={() => {                               
+                                    if(validate() === true){
                                     updateMail();
-                                    setUpdating(false);
-                                    notifySuccess('Email modifié!');
-                                }
-                                notifyError('Veuillez entrer un mail valide');
+                                    handleModif('email', mail);
+                                    setUpdating(false);}                            
+                                    return ;
                             }}
                         >
                             Modifier
