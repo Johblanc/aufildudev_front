@@ -11,34 +11,37 @@ export function Profile() {
     const userData = useContext(UserContext);
     const [updating, setUpdating] = useState<boolean>(false);
     const [mail, setMail] = useState<string>(userData.user.email);
-    const notifySuccess = (msg: string,) => toast.success(msg,
-        {
-            position: "bottom-right",
+    const [mailValid, setMailValid] = useState<boolean>(false);
+    const notifySuccess = (msg: string) =>
+        toast.success(msg, {
+            position: 'bottom-right',
             autoClose: 1500,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: false,
             draggable: false,
             progress: undefined,
-            theme: "light",
+            theme: 'light',
         });
-    ;
-    const notifyError = (msg: string,) => toast.error(msg,
-        {
-            position: "bottom-right",
+    const notifyError = (msg: string) =>
+        toast.error(msg, {
+            position: 'bottom-right',
             autoClose: 1500,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: false,
             draggable: false,
             progress: undefined,
-            theme: "light",
+            theme: 'light',
         });
-    ;
-
     const handleModif = (key: 'email', value: string) => {
         const newModif = { ...userData.user };
         newModif[key] = value;
+        if (!isMail(value)) {
+            setMailValid(false);
+            return;
+        }
+        setMailValid(true);
         userData.setUser(newModif);
     };
 
@@ -59,16 +62,7 @@ export function Profile() {
     };
 
     const updateMail = () =>
-        fetch(`${BASE_URL}/users`, options)
-            .then((response) => response.json())
-
-            .then((data) => {
-                if (data) {
-                    notifySuccess("Email modifié!")
-                } else {
-                    notifyError("erreur")
-                }
-            })
+        fetch(`${BASE_URL}/users`, options).then((response) => response.json());
 
     return (
         <div className="m-2 border border-primary bg-info text-primary border-2 rounded rounded-4 px-4 pt-4  flex-grow-1 ">
@@ -101,9 +95,13 @@ export function Profile() {
                             type="button"
                             className="btn btn-success btn-sm"
                             onClick={() => {
-                                handleModif('email', mail);
-                                updateMail();
-                                setUpdating(false);
+                                if (mailValid === true) {
+                                    handleModif('email', mail);
+                                    updateMail();
+                                    setUpdating(false);
+                                    notifySuccess('Email modifié!');
+                                }
+                                notifyError('Veuillez entrer un mail valide');
                             }}
                         >
                             Modifier
@@ -123,8 +121,5 @@ export function Profile() {
                 <ToastContainer />
             </div>
         </div>
-
-        
-        
     );
 }
