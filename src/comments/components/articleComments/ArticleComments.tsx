@@ -21,7 +21,7 @@ export function ArticleComments(props: { articleId: number }) {
         <div>
             <button
                 type="button"
-                className="btn btn-primary"
+                className="btn btn-primary text-dark"
                 data-bs-toggle="modal"
                 data-bs-target="#commentArticleList"
                 onClick={getArticleComment}
