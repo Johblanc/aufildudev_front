@@ -1,12 +1,8 @@
-
-/*
-.taille-footer {
-    height: 5em;
-    z-index: -2;
+.git-link{
+    text-decoration: none;
+    color: white;
 }
 
-.bg-img-footer {
-    z-index: -2;
+.git-link:hover{
+    color: rgb(var(--bs-secondary-rgb));
 }
-
-*/
