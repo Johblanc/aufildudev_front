@@ -12,36 +12,28 @@ export function LoginForm(/* props: {
     const passwordRef = useRef<HTMLInputElement>(null);
     const { setUser } = useContext(UserContext);
     const userData = useContext(UserContext);
-    const notifySuccess = (msg: string,) => toast.success(msg,
-        {
-            position: "bottom-right",
+    const notifySuccess = (msg: string) =>
+        toast.success(msg, {
+            position: 'bottom-right',
             autoClose: 3000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: false,
             draggable: false,
             progress: undefined,
-            theme: "light",
+            theme: 'light',
         });
-    ;
-    const notifyError = (msg: string,) => toast.error(msg,
-        {
-            position: "bottom-right",
+    const notifyError = (msg: string) =>
+        toast.error(msg, {
+            position: 'bottom-right',
             autoClose: 3000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: false,
             draggable: false,
             progress: undefined,
-            theme: "light",
+            theme: 'light',
         });
-    ;
-
-
-
-
-
-
     const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (pseudoRef.current?.value && passwordRef.current?.value) {
@@ -66,17 +58,16 @@ export function LoginForm(/* props: {
                         passwordRef.current!.value = '';
                         setUser(data.data);
                         setTimeout(() => {
-                            document.getElementById("close")?.click();
+                            document.getElementById('close')?.click();
                         }, 1500);
-                        notifySuccess(data.message)
-
+                        notifySuccess(data.message);
                     } else {
                         if (typeof data.message === 'string') {
                             notifyError(data.message);
                         } else {
                             notifyError(data.message[0]);
                             data.message.forEach((element: string) => {
-                                notifyError(element)
+                                notifyError(element);
                             });
                         }
                     }
@@ -86,14 +77,14 @@ export function LoginForm(/* props: {
         }
     };
 
-
-
-
     return (
         <>
-
-            <div className="modal fade" aria-labelledby='loginModal' id="loginModal" tabIndex={-1}>
-
+            <div
+                className="modal fade"
+                aria-labelledby="loginModal"
+                id="loginModal"
+                tabIndex={-1}
+            >
                 <div className="modal-dialog modal-dialog-centered  ">
                     <div className=" modal-content modal-content-login login-color ">
                         <div className="modal-header">
@@ -124,8 +115,10 @@ export function LoginForm(/* props: {
                                     ></input>
                                 </p>
 
-
-                                <label htmlFor="inputPassword" className="form-label">
+                                <label
+                                    htmlFor="inputPassword"
+                                    className="form-label"
+                                >
                                     Password
                                 </label>
 
@@ -142,13 +135,13 @@ export function LoginForm(/* props: {
                                 {userData.user.access_lvl < 1 ? (
                                     <>
                                         <button
-
                                             type="submit"
                                             className="btn btn-green"
                                         >
                                             {' '}
                                             Connexion
-                                        </button></>
+                                        </button>
+                                    </>
                                 ) : (
                                     ''
                                 )}
@@ -156,14 +149,11 @@ export function LoginForm(/* props: {
                         </form>
                     </div>
                 </div>
-
             </div>
 
             <div>
                 <ToastContainer />
             </div>
-
         </>
     );
 }
-

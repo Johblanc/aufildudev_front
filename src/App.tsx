@@ -1,4 +1,5 @@
 import './App.css';
+import './Accueil/accueil-style.css';
 import './profile/style/profile-style.css';
 import './comments/commentStyle.css';
 import './navbar/navbar-style.css';
@@ -24,9 +25,12 @@ import { DEFAULT_ARTICLE } from './Articles/Constant/DefaultArticle';
 import { ArticleContext } from './context/ArticleContext';
 import Footer from './footer/components/footer';
 import { TArticlesHandleParams } from './Articles/Types/TArticlesHandleParams';
+import Accueil from './Accueil/Components/Accueil';
 
 function App() {
-    const [page, setPage] = useState<'Article' | 'Profile'>('Article');
+    const [page, setPage] = useState<
+        'Article' | 'Profile' | 'Accueil' | 'Main'
+    >('Accueil');
     const [user, setUser] = useState<TUser>(DEFAULT_USER);
     const [comms, setComms] = useState<TComment[]>([]);
     const [article, setArticle] = useState(DEFAULT_ARTICLE);
@@ -40,9 +44,10 @@ function App() {
         inputTitle: '',
         inputAuthor: '',
     });
+    console.log(page);
 
     return (
-        <div className='app'>
+        <div className="app">
             <UserContext.Provider value={{ user, setUser }}>
                 <UpdateCommentContext.Provider value={{ comms, setComms }}>
                     <ArticleContext.Provider
@@ -53,30 +58,43 @@ function App() {
                             setArticlesHandle,
                         }}
                     >
-                        <header>
-                            <Navbar setPage={setPage} page={page} />
-                            <div className="shadow">
-                                <SearchBar setSearchOption={setSearchOption} />
-                            </div>
-                        </header>
+                        {page === 'Article' || page === 'Profile' ? (
+                            <header>
+                                <Navbar setPage={setPage} page={page} />
+                                <div className="shadow">
+                                    <SearchBar
+                                        setSearchOption={setSearchOption}
+                                    />
+                                </div>
+                            </header>
+                        ) : (
+                            ''
+                        )}
 
                         <main className="container-fluid">
+                            {page === 'Accueil' && (
+                                <Accueil setPage={setPage} />
+                            )}
                             <LoginForm />
                             <RegisterForm />
-                            <div className="d-md-flex mt-3">
-                                <ArticlesSelector
-                                    setPage={setPage}
-                                    searchOption={searchOption}
-                                />
-                                {page === 'Article' && <ArticleFull />}
-                                {page === 'Profile' && <Profile />}
-                                <Tchat />
-                            </div>
+                            {page === 'Article' || page === 'Profile' ? (
+                                <div className="d-md-flex mt-3">
+                                    <ArticlesSelector
+                                        setPage={setPage}
+                                        searchOption={searchOption}
+                                    />
+                                    {page === 'Article' && <ArticleFull />}
+                                    {page === 'Profile' && <Profile />}
+                                    <Tchat />
+                                </div>
+                            ) : (
+                                ''
+                            )}
                         </main>
                     </ArticleContext.Provider>
                 </UpdateCommentContext.Provider>
             </UserContext.Provider>
-            <Footer />
+            {page === 'Article' || page === 'Profile' ? <Footer /> : ''}
         </div>
     );
 }

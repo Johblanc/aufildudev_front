@@ -8,7 +8,9 @@ import { TSearchOption } from '../../Types/TSearchOption';
 
 export function ArticlesSelector(props: {
     searchOption: TSearchOption;
-    setPage: React.Dispatch<React.SetStateAction<'Article' | 'Profile'>>;
+    setPage: React.Dispatch<
+        React.SetStateAction<'Article' | 'Profile' | 'Accueil' | 'Main'>
+    >;
 }) {
     const { searchOption } = props;
     const { user } = useContext(UserContext);

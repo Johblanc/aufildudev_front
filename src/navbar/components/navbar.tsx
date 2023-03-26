@@ -6,7 +6,9 @@ import { UserContext } from '../../context/UserContext';
 import { Titre } from '../../Titre/Titre';
 
 export function Navbar(props: {
-    setPage: React.Dispatch<React.SetStateAction<'Article' | 'Profile'>>;
+    setPage: React.Dispatch<
+        React.SetStateAction<'Article' | 'Profile' | 'Accueil' | 'Main'>
+    >;
     page: string;
 }) {
     const { setArticle } = useContext(ArticleContext);
@@ -14,7 +16,7 @@ export function Navbar(props: {
 
     return (
         <nav className="navbar navbar-expand-lg nav-back width">
-            <div className="m-3">
+            <div className="m-3 click" onClick={() => props.setPage('Accueil')}>
                 <Titre />
             </div>
             <button
@@ -107,7 +109,7 @@ export function Navbar(props: {
                                     type="button"
                                     onClick={() => {
                                         userData.setUser(DEFAULT_USER);
-                                        props.setPage('Article');
+                                        props.setPage('Accueil');
                                     }}
                                 >
                                     Déconnexion
