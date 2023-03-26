@@ -7,7 +7,7 @@ export default function Accueil(props: {
 }) {
     return (
         <div className="banner d-flex flex-column justify-content-center align-items-center ">
-            <div className="hero-content">
+            <div className="hero-content rounded">
                 <Titre />
             </div>
             <button
