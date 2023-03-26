@@ -48,18 +48,9 @@ header {
 
 main {
   width: 100%;
-  height: 0;
+  height:100%;  
   display:table-row;
 }
-/*
-.vague {
-  margin-top: 3em;
-  width: 100%;
-  height: 2em;
-  display:table-row;
-  object-fit:cover;
-}
-*/
 
 footer {
   margin-top: 3em;
@@ -67,7 +58,7 @@ footer {
   border-width: 3em 0 0 0;
   border-image: url('../public/ressources/vague2.svg') 7 0 0 0 ; 
   width:100%;  
-  height:100%;  
+  height:15em;  
   
 }
 .footer-fill-h{

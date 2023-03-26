@@ -2,8 +2,8 @@ import '../footer-style.css';
 
 export default function Footer() {
     return (
-        <footer>
-            <div className="d-flex footer-fill-h bg-dark text-light justify-content-around pb-3 pt-2">
+        <footer >
+            <div className="d-flex footer-fill-h bg-dark text-light justify-content-around pb-3 pt-2" >
                 <div className="d-flex flex-column">
                     <a
                         href="https://github.com/kevinbatard"
