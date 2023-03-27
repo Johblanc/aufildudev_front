@@ -86,7 +86,8 @@ footer {
 
 .side-column {
   height: max-content;
-  width: 20em;
+  min-width: 17em;
+  max-width: 17em;
   max-height: 700px;
   overflow-y: scroll;
 }

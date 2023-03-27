@@ -95,7 +95,7 @@ export function Tchat() {
             <div
                 className={`${
                     isMini && 'tchat-mini'
-                } side-column text-end p-2 shadow-lg border border-success rounded scroll bg-dark`}
+                } side-column text-end p-2 shadow-lg border border-success rounded scroll bg-dark m-1`}
             >
                 <Messages messages={messages} />
                 <MessageInput
