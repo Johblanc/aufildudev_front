@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { IconCheckBox } from "../../Articles/Components/ArticleFull/Icon_CheckBox";
 import { TMini } from "../types/TMini";
 
+
 export default function DropdownItem(props: {
   data: TMini;
   value: boolean;
@@ -13,6 +14,29 @@ export default function DropdownItem(props: {
   useEffect(() => {
     setCurrentValue(value);
   }, [value]);
+  
+  const iconList = [
+    "back-end",
+    "c-sharp",
+    "c",
+    "c++",
+    "css",
+    "design",
+    "express",
+    "front-end",
+    "html",
+    "java",
+    "javascript",
+    "nestjs",
+    "python",
+    "svg",
+    "template",
+    "typeORM",
+    "typescript",
+    "utilities",
+  ]
+
+  const iconPath = `./ressources/icons/${iconList.includes(data.name) ? data.name : "unknow"}.svg`
 
   return (
     <span
@@ -26,7 +50,7 @@ export default function DropdownItem(props: {
         <p>{data.name}</p>
       </span>
       <span>
-        <img className="item-icon" src={`./ressources/icons/${data.name}.svg`} />
+        <img className="item-icon" src={iconPath} />
       </span>
     </span>
   );

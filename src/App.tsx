@@ -44,7 +44,6 @@ function App() {
         inputTitle: '',
         inputAuthor: '',
     });
-    console.log(page);
 
     return (
         <div className="app">
