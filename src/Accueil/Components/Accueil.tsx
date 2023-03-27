@@ -2,7 +2,7 @@ import { Titre } from '../../Titre/Titre';
 
 export default function Accueil(props: {
     setPage: React.Dispatch<
-        React.SetStateAction<'Article' | 'Profile' | 'Accueil' | 'Main'>
+        React.SetStateAction<'Article' | 'Profile' | 'Accueil' | 'Admin'>
     >;
 }) {
     return (

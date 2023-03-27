@@ -7,7 +7,7 @@ import { Titre } from '../../Titre/Titre';
 
 export function Navbar(props: {
     setPage: React.Dispatch<
-        React.SetStateAction<'Article' | 'Profile' | 'Accueil' | 'Main'>
+        React.SetStateAction<'Article' | 'Profile' | 'Accueil' | 'Admin'>
     >;
     page: string;
 }) {
@@ -41,7 +41,7 @@ export function Navbar(props: {
                             <li className="nav-item my-1 my-md-0">
                                 <a
                                     href="/#"
-                                    className="nav-link active btn btn-green mx-1"
+                                    className="nav-link active btn btn-green mx-3"
                                     type="button"
                                     data-bs-toggle="modal"
                                     data-bs-target="#loginModal"

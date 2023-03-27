@@ -5,7 +5,9 @@ import { TComment } from '../../types/TComment';
 import { ModalComment } from '../ModalComment';
 import { ModalUpdate } from '../ModalUpdate';
 
-export function AllComments() {
+export function AllComments(props: {
+    page: 'Article' | 'Profile' | 'Accueil' | 'Admin';
+}) {
     const { setComms } = useContext(UpdateCommentContext);
     const [commData, setCommData] = useState<TComment | undefined>();
 
@@ -23,7 +25,7 @@ export function AllComments() {
                 data-bs-target="#commentList"
                 onClick={getAllComms}
             >
-                Modération
+                {props.page === 'Profile' ? 'Modération' : 'Commentaires'}
             </button>
             <ModalComment setCommData={setCommData} />
             <ModalUpdate commData={commData} setCommData={setCommData} />

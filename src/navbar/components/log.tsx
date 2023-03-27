@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from 'react';
+import { useContext, useRef } from 'react';
 import { BASE_URL } from '../../constant/url';
 import { UserContext } from '../../context/UserContext';
 import { toast, ToastContainer } from 'react-toastify';
@@ -7,7 +7,6 @@ import 'react-toastify/dist/ReactToastify.css';
 export function LoginForm(/* props: {
     setUser: React.Dispatch<React.SetStateAction<TUser>>;
 } */) {
-    const [message, setMessage] = useState<string[]>(['']);
     const pseudoRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
     const { setUser } = useContext(UserContext);
@@ -53,7 +52,6 @@ export function LoginForm(/* props: {
 
                 .then((data) => {
                     if (data.data) {
-                        setMessage([data.message]);
                         pseudoRef.current!.value = '';
                         passwordRef.current!.value = '';
                         setUser(data.data);
