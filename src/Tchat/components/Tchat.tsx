@@ -38,7 +38,7 @@ export function Tchat() {
     };
 
     useEffect(() => {
-        const newSocket = io('http://localhost:8001');
+        const newSocket = io('https://aufildudev-front.vercel.app/');
         setSocket(newSocket);
     }, [setSocket]);
 
