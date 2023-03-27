@@ -5,8 +5,7 @@ import { TTchat } from '../types/TTchat';
 export default function Message(props: { message: TTchat }) {
     const userData = useContext(UserContext);
 
-    const BS_COMMUN =
-        'text-break m-2 pt-2 pb-2 pe-3 ps-3 rounded-pill messages';
+    const BS_COMMUN = 'text-break m-2 pt-2 pb-2 pe-3 ps-3 rounded-4 messages';
     const BS_USER = 'bg-secondary align-self-end';
     const BS_OTHER = 'bg-info ';
 
@@ -24,7 +23,7 @@ export default function Message(props: { message: TTchat }) {
                     : BS_OTHER
             }`}
         >
-            <span className="bold">{props.message.pseudo}</span> :{' '}
+            <span className="bold ">{props.message.pseudo}</span> :{' '}
             {props.message.message}
         </div>
     );
