@@ -26,10 +26,11 @@ import { ArticleContext } from './context/ArticleContext';
 import Footer from './footer/components/footer';
 import { TArticlesHandleParams } from './Articles/Types/TArticlesHandleParams';
 import Accueil from './Accueil/Components/Accueil';
+import Admin from './Admin/components/Admin';
 
 function App() {
     const [page, setPage] = useState<
-        'Article' | 'Profile' | 'Accueil' | 'Main'
+        'Article' | 'Profile' | 'Accueil' | 'Admin'
     >('Accueil');
     const [user, setUser] = useState<TUser>(DEFAULT_USER);
     const [comms, setComms] = useState<TComment[]>([]);
@@ -57,7 +58,9 @@ function App() {
                             setArticlesHandle,
                         }}
                     >
-                        {page === 'Article' || page === 'Profile' ? (
+                        {page === 'Article' ||
+                        page === 'Profile' ||
+                        page === 'Admin' ? (
                             <header>
                                 <Navbar setPage={setPage} page={page} />
                                 <div className="shadow">
@@ -76,14 +79,22 @@ function App() {
                             )}
                             <LoginForm />
                             <RegisterForm />
-                            {page === 'Article' || page === 'Profile' ? (
+                            {page === 'Article' ||
+                            page === 'Profile' ||
+                            page === 'Admin' ? (
                                 <div className="d-md-flex mt-3">
                                     <ArticlesSelector
                                         setPage={setPage}
                                         searchOption={searchOption}
                                     />
                                     {page === 'Article' && <ArticleFull />}
-                                    {page === 'Profile' && <Profile />}
+                                    {page === 'Profile' && (
+                                        <Profile
+                                            page={page}
+                                            setPage={setPage}
+                                        />
+                                    )}
+                                    {page === 'Admin' && <Admin page={page} />}
                                     <Tchat />
                                 </div>
                             ) : (
@@ -93,7 +104,11 @@ function App() {
                     </ArticleContext.Provider>
                 </UpdateCommentContext.Provider>
             </UserContext.Provider>
-            {page === 'Article' || page === 'Profile' ? <Footer /> : ''}
+            {page === 'Article' || page === 'Profile' || page === 'Admin' ? (
+                <Footer />
+            ) : (
+                ''
+            )}
         </div>
     );
 }
