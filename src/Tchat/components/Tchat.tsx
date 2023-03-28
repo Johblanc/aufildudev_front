@@ -28,6 +28,7 @@ export function Tchat() {
         }
     }, [userData.user]);
 
+    //Fonction permettant l'envoie d'un message
     const send = (value: string) => {
         const envoi = {
             pseudo: userData.user.pseudo,
@@ -36,18 +37,21 @@ export function Tchat() {
         };
         socket?.emit('message', JSON.stringify(envoi));
     };
-
+    
+    //Connexion au Websocket dans le back
     useEffect(() => {
         const newSocket = io('https://aufildudev-back.onrender.com/');
         setSocket(newSocket);
     }, [setSocket]);
 
+    //Reception des messages pour affichage du tchat
     const messageListener = (message: string) => {
         const result = JSON.parse(message);
         setMessages([...messages, result]);
         setIsVisible(true);
     };
-
+    
+    //"Ecoute" en permanence le serveur
     useEffect(() => {
         socket?.on('message', messageListener);
         return () => {
