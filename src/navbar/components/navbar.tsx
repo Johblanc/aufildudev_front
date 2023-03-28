@@ -16,7 +16,7 @@ export function Navbar(props: {
 
     return (
         <nav className="navbar navbar-expand-lg nav-back width">
-            <div className="m-3 click" onClick={() => props.setPage('Accueil')}>
+            <div className="m-3 click" onClick={() => props.setPage('Article')}>
                 <Titre />
             </div>
             <button

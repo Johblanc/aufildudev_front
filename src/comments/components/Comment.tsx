@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { UserContext } from '../../context/UserContext';
 import { TComment } from '../types/TComment';
 import { BASE_URL } from '../../constant/url';
@@ -11,6 +11,7 @@ export function Comment(props: {
     const comm = props.data;
     const userData = useContext(UserContext);
     const { comms, setComms } = useContext(UpdateCommentContext);
+    const [onDelete, setOnDelete] = useState<boolean>(false)
 
     const options = {
         method: 'DELETE',
@@ -62,17 +63,27 @@ export function Comment(props: {
                     ''
                 )}
                 {userData.user.access_lvl > 2 ||
-                userData.user?.pseudo === comm.user.pseudo ? (
-                    <button
-                        type="button"
-                        className="btn btn-danger btn-sm btn-comms"
-                        onClick={() => deleteComm(comm.id)}
-                    >
-                        Supprimer
-                    </button>
-                ) : (
-                    ''
-                )}
+                userData.user?.pseudo === comm.user.pseudo ? onDelete === false ? <button
+                    type="button"
+                    className="btn btn-danger btn-sm btn-comms"
+                    onClick={() => setOnDelete(true)}
+                >
+                    Supprimer
+                </button> : <><button
+                    type="button"
+                    className="btn btn-danger btn-sm btn-comms me-2"
+                    onClick={() => {deleteComm(comm.id);
+                        setOnDelete(false)
+                    }}
+                >
+                    Valider la suppression 
+                </button><button
+                    type="button"
+                    className="btn btn-primary btn-sm btn-comms me-2"
+                    onClick={() => setOnDelete(false)}
+                >
+                    Annuler la suppression 
+                </button></> : ''}
             </div>
         </div>
     );
