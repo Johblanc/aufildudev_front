@@ -42,7 +42,7 @@ export default function DropdownItem(props: {
 
     return (
         <span
-            className="dropdown-item d-flex justify-content-between"
+            className="dropdown-item d-flex justify-content-between pointer"
             onClick={() => setValue(data.id, !currentValue)}
         >
             <span>

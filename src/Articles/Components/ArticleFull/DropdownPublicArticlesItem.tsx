@@ -12,7 +12,7 @@ export default function DropDownPublicArticleItem(props:{
     
   
     return (
-        <span className="dropdown-item d-flex" onClick={()=>setValue(!value)}>
+        <span className="dropdown-item d-flex pointer" onClick={()=>setValue(!value)}>
           <span>
             <IconCheckBox value={value} />
           </span>
