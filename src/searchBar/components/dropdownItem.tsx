@@ -28,6 +28,7 @@ export default function DropdownItem(props: {
         'javascript',
         'nestjs',
         'python',
+        'react',
         'svg',
         'template',
         'typeORM',

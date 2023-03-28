@@ -129,7 +129,7 @@ export function RegisterForm() {
                             </p>
                         </div>
 
-                        <div className="modal-footer">
+                        <div className="modal-footer d-flex justify-content-center">
                             <button type="submit" className="btn btn-green"> Valider</button>
                         </div>
                     </form>
