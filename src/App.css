@@ -95,3 +95,6 @@ footer {
 .pointer {
   cursor: pointer;
 }
+.article {
+  max-width: 96vw;
+}

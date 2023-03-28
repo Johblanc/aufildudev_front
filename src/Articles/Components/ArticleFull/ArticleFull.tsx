@@ -199,7 +199,7 @@ export function ArticleFull() {
     };
 
     enum BootStrap {
-        ARTICLE = 'mx-2 border border-primary bg-info text-primary border-2 rounded rounded-4 p-4 flex-grow-1',
+        ARTICLE = 'article mx-2 border border-primary bg-info text-primary border-2 rounded rounded-4 p-4 flex-grow-1',
         BUTTON = 'btn bg-secondary border border-1 border-dark text-primary m-1',
         BAD_BUTTON = 'btn bg-light border border-1 border-danger text-primary m-1',
         DROPDOWN = 'm-1 drop-resize',
