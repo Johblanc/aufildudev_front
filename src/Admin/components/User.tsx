@@ -1,4 +1,5 @@
 import { useContext, useState } from 'react';
+import { BASE_URL } from '../../constant/url';
 import { UserContext } from '../../context/UserContext';
 import { TUser } from '../../navbar/types/TUser';
 
@@ -18,7 +19,7 @@ export default function User(props: { data: TUser }) {
 
     const update = () =>
         fetch(
-            `http://localhost:8000/api/users/promote/${props.data.id}`,
+            `${BASE_URL}/users/promote/${props.data.id}`,
             options
         )
             .then((response) => response.json())
